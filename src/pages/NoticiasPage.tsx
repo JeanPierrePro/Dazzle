@@ -1,5 +1,5 @@
 // meu favorito.tsx
-import React, { useState, useEffect } from 'react'; // Import useEffect
+import React, { useState} from 'react'; // Import useEffect
 import styles from '../styles/NoticiasPage.module.css';
 
 // Define a interface para um item de vídeo
