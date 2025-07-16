@@ -1,5 +1,4 @@
 // src/App.tsx
-import React from 'react';
 import { Routes, Route } from 'react-router-dom'; // IMPORTANTE: Importe Routes e Route
 import Navbar from './components/Navbar/Navbar';
 // Importe todas as suas páginas
