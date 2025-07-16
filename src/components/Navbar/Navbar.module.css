@@ -1,0 +1,100 @@
+/* src/components/Navbar/Navbar.module.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--navbar-bg);
+  padding: 15px 40px; /* Ajuste o padding conforme necessário */
+  height: 70px; /* Altura da navbar */
+  color: var(--text-light);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%; /* Garante que o Navbar ocupe toda a largura */
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px; /* Tamanho do texto DAZZLE */
+  font-weight: bold;
+  margin-right: 40px; /* Espaço entre o logo e os links */
+  color: var(--text-light); /* Garante que o logo tem a cor do texto claro */
+  text-transform: uppercase; /* Se o texto do logo for todo maiúsculo */
+  letter-spacing: 1px; /* Ajuste o espaçamento das letras se necessário */
+  white-space: nowrap; /* Evita que o logo quebre em várias linhas */
+}
+
+/* Se for usar uma imagem para o logo: */
+.logo img {
+  height: 30px; /* Altura da imagem do logo */
+  width: auto;
+}
+
+.navLinks {
+  display: flex;
+  gap: 30px; /* Espaço entre os itens do menu */
+}
+
+.navItem {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 0; /* Para dar um pouco de "área clicável" */
+  transition: color 0.3s ease;
+  color: var(--text-light); /* Cor padrão dos itens do menu */
+  white-space: nowrap; /* Evita que os itens quebrem em várias linhas */
+}
+
+.navItem:hover {
+  color: var(--accent-orange); /* Cor ao passar o mouse */
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espaço entre a barra de busca e o botão TN */
+}
+
+.searchBar {
+  position: relative;
+  width: 280px; /* Largura da barra de busca */
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px; /* Bordas levemente arredondadas */
+  background-color: var(--input-bg);
+  color: var(--text-light);
+  font-size: 15px;
+  outline: none; /* Remove o outline azul ao focar */
+}
+
+.searchInput::placeholder {
+  color: var(--search-placeholder-color); /* Cor do placeholder */
+  opacity: 0.8;
+}
+
+.searchInput:focus {
+  border-color: var(--accent-orange); /* Borda fica laranja ao focar */
+}
+
+.tnButton {
+  background-color: var(--accent-orange);
+  color: var(--text-light); /* Ou var(--bg-dark) se o texto for escuro no botão */
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Evita que o botão quebre */
+}
+
+.tnButton:hover {
+  background-color: #FFB74D; /* Um tom ligeiramente mais claro no hover */
+}

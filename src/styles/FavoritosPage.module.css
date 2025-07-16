@@ -1,0 +1,400 @@
+/* MeuTimePage.module.css */
+
+.container {
+  background-color: #000000; /* Dark background */
+  color: #ffffff; /* White text */
+  min-height: 100vh;
+  padding: 20px ;
+  font-family: Arial, sans-serif; /* Or your preferred font */
+  position: relative;
+  max-width: 1600px; /* Defina a largura máxima que você deseja para o conteúdo */
+  margin: 0 auto; /* Isso centraliza o bloco horizontalmente */
+  box-sizing: border-box;
+}
+
+.header {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #333; /* A subtle separator */
+  margin-bottom: 30px;
+}
+
+.welcomeSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.separatorLine {
+  width: 100%; /* Ocupa a largura total do container pai */
+  height: 1px; /* Espessura da linha */
+  background-color: #333; /* Cor da linha, ajuste para um cinza escuro ou cor de destaque */
+  margin: 30px 0; /* Espaçamento acima e abaixo da linha */
+}
+
+.avatar {
+  background-color: #f7d20a; /* Yellow color from the image */
+  color: #1a1a1a;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.welcomeText {
+  display: flex;
+  flex-direction: column;
+}
+
+.bemVindo {
+  font-size: 14px;
+  color: #aaa; /* Slightly faded */
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.selectionLimit {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.editButton {
+  background: none;
+  border: 1px solid #f7d20a; /* Yellow border */
+  color: #f7d20a;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  position: absolute;
+  top: 160px; /* Adjust as needed */
+  right: 20px;
+}
+
+/* MeuTimePage.module.css */
+
+.contentGrid {
+  display: flex;
+  /* Remova o gap se usar separadores explícitos, ou ajuste o gap para acomodá-los */
+  /* gap: 20px; */ /* Pode ser removido ou ajustado */
+  margin-top: 60px;
+}
+
+.verticalSeparatorLine {
+  width: 1px; /* Espessura da linha vertical */
+  background-color: #ffffff; /* Cor da linha */
+  /* Altura total do .contentGrid, ou ajuste para a altura da coluna */
+  height: auto; /* Deixa o flexbox estender a altura */
+  align-self: stretch; /* Faz com que o item estique para preencher a altura do contêiner flex */
+  margin: 0 10px; /* Margem horizontal para separar das colunas, ajuste conforme necessário */
+}
+
+.categoryColumn {
+  flex: 1; /* Distribute space evenly */
+  background-color: #000000; /* Slightly lighter dark background for columns */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Remove a borda da última coluna para que não haja uma linha no final */
+.categoryColumn:last-child {
+  border-right: none;
+}
+
+/* ... o restante do seu CSS permanece o mesmo ... */
+
+.categoryTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #eee;
+}
+
+.categoryTitle .count {
+  color: #999;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Space between items */
+}
+
+.circleIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #444; /* Placeholder background for icons */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  overflow: hidden; /* Important for actual images */
+}
+
+/* Specific icon styles (you'd use background-image or img tag) */
+.palmeirasIcon {
+  /* Example: background-image: url('/path/to/palmeiras.png'); */
+  background-color: #006b54; /* Example color */
+}
+.brasileiraoIcon {
+  background-color: #0d47a1; /* Example color */
+}
+.libertadoresIcon {
+  background-color: #d32f2f; /* Example color */
+}
+.championsLeagueIcon {
+  background-color: #1976d2; /* Example color */
+}
+.copaDoBrasilIcon {
+  background-color: #4caf50; /* Example color */
+}
+.cristianoRonaldoIcon {
+  background-color: #9e9e9e; /* Example color */
+}
+.lionelMessiIcon {
+  background-color: #fbc02d; /* Example color */
+}
+
+
+.circleAddIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dashed #666; /* Dashed border for add button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #666;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.itemText {
+  font-size: 12px;
+  color: #999;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: bold;
+  color: #eee;
+}
+/* ... (Seu CSS existente) ... */
+
+.item {
+  /* ... (Seu estilo existente para .item) ... */
+  cursor: pointer; /* Indica que o item é clicável */
+  position: relative; /* Para posicionar o ícone de check */
+}
+
+.selectedItem {
+  /* Estilo quando um item está selecionado */
+  border: 2px solid #f7d20a; /* Exemplo: borda amarela */
+  box-shadow: 0 0 10px rgba(247, 210, 10, 0.5); /* Exemplo: sombra amarela */
+}
+
+.checkIcon {
+  position: absolute;
+  bottom: 5px; /* Ajuste a posição conforme necessário */
+  right: 5px; /* Ajuste a posição conforme necessário */
+  background-color: #f7d20a; /* Cor do check */
+  color: #1a1a1a;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.circlePlaceholder {
+  /* Para ícones sem imagem, caso queira um visual diferente */
+  background-color: #555;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.addItem {
+  /* Estilo para os botões 'Seguir' / 'Adicionar' */
+  opacity: 0.7; /* Torná-los um pouco mais sutis */
+  transition: opacity 0.3s ease;
+}
+
+.addItem:hover {
+  opacity: 1;
+}
+
+/* Ajuste para as imagens dentro dos círculos */
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem preencha o círculo */
+  border-radius: 50%; /* Garante que a imagem seja circular */
+}
+/* ... SEU CSS EXISTENTE ... */
+
+/* Estilos para o Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
+}
+
+.modalContent {
+  background-color: #2a2a2a; /* Cor do fundo do modal */
+  border-radius: 8px;
+  padding: 25px;
+  width: 90%;
+  max-width: 800px; /* Largura máxima do modal */
+  max-height: 80vh; /* Altura máxima para rolagem se necessário */
+  overflow-y: auto; /* Adiciona rolagem se o conteúdo for muito grande */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  animation: fadeIn 0.3s ease-out; /* Animação simples de fade in */
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #444;
+}
+
+.modalHeader h2 {
+  font-size: 22px;
+  color: #eee;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #fff;
+}
+
+.modalItemsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 3 colunas, ajusta para mais */
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.modalItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  background-color: #333; /* Cor de fundo do item no modal */
+  border-radius: 8px;
+  padding: 10px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  position: relative; /* Para o ícone de check */
+  border: 2px solid transparent; /* Borda inicial transparente */
+}
+
+.modalItem:hover {
+  transform: translateY(-3px);
+  background-color: #444;
+}
+
+.modalItemSelected {
+  border-color: #f7d20a; /* Borda amarela quando selecionado */
+  background-color: #3a3a3a; /* Cor de fundo ligeiramente diferente quando selecionado */
+}
+
+.modalItemDisabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none; /* Impede cliques */
+    filter: grayscale(80%); /* Torna cinza */
+}
+
+
+.modalItemIcon {
+  width: 70px; /* Tamanho maior para ícones no modal */
+  height: 70px;
+  border-radius: 50%;
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.modalCheckIcon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #f7d20a;
+  color: #1a1a1a;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #1a1a1a; /* Borda para destacar */
+}
+
+.modalItemName {
+  font-size: 14px;
+  color: #eee;
+  font-weight: bold;
+}
+
+.modalLimitText {
+    text-align: right;
+    font-size: 13px;
+    color: #999;
+    margin-top: 10px;
+}
+
+/* Animação de FadeIn para o modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Garante que o ícone de imagem preencha o círculo */
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}

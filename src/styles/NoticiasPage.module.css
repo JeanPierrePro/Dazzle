@@ -1,0 +1,135 @@
+.container {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  min-height: 100vh;
+  font-family: sans-serif; /* General sans-serif font */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333; /* Darker border for separation */
+}
+
+.title {
+  color: #fff;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.navigation {
+  padding: 20px 0;
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+}
+
+.navItemContainer {
+  display: flex;
+  gap: 30px; /* Space between "FAVORITOS" and "GLOBAL" */
+}
+
+.navItem {
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.navItem.active {
+  color: #fff; /* Active item is white */
+}
+
+.navItem.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fdd835; /* Yellow underline for active item */
+}
+
+.sportsNav {
+  display: flex;
+  gap: 15px; /* Space between sport buttons */
+  margin-top: 20px;
+  margin-bottom: 30px;
+  /* Permite que os botões quebrem para a próxima linha em telas menores */
+  flex-wrap: wrap;
+}
+
+.sportButton {
+  background-color: #333; /* Dark gray background for inactive buttons */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Evita que o texto quebre dentro do botão */
+}
+
+.sportButton.activeSport {
+  background-color: #fff; /* White background for active sport */
+  color: #000; /* Black text for active sport */
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between video cards */
+}
+
+.videoCard {
+  background-color: #1a1a1a; /* Slightly lighter black for card background */
+  border-radius: 8px;
+  overflow: hidden; /* Ensures image corners are rounded */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio (height / width * 100) */
+  overflow: hidden;
+}
+
+.thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area, cropping if necessary */
+}
+
+.dazzleLogo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 60px; /* Adjust size as needed */
+  height: auto;
+  z-index: 1; /* Ensure it's above the thumbnail */
+}
+
+.videoTitle {
+  padding: 15px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+}
+
+.noVideosMessage {
+  grid-column: 1 / -1; /* Faz a mensagem ocupar toda a largura do grid */
+  text-align: center;
+  padding: 50px;
+  color: #aaa;
+  font-size: 1.2em;
+}

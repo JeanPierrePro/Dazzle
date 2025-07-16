@@ -1,0 +1,325 @@
+.profilePage {
+  background-color: #f0f0f0; /* Fundo branco/cinza claro */
+  min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
+  width: 100vw; /* Garante que a página ocupe a largura total da viewport */
+  color: #333; /* Cor de texto padrão mais escura para o corpo */
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* **ESSENCIAL** para evitar o scroll principal da página */
+}
+
+/* Este é um placeholder para o seu componente Header/Navbar */
+.navbarPlaceholder {
+  height: 60px; /* Altura do seu Navbar */
+  width: 100%;
+  background-color: #1a1a1a; /* Cor de fundo do seu navbar */
+  color: white;
+  padding: 0 5%;
+  box-sizing: border-box;
+  flex-shrink: 0; /* Impede que o Navbar encolha se usar flexbox no pai */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profileContentWrapper {
+  padding-top: 20px; /* Reduzindo o padding superior para "subir" o conteúdo */
+  padding-left: 5%; /* Paddings laterais para centralizar e dar espaço */
+  padding-right: 5%;
+  max-width: 1400px; /* Largura máxima do conteúdo */
+  margin: 0 auto; /* Centraliza o wrapper horizontalmente */
+  padding-bottom: 20px; /* Reduzindo o padding inferior para "subir" o conteúdo */
+  box-sizing: border-box; /* Garante que o padding não adicione largura extra */
+  display: flex; /* Habilitar Flexbox para organizar as seções internas */
+  flex-direction: column; /* Organizar as seções internas em coluna */
+  align-items: flex-start; /* Alinha o conteúdo à esquerda dentro do wrapper */
+  width: 100%; /* Ocupa a largura total disponível */
+  overflow-y: auto; /* Permite scroll APENAS dentro do wrapper se o conteúdo for muito grande */
+}
+
+/* --- Top Section Layout (os dois blocos superiores) --- */
+.profileTopSection {
+  display: flex;
+  gap: 30px; /* Espaço entre os dois blocos superiores */
+  margin-top: 10px; /* Reduzindo o espaço do topo */
+  margin-bottom: 10px; /* Reduzindo o espaço para a próxima seção (feature cards) */
+  flex-wrap: wrap; /* Permite que os blocos quebrem linha em telas menores */
+  align-items: flex-start; /* Alinha os blocos pelo topo */
+  width: 100%; /* Ocupa a largura total do wrapper */
+  /* Removido justify-content: center; para alinhar à esquerda */
+}
+
+/* --- Profile Header Card (Bloco Esquerdo Superior) --- */
+.profileHeaderCard {
+  background-color: white; /* Fundo branco */
+  border-radius: 8px;
+  border: 2px solid #000000;
+  padding: 54px 40px 25px 50px;
+  flex: 1.2; /* Ocupa o dobro de espaço que o bloco de opções */
+  width: 100px; /* Largura mínima para o layout em linha */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Espaço entre a info do usuário e o botão */
+}
+
+.tnAvatar {
+  background-color: #FFA500; /* Laranja do botão TN */
+  color: white;
+  width: 60px; /* Tamanho do círculo TN */
+  height: 60px; /* Tamanho do círculo TN */
+  border-radius: 50%;
+  border: 2px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5em; /* Tamanho do texto TN */
+  margin-right: 20px; /* Espaço entre o TN e o texto de boas-vindas */
+  flex-shrink: 0; /* Impede que o avatar encolha */
+}
+
+.welcomeMessage {
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Alinha o texto à esquerda */
+}
+
+.boldText {
+  font-weight: normal; /* "BEM-VINDO" não é tão bold na imagem, é mais um cinza claro */
+  font-size: 0.9em;
+  color: #666; /* Cor cinza mais claro para "BEM-VINDO" */
+}
+
+.userName {
+  font-size: 1.8em; /* "Tomás Nelo" maior e mais proeminente */
+  font-weight: bold;
+  margin-top: 2px;
+  color: #333; /* Cor mais escura para o nome */
+}
+
+.editProfileButton {
+  background-color: transparent;
+  color: #333; /* Cor do texto no botão */
+  border: 2px solid #000000; /* Borda mais clara */
+  border-radius: 4px;
+  padding: 12px 20px; /* Mais padding */
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+  width: fit-content; /* Largura ajustada ao conteúdo */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.editProfileButton:hover {
+  background-color: #db9b50;
+  border-color: #b0b0b0;
+}
+
+.editEmailPassword {
+  font-size: 0.85em; /* Tamanho do texto de edição */
+  color: #888; /* Cor mais suave */
+  margin-top: 15px; /* Espaço do botão */
+}
+
+/* --- Profile Options Card Group (Bloco Direito Superior) --- */
+.profileOptionsCardGroup {
+  flex: 1; /* Ocupa o espaço restante */
+  display: flex;
+  flex-direction: column;
+  min-width: 280px; /* Largura mínima para não ficar muito estreito em linha */
+  background-color: white; /* Fundo branco para o grupo inteiro */
+  border: 1px solid black; /* Borda preta fina ao redor do grupo */
+  border-radius: 8px; /* Borda arredondada para o grupo */
+  overflow: hidden; /* Garante que os cantos arredondados sejam respeitados pelos itens internos */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave, se desejar */
+}
+
+.optionCard {
+  background-color: white; /* Fundo branco */
+  border: none; /* Remove qualquer borda individual */
+  padding: 25px 25px; /* Padding ajustado */
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+  color: #333; /* Cor do texto */
+  transition: background-color 0.3s ease;
+}
+
+/* Adiciona a borda superior preta a todos os cards, exceto o primeiro */
+.profileOptionsCardGroup .optionCard:not(:first-child) {
+  border-top: 2px solid black; /* Borda preta fina entre os itens */
+}
+
+.optionCard:hover {
+  background-color: #f8f8f8;
+}
+
+.arrowIconRight {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #000000;
+}
+
+/* --- Feature Cards Grid --- */
+.featureCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 colunas em telas maiores */
+  gap: 25px; /* Espaço entre os cartões */
+  margin-top: 10px; /* Reduzindo o espaço da seção acima */
+  width: 100%; /* Ocupa a largura total do wrapper */
+}
+
+.featureCard {
+  background-color: white; /* Fundo branco */
+  border-radius: 8px;
+  padding: 25px; /* Padding interno */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px; /* Altura mínima para consistência */
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  transition: background-color 0.3s ease;
+}
+
+.featureCard:hover {
+  background-color: #f8f8f8;
+}
+
+.featureCard .icon {
+  font-size: 2.2em; /* Ícones maiores */
+  margin-bottom: 15px; /* Mais espaço para o título */
+  color: #FFA500; /* Cor laranja para os ícones */
+}
+
+.featureCard h4 {
+  margin: 0;
+  font-size: 1.2em; /* Título maior */
+  color: #333;
+  font-weight: bold; /* Título mais forte */
+}
+
+.featureCard p {
+  font-size: 0.9em;
+  color: #888; /* Texto de descrição mais suave */
+  margin: 10px 0 20px 0; /* Espaço acima e abaixo */
+  line-height: 1.4;
+}
+
+.arrowIconBottom {
+  background-color: black; /* Fundo preto para a seta */
+  color: white; /* Seta branca */
+  padding: 2px 5px; /* Ajuste o padding para o tamanho desejado da caixa preta */
+  border-radius: 3px; /* Borda levemente arredondada como na imagem */
+  font-weight: normal; /* Geralmente a seta não é bold */
+  font-size: 1.4em; /* Ajuste o tamanho da seta dentro da caixa */
+  display: inline-flex;
+  align-self: flex-start; /* Mantém a seta alinhada à esquerda dentro do card */
+  align-items: center;
+  justify-content: center;
+  width: 25px; /* Largura fixa para a caixa, ajuste conforme necessário */
+  height: 25px; /* Altura fixa para a caixa, ajuste conforme necessário */
+}
+
+/* --- Footer --- */
+.dazzleLogoFooterProfile {
+  text-align: right; /* Alinha o texto à direita */
+  font-size: 1.8em;
+  font-weight: bold;
+  /* Propriedades para o efeito de contorno/vazado */
+  color: transparent; /* Torna o preenchimento do texto transparente */
+  -webkit-text-stroke: 1px #272727; /* Adiciona um contorno de 1px preto/cinza escuro */
+  position: absolute; /* Posicionamento absoluto para fixar no canto */
+  bottom: 5px; /* Distância do fundo da página, reduzido */
+  right: 5%; /* Distância da direita da página (usando a mesma porcentagem do padding) */
+  margin-top: 5px; /* Uma pequena margem para não colar no conteúdo acima */
+  margin-bottom: 5px; /* Uma pequena margem para não colar na borda inferior */
+  width: auto; /* Largura ajustada ao conteúdo */
+  padding-right: 0; /* Remover padding-right extra já que right: 5% gerencia */
+  line-height: 1; /* Garante que não haja espaçamento extra na linha */
+  letter-spacing: 1px; /* Opcional: Adiciona um leve espaçamento entre as letras para replicar a imagem */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+  .profileTopSection {
+    flex-direction: column; /* Empilha os blocos superiores em telas menores */
+    gap: 20px;
+  }
+  .profileHeaderCard,
+  .profileOptionsCardGroup {
+    width: 100%; /* Ocupam a largura total */
+    min-width: unset; /* Remove largura mínima fixa */
+    flex: none; /* Remove o flex grow/shrink */
+  }
+  .profileHeaderCard {
+    padding: 20px;
+  }
+  .userName {
+    font-size: 1.5em;
+  }
+  .tnAvatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+  }
+  .profileOptionsCardGroup .optionCard {
+    padding: 18px 20px;
+    font-size: 1em;
+  }
+  .featureCardsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mais colunas em telas médias */
+    gap: 20px;
+  }
+  .featureCard {
+    min-height: 140px;
+    padding: 20px;
+  }
+  .profileContentWrapper {
+    padding-left: 3%; /* Ajusta padding lateral para telas menores */
+    padding-right: 3%;
+  }
+  .dazzleLogoFooterProfile {
+    right: 3%; /* Ajusta a distância da direita para telas menores */
+  }
+}
+
+@media (max-width: 600px) {
+  .profileContentWrapper {
+    padding-left: 3%; /* Ajusta padding lateral para telas muito pequenas */
+    padding-right: 3%;
+  }
+  .tnAvatar {
+    width: 45px;
+    height: 45px;
+    font-size: 1em;
+  }
+  .userName {
+    font-size: 1.3em;
+  }
+  .featureCardsGrid {
+    grid-template-columns: 1fr; /* Uma única coluna em telas muito pequenas */
+  }
+  .featureCard .icon {
+    font-size: 2em;
+  }
+  .featureCard h4 {
+    font-size: 1.1em;
+  }
+  .featureCard p {
+    font-size: 0.85em;
+  }
+  .dazzleLogoFooterProfile {
+    right: 3%; /* Mantido como no antigo código */
+    font-size: 1.5em;
+  }
+}

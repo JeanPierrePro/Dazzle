@@ -1,0 +1,15 @@
+/* src/App.css */
+/* Este arquivo pode ser usado para estilos que afetam o layout geral do App,
+   mas por enquanto, a maioria dos estilos está em index.css ou nos módulos de componentes. */
+
+.app-container {
+  min-height: 100vh; /* Garante que o contêiner ocupa a altura total da tela */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main {
+  flex-grow: 1; /* Faz com que o conteúdo principal ocupe o espaço restante */
+  padding: auto; /* Adapte o padding conforme o seu design */
+}

@@ -1,0 +1,468 @@
+/* GameDetailsPage.module.css */
+
+.container {
+  background-color: #121212; /* Darker background to match the image */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Slightly different font */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent body scroll if content overflows due to small screens */
+}
+
+/* You might remove .header and .logo if your header is a global component
+   and not specific to this page. I'll keep them commented out as they were in your original CSS. */
+/*
+.header {
+  background-color: #000000;
+  padding: 10px 30px;
+  border-bottom: 1px solid #222222;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 600;
+  color: #eeeeee;
+  letter-spacing: 1px;
+}
+*/
+
+.mainContent {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px 30px; /* Padding around the main content area */
+  gap: 25px; /* Slightly more space between sections */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.featuredSection {
+  flex: 2; /* Still takes more space */
+  background-color: #1a1a1a; /* Background for the main content area */
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.videoPlaceholder {
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stadiumBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Cover the area */
+  background-position: center; /* Center the image */
+  filter: brightness(0.6); /* Slightly dim the background image */
+  /* The actual background-image url will be set dynamically via style prop in TSX */
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker, more opaque overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.warningIcon {
+  font-size: 55px; /* Adjusted size */
+  color: #ffc107; /* A subtle yellow/amber, closer to the image */
+  margin-bottom: 10px;
+  border: 3px solid #ffc107; /* Thicker border */
+  border-radius: 50%;
+  width: 75px; /* Adjusted size */
+  height: 75px; /* Adjusted size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.overlayTextMain {
+  margin: 5px 0;
+  font-size: 20px; /* Larger font for main text */
+  font-weight: 500;
+  color: #f0f0f0; /* Off-white for readability */
+}
+
+.overlayTextTime {
+    margin: 0;
+    font-size: 16px; /* Slightly smaller for time */
+    color: #cccccc; /* Lighter grey */
+}
+
+/* This part was originally for the title *inside* the featured section, but
+   now the featuredSectionInfo takes care of it, so this can likely be removed.
+   Keeping it commented for reference.
+.featuredSectionTitle {
+  padding: 15px 20px;
+  background-color: #fa000000;
+  border-top: 1px solid #222222;
+}
+
+.featuredSectionTitle h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+*/
+
+.recommendationsSection {
+  flex: 0 0 450px; /* Fixed width for recommendations as seen in image */
+  background-color: #000000; /* Background for recommendations */
+  border-radius: 8px;
+  padding: 20px; /* Adjusted padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  overflow-y: auto; /* Enable scrolling */
+  max-height: calc(100vh - 40px - 20px - 20px); /* Adjust to fit screen (header + top/bottom padding) */
+  /* Custom scrollbar for Webkit browsers (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2b2b2b; /* Track color */
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #555; /* Thumb color */
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #777; /* Thumb color on hover */
+  }
+}
+
+
+.recommendationsSection h3 {
+  margin-top: 0;
+  margin-bottom: 15px; /* Space below heading */
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffbb00; /* Lighter text for heading */
+  border-bottom: 1px solid #333333; /* Underline for heading */
+  padding-bottom: 10px;
+}
+
+.recommendationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Less gap between cards */
+}
+
+.gameRecommendationCard { /* Renamed from .newsCard */
+  background-color: #000000; /* Slightly darker card background */
+  border-radius: 6px; /* Slightly less rounded corners */
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Less padding inside cards */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: 1px solid #3a3a3a; /* Subtle border */
+}
+
+.gameRecommendationCard:hover { /* Renamed from .newsCard:hover */
+  background-color: #333333; /* Darker hover effect */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.cardImage {
+  width: 70px; /* Slightly smaller image */
+  height: 70px; /* Slightly smaller image */
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 12px; /* Less margin */
+  border: 1px solid #555; /* Small border around image */
+}
+
+.cardInfo {
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-size: 15px; /* Slightly smaller title */
+  font-weight: 500;
+  margin: 0 0 3px 0;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-size: 13px; /* Slightly smaller description */
+  color: #b0b0b0; /* Lighter grey for description */
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .featuredSection {
+    width: 100%; /* Take full width */
+    flex: none; /* Remove flex grow */
+  }
+
+  .recommendationsSection {
+    flex: none; /* Remove fixed width */
+    width: 100%; /* Take full width */
+    max-height: 400px; /* Limit height to prevent excessive scrolling on small screens */
+    margin-top: 20px; /* Space between sections */
+  }
+
+  .videoOverlay p {
+    font-size: 16px;
+  }
+
+  .warningIcon {
+    font-size: 45px;
+    width: 65px;
+    height: 65px;
+  }
+
+  /* This was for .featuredSectionTitle h2 */
+  /*
+  .featuredSectionTitle h2 {
+    font-size: 20px;
+  }
+  */
+}
+
+@media (max-width: 500px) {
+    /* .header {
+        padding: 10px 15px;
+    }
+    .logo {
+        font-size: 22px;
+    } */
+    .mainContent {
+        padding: 10px 15px;
+    }
+    .warningIcon {
+        font-size: 35px;
+        width: 55px;
+        height: 55px;
+    }
+    .overlayTextMain {
+        font-size: 18px;
+    }
+    .overlayTextTime {
+        font-size: 14px;
+    }
+    /* .featuredSectionTitle h2 {
+        font-size: 18px;
+    } */
+    .cardTitle {
+        font-size: 14px;
+    }
+    .cardDescription {
+        font-size: 12px;
+    }
+    .cardImage {
+        width: 60px;
+        height: 60px;
+    }
+}
+/* Estilos existentes... */
+
+.featuredSectionInfo {
+  padding: 15px 20px;
+  background-color: #1a1a1a; /* Mesmo background da featuredSection */
+}
+
+.featuredSectionInfo h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.featuredSectionInfo .subtitle {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #999999;
+}
+
+.featuredSectionInfo .description {
+  font-size: 14px;
+  color: #cccccc;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.qualityButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.qualityButton {
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.qualityButton:hover {
+  background-color: #555555;
+}
+
+.qualityButtonActive {
+  background-color: #ffc107; /* Cor amarela/dourada para o botão ativo */
+  color: #000000;
+}
+
+.navigationTabs {
+  display: flex;
+  background-color: #000000;
+  border-bottom: 1px solid #222222;
+}
+
+.navTabButton {
+  background: none;
+  color: #999999;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navTabButton:hover {
+  color: #ffffff;
+}
+
+.navTabActive {
+  color: #ffc107;
+  border-bottom: 2px solid #ffc107;
+}
+
+.oddsSection {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  background-color: #121212; /* Mesmo background do container */
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  justify-content: center; /* Center cards when wrapped */
+}
+
+.oddsCard {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px; /* Largura aproximada do card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.betanoLogo {
+  margin-bottom: 10px;
+}
+
+.betanoLogo img {
+  height: 30px; /* Altura aproximada do logo */
+}
+
+.odds {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.oddItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #282828;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 70px;
+}
+
+.oddLabel {
+  font-size: 14px;
+  color: #999999;
+  margin-bottom: 5px;
+}
+
+.oddValue {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.betButton {
+  background-color: #ffc107;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Make button fill the card width */
+}
+
+.betButton:hover {
+  background-color: #e0a800;
+}
+
+/* New style for loading message */
+.loadingMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 24px;
+    color: #fff;
+    background-color: #121212;
+}
+
+/* Adaptações responsivas (podem precisar de ajustes dependendo do seu layout geral) */
+@media (max-width: 768px) {
+  .oddsSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .oddsCard {
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: 300px; /* Maintain max width */
+  }
+
+  .qualityButtons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

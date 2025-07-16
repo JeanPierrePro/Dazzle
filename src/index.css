@@ -1,0 +1,42 @@
+/* src/index.css */
+
+:root {
+  /* Cores Inferidas (ajuste se necessário) */
+  --bg-dark: #0A0A0A; /* Fundo principal muito escuro */
+  --navbar-bg: #1D143D; /* Fundo da barra de navegação, um roxo/azul escuro */
+  --text-light: #E0E0E0; /* Cor do texto padrão, um cinza claro */
+  --accent-orange: #FF9800; /* Laranja do botão TN e detalhes */
+  --input-bg: #333333; /* Fundo dos campos de input */
+  --border-color: #555555; /* Bordas de inputs/cards */
+  --search-placeholder-color: #A0A0A0; /* Cor do placeholder da busca */
+}
+
+/* Reset Básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif; /* Você pode mudar para 'Roboto', 'Poppins', etc. */
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit; /* Links herdam a cor do texto */
+  text-decoration: none; /* Remove sublinhado de links */
+}
+
+ul {
+  list-style: none;
+}
+
+html, body, #root { 
+  width: 100%;      
+  height: 100%;     
+  overflow-x: hidden; /* <--- Boa prática para evitar scroll horizontal */
+}
+

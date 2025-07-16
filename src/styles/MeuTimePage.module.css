@@ -1,0 +1,318 @@
+.container {
+  background-color: #004d40; /* Dark green similar to the background */
+  min-height: 100vh;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Slightly more modern font */
+  padding-bottom: 50px; /* Space at the bottom */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #003a31; /* Slightly darker green for header */
+  /* No explicit border-bottom, rely on shadow/transition if desired later */
+  position: relative;
+  overflow: hidden;
+  height: 200px; /* Make header taller as in the image */
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* More subtle, irregular line pattern */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="%2300665c" stroke-width="1" d="M0 20L20 0M0 40L40 0M0 60L60 0M0 80L80 0M0 100L100 0M20 100L100 20M40 100L100 40M60 100L100 60M80 100L100 80" opacity="0.15"></path></svg>');
+  background-size: 100px 100px; /* Adjust size of the pattern unit */
+  background-repeat: repeat;
+  z-index: 0;
+  transform: skewY(-5deg); /* Slight skew to match background lines */
+  transform-origin: top left;
+}
+
+.arrowBack {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2em;
+  color: white;
+  cursor: pointer;
+  z-index: 2; /* Above the pattern */
+}
+
+.palmeirasLogoContainer {
+  display: flex;
+  flex-direction: column; /* Stack logo and title */
+  align-items: center;
+  position: absolute; /* Position centrally */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  z-index: 1; /* Above the pattern */
+}
+
+.palmeirasLogo {
+  width: 100px; /* Larger logo */
+  height: auto;
+  margin-bottom: 10px; /* Space between logo and title */
+}
+
+.palmeirasTitle {
+  font-size: 2.5em; /* Larger title */
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.mainNav {
+  display: flex;
+  gap: 20px;
+  position: absolute; /* Position relative to header */
+  bottom: 20px; /* Align with the bottom of the header area */
+  width: 100%;
+  justify-content: space-between; /* Push buttons to corners */
+  padding: 0 40px; /* Padding to align with header content */
+  box-sizing: border-box; /* Include padding in width calculation */
+  z-index: 1;
+}
+
+.navButton {
+  background-color: #00665c; /* Green button */
+  color: white;
+  border: none;
+  padding: 12px 25px; /* Slightly larger padding */
+  border-radius: 8px; /* More rounded corners */
+  cursor: pointer;
+  font-size: 1.2em; /* Slightly larger font */
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  min-width: 120px; /* Ensure consistent width */
+  text-align: center;
+}
+
+.navButton:hover {
+  background-color: #008073;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Specific positioning for the buttons, overridden by .mainNav flex */
+/* These rules are for general styling of the button only */
+.navButton:first-child {
+  /* Position LOJA to the left, already handled by flex */
+}
+
+.navButton:last-child {
+  /* Position QUIZES to the right, already handled by flex */
+}
+
+
+.subMenu {
+  display: flex;
+  justify-content: center; /* Center the menu items */
+  background-color: #1a1a1a; /* Dark gray for sub-menu */
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+  gap: 30px; /* Increase gap between menu items */
+}
+
+.subMenuItem {
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 1.1em;
+  padding: 10px 0; /* No horizontal padding, let gap handle spacing */
+  cursor: pointer;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  white-space: nowrap; /* Prevent wrapping */
+  font-weight: 600; /* Slightly bolder */
+}
+
+.subMenuItem:hover {
+  color: white;
+}
+
+.activeSubMenuItem {
+  color: white;
+  border-bottom: 3px solid #00e676; /* Bright green underline for active */
+  font-weight: bold;
+}
+
+.transfersSection {
+  padding: 40px;
+}
+
+.sectionTitle {
+  font-size: 1.6em; /* Slightly smaller for better fit */
+  margin-bottom: 30px;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+}
+
+.transfersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.transferCard {
+  background-color: #2a2a2a; /* Darker gray for cards */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid #3a3a3a; /* Subtle border */
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em; /* Slightly smaller font */
+  color: #ccc;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.transferStatus {
+  font-weight: bold;
+  color: #00e676; /* Bright green for status */
+  text-transform: uppercase; /* Match image */
+}
+
+.transferDate {
+  font-weight: 500;
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.playerImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00e676;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.playerDetails {
+  flex-grow: 1;
+}
+
+.playerName {
+  font-size: 1.15em; /* Slightly smaller */
+  font-weight: bold;
+  margin-bottom: 3px; /* Reduce space */
+  color: white;
+}
+
+.playerRole {
+  font-size: 0.85em; /* Slightly smaller */
+  color: #bbb;
+}
+
+.clubLogoSmall {
+  width: 35px; /* Slightly smaller */
+  height: 35px; /* Slightly smaller */
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.transferDetails {
+  font-size: 0.95em;
+  color: #ccc;
+  display: flex;
+  flex-direction: column; /* Stack club transfer text and fee */
+  align-items: flex-start; /* Align text to left */
+}
+
+.clubTransferText {
+  margin-bottom: 8px; /* Space between the two lines */
+}
+
+.arrow {
+  margin: 0 5px;
+  font-weight: bold;
+  color: #00e676;
+}
+
+.transferFee {
+  font-size: 1.15em; /* Slightly smaller */
+  font-weight: bold;
+  color: white;
+  margin-top: 0; /* Remove top margin */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding-top: 50px; /* Make space for arrow */
+    padding-bottom: 100px; /* Make space for nav buttons */
+  }
+
+  .arrowBack {
+    top: 15px;
+    left: 15px;
+  }
+
+  .palmeirasLogoContainer {
+    position: static; /* Reset positioning */
+    transform: none;
+    margin-bottom: 20px;
+  }
+
+  .mainNav {
+    position: static; /* Reset positioning */
+    flex-direction: row; /* Keep row for smaller screens if space */
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .subMenu {
+    flex-wrap: wrap; /* Allow wrapping of menu items */
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .subMenuItem {
+    padding: 5px 10px;
+    font-size: 1em;
+  }
+
+  .transfersSection {
+    padding: 20px;
+  }
+
+  .transfersGrid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .palmeirasLogo {
+    width: 80px;
+  }
+
+  .palmeirasTitle {
+    font-size: 2em;
+  }
+
+  .navButton {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
+}
