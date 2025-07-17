@@ -11,6 +11,7 @@ import FavoritosPage from './pages/FavoritosPage';
 import ProfilePage from './pages/ProfilePage';
 import LojaPage from './pages/LojaPage';
 import QuizesPage from './pages/QuizesPage';
+import AlertasPage from './pages/AlertasPage';
 
 import './App.css'; // Estilos específicos do App
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/game-details" element={<GameDetailsPage />} /> {/* Add this route */}
           <Route path="/loja" element={<LojaPage />} />
           <Route path="/quizes" element={<QuizesPage />} />
+          <Route path="/alertas" element={<AlertasPage />} />
           {/* Você pode adicionar uma rota para 404 Not Found aqui também */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
         </Routes>

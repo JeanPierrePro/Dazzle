@@ -1,9 +1,21 @@
 // src/components/pages/ProfilePage.tsx
 import React from 'react';
-// import Header from '../common/Header'; // Você fará o import da Navbar e etc.
+import { useNavigate } from 'react-router-dom'; // Importe useNavigate
 import styles from '../styles/ProfilePage.module.css'; // Importe os estilos modularizados
 
 const ProfilePage: React.FC = () => {
+  const navigate = useNavigate(); // Inicialize o hook de navegação
+
+  // Função para redirecionar para a página de quizzes
+  const goToQuizzes = () => {
+    navigate('/quizes'); // Redireciona para a rota '/quizes'
+  };
+
+  // Função para redirecionar para a página de alertas
+  const goToAlerts = () => {
+    navigate('/alertas'); // Redireciona para a rota '/alertas'
+  };
+
   return (
     <div className={styles.profilePage}>
       {/* <Header /> */}
@@ -28,11 +40,11 @@ const ProfilePage: React.FC = () => {
           </div>
 
           <div className={styles.profileOptionsCardGroup}>
-            {/* Remova a lógica 'borderTop: none' aqui, o CSS fará isso com :not(:first-child) */}
-            <div className={styles.optionCard}>
+            <div className={styles.optionCard} onClick={goToQuizzes}>
               Acompanha os teus Quizzes <span className={styles.arrowIconRight}>›</span>
             </div>
-            <div className={styles.optionCard}>
+            {/* Adicione onClick para redirecionar para os Alertas */}
+            <div className={styles.optionCard} onClick={goToAlerts}>
               Alertas <span className={styles.arrowIconRight}>›</span>
             </div>
             <div className={styles.optionCard}>

@@ -1,19 +1,16 @@
 .container {
-  background-color: #004d40; /* Cor de fundo principal */
+  background-color: #2b2a2e; /* Fundo escuro similar ao da imagem */
   min-height: 100vh;
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif; /* Fonte mais genérica para simular a imagem */
   padding-bottom: 30px;
 }
 
 .header {
-  display: flex;
-  justify-content: center; /* Centraliza o título */
-  align-items: center;
-  padding: 20px;
-  background-color: #003a31; /* Fundo do cabeçalho */
+  padding: 20px 40px 10px 40px;
+  background-color: #2b2a2e;
   position: relative;
-  text-align: center;
+  text-align: left;
 }
 
 .arrowBack {
@@ -23,6 +20,7 @@
   font-size: 2em;
   color: white;
   cursor: pointer;
+  z-index: 10;
 }
 
 .pageTitle {
@@ -30,88 +28,136 @@
   font-weight: bold;
   color: white;
   text-transform: uppercase;
+  margin-top: 50px; /* Aumentado o margin-top para afastar do arrowBack */
+  margin-bottom: 20px;
 }
 
 .mainContent {
-  padding: 30px;
-  text-align: center;
+  padding: 0 40px;
+  text-align: left;
 }
 
 .message {
   font-size: 1.1em;
   color: #bbb;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
-.quizGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  justify-content: center;
+.quizBanner {
+  width: 100%;
+  height: auto;
+  background-color: #5a5a5a;
+  margin-bottom: 30px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.quizCard {
-  background-color: #2a2a2a;
-  border-radius: 10px;
+.quizBannerImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* NOVO: Estilo para o container combinado */
+.quizSummaryCombinedCard {
+  background-color: #3b3b3f; /* Cor de fundo do card combinado */
+  border-radius: 8px;
   padding: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #4a4a4f;
+  display: flex; /* Usa flexbox para as duas seções internas */
+  gap: 20px; /* Espaço entre as seções "Mês atual" e "Total de quizzes" */
+  margin-bottom: 50px;
+  flex-wrap: wrap; /* Permite que as seções quebrem a linha em telas menores */
+  justify-content: center; /* Centraliza as seções quando quebram a linha */
+}
+
+.quizProgressSection,
+.quizTotalSummarySection {
+  flex: 1; /* Faz com que cada seção ocupe o espaço disponível */
+  min-width: 280px; /* Largura mínima para cada seção antes de quebrar a linha */
   display: flex;
   flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo dentro de cada seção */
+  padding: 10px; /* Padding interno para as seções */
+}
+
+/* Adiciona uma borda divisória vertical no desktop */
+.quizProgressSection {
+  border-right: 1px solid #4a4a4f;
+  padding-right: 20px; /* Espaço para a borda */
+}
+
+/* Remove a borda vertical em telas menores e adiciona uma horizontal */
+@media (max-width: 768px) {
+  .quizProgressSection {
+    border-right: none;
+    border-bottom: 1px solid #4a4a4f; /* Borda inferior em telas menores */
+    padding-right: 10px;
+    padding-bottom: 20px; /* Espaço para a borda inferior */
+  }
+}
+
+
+.cardTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.progressCircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #66bb6a;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
-  border: 1px solid #3a3a3a;
+  margin-bottom: 15px;
+}
+
+.progressText {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+.daysRemaining {
+  font-size: 0.9em;
+  color: #a0a0a0;
   text-align: center;
 }
 
-.quizTitle {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #00e676; /* Verde para o título do quiz */
-  margin-bottom: 10px;
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid #4a4a4f;
 }
 
-.quizDescription {
+.summaryRow:last-child {
+  border-bottom: none;
+}
+
+.summaryLabel {
   font-size: 1em;
-  color: #bbb;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  color: #a0a0a0;
 }
 
-.startButton {
-  background-color: #00e676;
-  color: #2a2a2a;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1em;
+.summaryValue {
+  font-size: 1em;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.startButton:hover {
-  background-color: #00c853;
-  transform: translateY(-2px);
+  color: white;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .pageTitle {
-    font-size: 1.8em;
-  }
-
-  .mainContent {
-    padding: 20px;
-  }
-
-  .quizGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
   .header {
-    padding: 15px;
+    padding: 15px 20px 5px 20px;
   }
 
   .arrowBack {
@@ -121,19 +167,77 @@
   }
 
   .pageTitle {
+    font-size: 1.8em;
+    margin-top: 40px; /* Ajustado para telas menores */
+  }
+
+  .mainContent {
+    padding: 0 20px;
+  }
+
+  .quizBannerImage {
+    height: 150px;
+  }
+
+  /* Ajuste para o card combinado em telas menores */
+  .quizSummaryCombinedCard {
+    flex-direction: column; /* Empilha as seções verticalmente */
+    gap: 0; /* Remove o gap entre as seções empilhadas */
+  }
+
+  .quizProgressSection,
+  .quizTotalSummarySection {
+    padding: 20px; /* Ajusta padding para as seções */
+    min-width: unset; /* Remove largura mínima */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px 5px 15px;
+  }
+
+  .arrowBack {
     font-size: 1.5em;
+    top: 10px;
+    left: 10px;
   }
 
-  .quizTitle {
-    font-size: 1.3em;
+  .pageTitle {
+    font-size: 1.5em;
+    margin-top: 30px; /* Ajustado para telas muito pequenas */
   }
 
-  .quizDescription {
-    font-size: 0.9em;
-  }
-
-  .startButton {
-    padding: 10px 20px;
+  .message {
     font-size: 1em;
+    margin-bottom: 15px;
+  }
+
+  .quizBannerImage {
+    height: 120px;
+  }
+
+  .quizProgressCard,
+  .quizSummaryCard {
+    padding: 20px;
+  }
+
+  .cardTitle {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+  }
+
+  .progressCircle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .progressText {
+    font-size: 1.8em;
+  }
+
+  .summaryLabel,
+  .summaryValue {
+    font-size: 0.9em;
   }
 }
