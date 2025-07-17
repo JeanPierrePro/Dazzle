@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import styles from '../styles/FavoritosPage.module.css'; // Importa o novo nome do CSS module
+import styles from '../styles/FavoritosPage.module.css';
 
 // Definindo interfaces para os tipos de dados
 interface Item {
   id: string;
   name: string;
   type: 'team' | 'competition' | 'player';
-  icon?: string; // URL da imagem do ícone
-  isFavorite?: boolean; // Apenas para o Palmeiras no exemplo
+  icon?: string;
+  isFavorite?: boolean;
 }
 
 // ====================================================================
 // Componente Modal de Seleção (Simulado)
-// Em um projeto real, você criaria isso em seu próprio arquivo (e.g., SelectionModal.tsx)
 interface SelectionModalProps {
   title: string;
   items: Item[];
   selectedItems: string[];
   onToggleItem: (id: string) => void;
   onClose: () => void;
-  maxSelections?: number; // Opcional: limite de seleções
+  maxSelections?: number;
 }
 
 const SelectionModal: React.FC<SelectionModalProps> = ({
@@ -34,7 +33,7 @@ const SelectionModal: React.FC<SelectionModalProps> = ({
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.modalContent} onClick={e => e.stopPropagation()}> {/* Impede que o clique no conteúdo feche o modal */}
+      <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
         <div className={styles.modalHeader}>
           <h2>{title}</h2>
           <button className={styles.closeButton} onClick={onClose}>X</button>
@@ -42,7 +41,7 @@ const SelectionModal: React.FC<SelectionModalProps> = ({
         <div className={styles.modalItemsGrid}>
           {items.map(item => {
             const isSelected = selectedItems.includes(item.id);
-            const isDisabled = !isSelected && !canAddItem; // Desabilita se não estiver selecionado e o limite for atingido
+            const isDisabled = !isSelected && !canAddItem;
 
             return (
               <div
@@ -54,9 +53,9 @@ const SelectionModal: React.FC<SelectionModalProps> = ({
                   {item.icon ? (
                     <img src={item.icon} alt={item.name} className={styles.iconImage} />
                   ) : (
-                    <div className={styles.circlePlaceholder}></div> // Fallback para ícones sem imagem
+                    <div className={styles.circlePlaceholder}></div>
                   )}
-                  {isSelected && <div className={styles.modalCheckIcon}>&#10003;</div>} {/* Ícone de check quando selecionado */}
+                  {isSelected && <div className={styles.modalCheckIcon}>&#10003;</div>}
                 </div>
                 <div className={styles.modalItemName}>{item.name}</div>
               </div>
@@ -64,9 +63,9 @@ const SelectionModal: React.FC<SelectionModalProps> = ({
           })}
         </div>
         {maxSelections !== undefined && (
-            <p className={styles.modalLimitText}>
-                {selectedItems.length} de {maxSelections} selecionados
-            </p>
+          <p className={styles.modalLimitText}>
+            {selectedItems.length} de {maxSelections} selecionados
+          </p>
         )}
       </div>
     </div>
@@ -75,18 +74,19 @@ const SelectionModal: React.FC<SelectionModalProps> = ({
 // ====================================================================
 
 
-const MeuTimePage: React.FC = () => { // Nome do componente alterado
-  // Estado para armazenar os IDs dos itens atualmente selecionados/seguidos na tela principal
+const FavoritosPage: React.FC = () => { // Nome do componente alterado de volta para FavoritosPage
+  // Estado para controlar se o modo de edição está ativo ou não
+  const [isEditing, setIsEditing] = useState(false);
+
   const [selectedTeams, setSelectedTeams] = useState<string[]>(['palmeiras']);
   const [selectedCompetitions, setSelectedCompetitions] = useState<string[]>([]);
   const [selectedPlayers, setSelectedPlayers] = useState<string[]>(['cristiano-ronaldo', 'lionel-messi']);
 
-  // Estado para controlar a visibilidade dos modais de seleção
   const [showTeamModal, setShowTeamModal] = useState(false);
   const [showCompetitionModal, setShowCompetitionModal] = useState(false);
   const [showPlayerModal, setShowPlayerModal] = useState(false);
 
-  // Dados mockados para TODOS os itens disponíveis (mesmo os não seguidos)
+  // Dados mockados (permanecem os mesmos)
   const availableTeams: Item[] = [
     { id: 'palmeiras', name: 'Palmeiras', type: 'team', icon: '/images/palmeiras.png', isFavorite: true },
     { id: 'flamengo', name: 'Flamengo', type: 'team', icon: '/images/flamengo.png' },
@@ -95,7 +95,6 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
     { id: 'gremio', name: 'Grêmio', type: 'team', icon: '/images/gremio.png' },
     { id: 'internacional', name: 'Internacional', type: 'team', icon: '/images/internacional.png' },
     { id: 'santos', name: 'Santos', type: 'team', icon: '/images/santos.png' },
-    // Adicione mais times aqui
   ];
 
   const availableCompetitions: Item[] = [
@@ -165,7 +164,6 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
   const currentCompetitions = availableCompetitions.filter(comp => selectedCompetitions.includes(comp.id));
   const currentPlayers = availablePlayers.filter(player => selectedPlayers.includes(player.id));
 
-  // Limite de seleções (para a mensagem e o modal, se aplicável)
   const MAX_SELECTIONS_PER_CATEGORY = 10;
 
   return (
@@ -178,14 +176,19 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
         </div>
       </section>
 
-
       <div className={styles.selectionLimit}>
         Máximo de {MAX_SELECTIONS_PER_CATEGORY} seleções por cada aba (Meus times, minhas competições e meus jogadores)
       </div>
 
       <div className={styles.separatorLine}></div>
 
-      <button className={styles.editButton}>EDITAR</button>
+      {/* Botão EDITAR - Agora ele alterna o modo de edição */}
+      <button 
+        className={`${styles.editButton} ${isEditing ? styles.editingActive : ''}`} 
+        onClick={() => setIsEditing(!isEditing)}
+      >
+        {isEditing ? 'CONCLUIR' : 'EDITAR'} {/* Muda o texto do botão */}
+      </button>
 
       <div className={styles.contentGrid}>
         {/* Meus Times */}
@@ -193,7 +196,8 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
           <h3 className={styles.categoryTitle}>MEUS TIMES <span className={styles.count}>({selectedTeams.length})</span></h3>
           <div className={styles.itemsContainer}>
             {currentTeams.map(team => renderDisplayItem(team))}
-            {selectedTeams.length < MAX_SELECTIONS_PER_CATEGORY && renderAddButton(() => setShowTeamModal(true))}
+            {/* Renderiza o botão "Seguir" APENAS se isEditing for true */}
+            {isEditing && selectedTeams.length < MAX_SELECTIONS_PER_CATEGORY && renderAddButton(() => setShowTeamModal(true))}
           </div>
         </div>
 
@@ -204,7 +208,8 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
           <h3 className={styles.categoryTitle}>MINHAS COMPETIÇÕES <span className={styles.count}>({selectedCompetitions.length})</span></h3>
           <div className={styles.itemsContainer}>
             {currentCompetitions.map(comp => renderDisplayItem(comp))}
-            {selectedCompetitions.length < MAX_SELECTIONS_PER_CATEGORY && renderAddButton(() => setShowCompetitionModal(true))}
+            {/* Renderiza o botão "Seguir" APENAS se isEditing for true */}
+            {isEditing && selectedCompetitions.length < MAX_SELECTIONS_PER_CATEGORY && renderAddButton(() => setShowCompetitionModal(true))}
           </div>
         </div>
 
@@ -215,13 +220,14 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
           <h3 className={styles.categoryTitle}>MEUS JOGADORES <span className={styles.count}>({selectedPlayers.length})</span></h3>
           <div className={styles.itemsContainer}>
             {currentPlayers.map(player => renderDisplayItem(player))}
-            {selectedPlayers.length < MAX_SELECTIONS_PER_CATEGORY && renderAddButton(() => setShowPlayerModal(true))}
+            {/* Renderiza o botão "Seguir" APENAS se isEditing for true */}
+            {isEditing && selectedPlayers.length < MAX_SELECTIONS_PER_CATEGORY && renderAddButton(() => setShowPlayerModal(true))}
           </div>
         </div>
       </div>
 
-      {/* Modais de Seleção */}
-      {showTeamModal && (
+      {/* Modais de Seleção - Agora só abrem se isEditing for true */}
+      {isEditing && showTeamModal && (
         <SelectionModal
           title="Selecione seus Times"
           items={availableTeams}
@@ -231,7 +237,7 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
           maxSelections={MAX_SELECTIONS_PER_CATEGORY}
         />
       )}
-      {showCompetitionModal && (
+      {isEditing && showCompetitionModal && (
         <SelectionModal
           title="Selecione suas Competições"
           items={availableCompetitions}
@@ -241,7 +247,7 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
           maxSelections={MAX_SELECTIONS_PER_CATEGORY}
         />
       )}
-      {showPlayerModal && (
+      {isEditing && showPlayerModal && (
         <SelectionModal
           title="Selecione seus Jogadores"
           items={availablePlayers}
@@ -255,4 +261,4 @@ const MeuTimePage: React.FC = () => { // Nome do componente alterado
   );
 };
 
-export default MeuTimePage; // Nome do componente exportado alterado
+export default FavoritosPage; // Mantenha o nome do componente exportado consistente

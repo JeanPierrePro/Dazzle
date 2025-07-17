@@ -66,6 +66,10 @@
   margin-bottom: 20px;
 }
 
+/* src/styles/FavoritosPage.module.css */
+
+/* ... (seu CSS existente acima) ... */
+
 .editButton {
   background: none;
   border: 1px solid #f7d20a; /* Yellow border */
@@ -75,9 +79,27 @@
   cursor: pointer;
   font-size: 14px;
   position: absolute;
-  top: 160px; /* Adjust as needed */
+  top: 160px; /* Ajuste conforme necessário */
   right: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transição para suavidade */
 }
+
+.editButton:hover {
+  background-color: rgba(247, 210, 10, 0.1); /* Um leve brilho ao passar o mouse */
+}
+
+/* Estilo para quando o modo de edição está ativo */
+.editingActive {
+  background-color: #f7d20a; /* Fundo amarelo quando ativo */
+  color: #1a1a1a; /* Texto escuro no botão amarelo */
+  border-color: #f7d20a; /* Borda da mesma cor */
+}
+
+.editingActive:hover {
+  background-color: #e6c208; /* Um tom ligeiramente mais escuro no hover quando ativo */
+}
+
+/* ... (o restante do seu CSS abaixo) ... */
 
 /* MeuTimePage.module.css */
 
