@@ -1,0 +1,174 @@
+/* src/styles/EditProfilePage.module.css */
+
+.editProfilePage {
+  background-color: #f0f2f5; /* Fundo claro geral, como na imagem */
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.header {
+  width: 100%;
+  background-color: #fff; /* Fundo branco do cabeçalho */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+  position: relative; /* Para posicionar a seta */
+}
+
+.arrowBack {
+  font-size: 2em;
+  color: #333; /* Cor da seta para combinar com o tema claro */
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.mainContent {
+  padding: 30px 40px;
+  max-width: 800px; /* Largura máxima do conteúdo */
+  margin: 0 auto; /* Centraliza na página */
+}
+
+.breadcrumb {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0; /* Linha divisória abaixo do título */
+}
+
+.formContainer {
+  background-color: #ffffff; /* Fundo branco para o container do formulário */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 0; /* O padding será nos inputGroup */
+}
+
+.inputGroup {
+  padding: 15px 20px; /* Padding interno para cada grupo de input */
+  border-bottom: 1px solid #e0e0e0; /* Borda entre os campos, como na imagem */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputGroup:last-child {
+  border-bottom: none; /* Remove a borda do último item */
+}
+
+.inputGroup label {
+  font-size: 0.85em;
+  color: #777;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.inputField {
+  width: 100%;
+  padding: 5px 0; /* Menos padding vertical para texto mais próximo da borda */
+  border: none;
+  font-size: 1.1em;
+  color: #333;
+  background: none; /* Sem fundo */
+  outline: none; /* Remove a borda de foco padrão */
+  /* Remove a borda do input em si, confiando na borda do inputGroup */
+}
+
+/* Opcional: Estilo para o botão de salvar se for adicionado */
+.saveButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.saveButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .arrowBack {
+    font-size: 1.8em;
+    left: 15px;
+  }
+
+  .mainContent {
+    padding: 20px 15px;
+  }
+
+  .breadcrumb {
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+
+  .pageTitle {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+  }
+
+  .inputGroup {
+    padding: 12px 15px;
+  }
+
+  .inputGroup label {
+    font-size: 0.8em;
+  }
+
+  .inputField {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px;
+  }
+
+  .arrowBack {
+    font-size: 1.5em;
+    left: 10px;
+  }
+
+  .mainContent {
+    padding: 15px 10px;
+  }
+
+  .pageTitle {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+  }
+
+  .inputGroup {
+    padding: 10px 12px;
+  }
+
+  .inputField {
+    font-size: 0.9em;
+  }
+}

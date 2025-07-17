@@ -1,0 +1,259 @@
+/* src/styles/OfertasPage.module.css */
+
+.ofertasPage {
+  background-color: #f0f2f5; /* Fundo claro geral */
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.header {
+  width: 100%;
+  background-color: #fff; /* Fundo branco do cabeçalho */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.arrowBack {
+  font-size: 2em;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.mainContent {
+  padding: 30px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.tabsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  padding: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tabButton {
+  background-color: transparent;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #555;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  color: #000;
+}
+
+.tabButton.active {
+  color: #000;
+  border-bottom: 3px solid #000;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.offerCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  display: flex;
+  align-items: flex-start; /* Alinha o logo e o texto ao topo */
+  gap: 20px;
+  border: 1px solid #eee;
+}
+
+.offerLogo {
+  flex-shrink: 0; /* Impede que o logo diminua */
+  width: 100px; /* Largura fixa para o contêiner do logo */
+  height: 100px; /* Altura fixa para o contêiner do logo */
+  border-radius: 8px; /* Bordas arredondadas para o fundo do logo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* As cores de fundo serão definidas por cada logo específico via estilo inline ou classe */
+}
+
+/* Cores específicas para os backgrounds dos logos */
+.offerCard:nth-child(1) .offerLogo {
+    background-color: #FF6600; /* Laranja para Betano */
+}
+
+.offerCard:nth-child(2) .offerLogo {
+    background-color: #004B8D; /* Azul escuro para Dominos */
+}
+
+
+.logoImage {
+  max-width: 80px; /* Largura máxima da imagem dentro do quadrado */
+  max-height: 80px; /* Altura máxima da imagem dentro do quadrado */
+  object-fit: contain; /* Garante que a imagem caiba sem cortar */
+}
+
+.offerDetails {
+  flex-grow: 1;
+  text-align: left;
+  position: relative; /* Para posicionar o botão ADERIR */
+}
+
+.adherirButton {
+  background-color: #000; /* Botão preto */
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.adherirButton:hover {
+  background-color: #333;
+}
+
+.offerTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+  margin-top: 5px; /* Ajusta a posição do título */
+  padding-right: 80px; /* Espaço para o botão ADERIR */
+}
+
+.offerDescription {
+  font-size: 0.9em;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+  .arrowBack {
+    font-size: 1.8em;
+    left: 15px;
+  }
+  .mainContent {
+    padding: 20px 15px;
+  }
+  .breadcrumb {
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+  .pageTitle {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+  }
+  .tabsContainer {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .tabButton {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+  .offerCard {
+    flex-direction: column; /* Empilha logo e detalhes em telas menores */
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+  .offerLogo {
+    margin-bottom: 15px;
+  }
+  .adherirButton {
+    position: static; /* Volta para o fluxo normal */
+    margin-bottom: 10px;
+    width: 80%; /* Botão mais largo */
+    max-width: 200px;
+  }
+  .offerTitle {
+    padding-right: 0; /* Remove padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px;
+  }
+  .arrowBack {
+    font-size: 1.5em;
+    left: 10px;
+  }
+  .mainContent {
+    padding: 15px 10px;
+  }
+  .pageTitle {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+  .tabsContainer {
+    padding: 5px;
+    margin-bottom: 15px;
+  }
+  .tabButton {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+  .offerLogo {
+    width: 80px;
+    height: 80px;
+  }
+  .logoImage {
+    max-width: 60px;
+    max-height: 60px;
+  }
+  .offerTitle {
+    font-size: 1.1em;
+  }
+  .offerDescription {
+    font-size: 0.85em;
+  }
+}

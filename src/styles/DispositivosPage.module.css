@@ -1,0 +1,328 @@
+/* src/styles/DispositivosPage.module.css */
+
+.dispositivosPage {
+  background-color: #f0f2f5; /* Fundo claro geral */
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.header {
+  width: 100%;
+  background-color: #fff; /* Fundo branco do cabeçalho */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.arrowBack {
+  font-size: 2em;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.mainContent {
+  padding: 30px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.tabsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  padding: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tabButton {
+  background-color: transparent;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #555;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  color: #000;
+}
+
+.tabButton.active {
+  color: #000;
+  border-bottom: 3px solid #000;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.cardDescription {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.5;
+}
+
+.sectionTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #222;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.deviceList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.deviceItem {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eee;
+}
+
+.deviceInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.deviceIcon {
+  font-size: 1.8em;
+  color: #555;
+}
+
+.deviceName {
+  font-size: 1em;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.deviceDetails {
+  font-size: 0.85em;
+  color: #777;
+}
+
+.deleteButton {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #e2e6ea;
+  border-color: #c6c6c6;
+}
+
+.terminateAllCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.terminateAllCard:hover {
+  background-color: #f0f0f0;
+}
+
+.terminateAllText {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.terminateAllDescription {
+  font-size: 0.85em;
+  color: #555;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+  .arrowBack {
+    font-size: 1.8em;
+    left: 15px;
+  }
+  .mainContent {
+    padding: 20px 15px;
+  }
+  .breadcrumb {
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+  .pageTitle {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+  }
+  .tabsContainer {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .tabButton {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+  .infoCard {
+    padding: 20px 25px;
+  }
+  .cardTitle {
+    font-size: 1.3em;
+  }
+  .cardDescription {
+    font-size: 0.9em;
+  }
+  .sectionTitle {
+    font-size: 1.1em;
+  }
+  .deviceItem {
+    padding: 12px 15px;
+  }
+  .deviceIcon {
+    font-size: 1.6em;
+  }
+  .deviceName {
+    font-size: 0.95em;
+  }
+  .deviceDetails {
+    font-size: 0.8em;
+  }
+  .deleteButton {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1em;
+  }
+  .terminateAllCard {
+    padding: 15px 20px;
+  }
+  .terminateAllText {
+    font-size: 1em;
+  }
+  .terminateAllDescription {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px;
+  }
+  .arrowBack {
+    font-size: 1.5em;
+    left: 10px;
+  }
+  .mainContent {
+    padding: 15px 10px;
+  }
+  .pageTitle {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+  .tabsContainer {
+    padding: 5px;
+    margin-bottom: 15px;
+  }
+  .tabButton {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+  .infoCard {
+    padding: 15px 20px;
+  }
+  .cardTitle {
+    font-size: 1.2em;
+  }
+  .sectionTitle {
+    font-size: 1em;
+  }
+  .deviceItem {
+    padding: 10px 12px;
+  }
+  .deviceIcon {
+    font-size: 1.4em;
+  }
+  .deviceName {
+    font-size: 0.9em;
+  }
+  .deleteButton {
+    width: 30px;
+    height: 30px;
+    font-size: 1em;
+  }
+  .terminateAllCard {
+    padding: 12px 15px;
+  }
+}

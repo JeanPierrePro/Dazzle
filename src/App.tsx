@@ -13,6 +13,13 @@ import LojaPage from './pages/LojaPage';
 import QuizesPage from './pages/QuizesPage';
 import AlertasPage from './pages/AlertasPage';
 import CatalogoPage from './pages/CatalogoPage';
+import EditProfilePage from './pages/EditProfilePage';
+import SubscricaoPage from './pages/SubscricaoPage';
+import DispositivosPage from './pages/DispositivosPage';
+import OfertasPage from './pages/OfertasPage';
+import SobreNosPage from './pages/SobreNosPage';
+import QualidadeStreamingPage from './pages/QualidadeStreamingPage';
+import PinPage from './pages/PinPage';
 
 import './App.css'; // Estilos específicos do App
 
@@ -33,6 +40,13 @@ function App() {
           <Route path="/quizes" element={<QuizesPage />} />
           <Route path="/alertas" element={<AlertasPage />} />
           <Route path="/catalogo" element={<CatalogoPage />} />
+          <Route path="/editar-perfil" element={<EditProfilePage />} />
+          <Route path="/subscricao" element={<SubscricaoPage />} />
+          <Route path="/dispositivos-suportados" element={<DispositivosPage />} />
+          <Route path="/ofertas" element={<OfertasPage />} />
+         <Route path="/sobre-nos" element={<SobreNosPage />} />
+          <Route path="/qualidade-streaming" element={<QualidadeStreamingPage />} />
+          <Route path="/protecao-pin" element={<PinPage />} />
           {/* Você pode adicionar uma rota para 404 Not Found aqui também */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
         </Routes>

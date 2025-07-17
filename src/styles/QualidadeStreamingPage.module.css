@@ -1,0 +1,272 @@
+/* src/styles/QualidadeStreamingPage.module.css */
+
+.qualidadeStreamingPage {
+  background-color: #f0f2f5; /* Fundo claro geral */
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.header {
+  width: 100%;
+  background-color: #fff; /* Fundo branco do cabeçalho */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.arrowBack {
+  font-size: 2em;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.mainContent {
+  padding: 30px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.tabsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  padding: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tabButton {
+  background-color: transparent;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #555;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  color: #000;
+}
+
+.tabButton.active {
+  color: #000;
+  border-bottom: 3px solid #000;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qualityCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 25px 30px;
+  text-align: left;
+}
+
+.descriptionText {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.qualityOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+}
+
+.radioOption input[type="radio"] {
+  margin-right: 10px;
+  /* Personalize o radio button se necessário */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.radioOption input[type="radio"]:checked {
+  border-color: #000; /* Borda preta quando selecionado */
+}
+
+.radioOption input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: #000; /* Círculo interno preto */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.updateButton {
+  background-color: #444; /* Botão escuro */
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto; /* Largura automática */
+  min-width: 150px;
+  display: block; /* Ocupa sua própria linha */
+}
+
+.updateButton:hover {
+  background-color: #555;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+  .arrowBack {
+    font-size: 1.8em;
+    left: 15px;
+  }
+  .mainContent {
+    padding: 20px 15px;
+  }
+  .breadcrumb {
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+  .pageTitle {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+  }
+  .tabsContainer {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .tabButton {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+  .qualityCard {
+    padding: 20px 25px;
+  }
+  .descriptionText {
+    font-size: 0.9em;
+  }
+  .qualityOptions {
+    gap: 12px;
+  }
+  .radioOption {
+    font-size: 0.95em;
+  }
+  .updateButton {
+    padding: 10px 20px;
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px;
+  }
+  .arrowBack {
+    font-size: 1.5em;
+    left: 10px;
+  }
+  .mainContent {
+    padding: 15px 10px;
+  }
+  .pageTitle {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+  .tabsContainer {
+    padding: 5px;
+    margin-bottom: 15px;
+  }
+  .tabButton {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+  .qualityCard {
+    padding: 15px 20px;
+  }
+  .descriptionText {
+    font-size: 0.85em;
+  }
+  .qualityOptions {
+    gap: 10px;
+  }
+  .radioOption {
+    font-size: 0.9em;
+  }
+  .radioOption input[type="radio"] {
+    width: 18px;
+    height: 18px;
+  }
+  .radioOption input[type="radio"]:checked::before {
+    width: 10px;
+    height: 10px;
+  }
+  .updateButton {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+}
