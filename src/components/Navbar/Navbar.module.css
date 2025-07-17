@@ -5,11 +5,14 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--navbar-bg);
-  padding: 15px 40px; /* Ajuste o padding conforme necessário */
-  height: 70px; /* Altura da navbar */
+  padding: 15px 40px;
+  height: 70px;
   color: var(--text-light);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  width: 100%; /* Garante que o Navbar ocupe toda a largura */
+  width: 100%;
+  box-sizing: border-box; /* Garante que o padding não adicione largura extra */
+  position: relative; /* Necessário para posicionar o menu mobile */
+  z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
 }
 
 .leftSection {
@@ -18,73 +21,93 @@
 }
 
 .logo {
-  font-size: 28px; /* Tamanho do texto DAZZLE */
+  font-size: 28px;
   font-weight: bold;
-  margin-right: 40px; /* Espaço entre o logo e os links */
-  color: var(--text-light); /* Garante que o logo tem a cor do texto claro */
-  text-transform: uppercase; /* Se o texto do logo for todo maiúsculo */
-  letter-spacing: 1px; /* Ajuste o espaçamento das letras se necessário */
-  white-space: nowrap; /* Evita que o logo quebre em várias linhas */
+  margin-right: 40px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-decoration: none; /* Remove sublinhado padrão do Link */
+}
+
+.logoOrange {
+  color: var(--accent-orange); /* Use sua variável de cor laranja */
+  text-shadow: 0 0 5px rgba(255, 165, 0, 0.5); /* Adiciona um brilho suave laranja */
 }
 
 /* Se for usar uma imagem para o logo: */
 .logo img {
-  height: 30px; /* Altura da imagem do logo */
+  height: 30px;
   width: auto;
 }
 
 .navLinks {
   display: flex;
-  gap: 30px; /* Espaço entre os itens do menu */
+  gap: 30px;
 }
 
 .navItem {
   font-size: 16px;
   font-weight: 500;
   padding: 5px 0; /* Para dar um pouco de "área clicável" */
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, border-bottom 0.3s ease; /* Adicione transição para border-bottom */
   color: var(--text-light); /* Cor padrão dos itens do menu */
-  white-space: nowrap; /* Evita que os itens quebrem em várias linhas */
+  white-space: nowrap;
+  text-decoration: none; /* Remove sublinhado padrão do Link */
+  position: relative; /* Para posicionar o traçado */
 }
 
 .navItem:hover {
   color: var(--accent-orange); /* Cor ao passar o mouse */
 }
 
+/* Novo estilo para o item de navegação ativo */
+.activeNavItem {
+  color: var(--accent-orange); /* Cor laranja para a seção ativa */
+  border-bottom: 3px solid var(--accent-orange); /* Traçado laranja embaixo */
+  padding-bottom: 2px; /* Ajuste para compensar a borda e manter o alinhamento visual */
+}
+
 .rightSection {
   display: flex;
   align-items: center;
-  gap: 20px; /* Espaço entre a barra de busca e o botão TN */
+  gap: 20px;
 }
 
 .searchBar {
   position: relative;
-  width: 280px; /* Largura da barra de busca */
+  width: 280px;
+  transition: width 0.3s ease; /* Adiciona transição para a largura */
 }
 
 .searchInput {
   width: 100%;
   padding: 10px 15px;
   border: 1px solid var(--border-color);
-  border-radius: 5px; /* Bordas levemente arredondadas */
+  border-radius: 5px;
   background-color: var(--input-bg);
   color: var(--text-light);
   font-size: 15px;
-  outline: none; /* Remove o outline azul ao focar */
+  outline: none;
 }
 
 .searchInput::placeholder {
-  color: var(--search-placeholder-color); /* Cor do placeholder */
+  color: var(--search-placeholder-color);
   opacity: 0.8;
 }
 
 .searchInput:focus {
-  border-color: var(--accent-orange); /* Borda fica laranja ao focar */
+  border-color: var(--accent-orange);
+}
+
+.tnButtonLink {
+  text-decoration: none; /* Garante que o Link não adicione sublinhado */
 }
 
 .tnButton {
   background-color: var(--accent-orange);
-  color: var(--text-light); /* Ou var(--bg-dark) se o texto for escuro no botão */
+  color: var(--text-light);
   font-weight: bold;
   font-size: 16px;
   padding: 8px 15px;
@@ -92,9 +115,166 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  white-space: nowrap; /* Evita que o botão quebre */
+  white-space: nowrap;
 }
 
 .tnButton:hover {
-  background-color: #FFB74D; /* Um tom ligeiramente mais claro no hover */
+  background-color: #FFB74D;
+}
+
+/* --- Estilos Mobile (Media Queries) --- */
+
+/* Esconde o botão hambúrguer por padrão em telas grandes */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001; /* Para garantir que fique acima do menu */
+}
+
+.hamburgerLine {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-light);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Animação do X para o hambúrguer */
+.hamburger.open .hamburgerLine:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .hamburgerLine:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+@media (max-width: 992px) { /* Por exemplo, tablets e celulares grandes */
+  .navbar {
+    padding: 15px 20px; /* Reduz padding em telas menores */
+  }
+
+  .logo {
+    margin-right: 20px; /* Reduz espaço do logo */
+  }
+
+  .navLinks {
+    display: none; /* Esconde os links por padrão no mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Abaixo da navbar */
+    left: 0;
+    width: 100%;
+    background-color: var(--navbar-bg); /* Mesmo fundo da navbar */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    padding: 20px 0;
+    z-index: 999; /* Abaixo do botão hambúrguer */
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%); /* Esconde acima da tela */
+  }
+
+  .navLinksOpen {
+    display: flex; /* Mostra os links quando o menu está aberto */
+    transform: translateY(0); /* Desliza para baixo */
+  }
+
+  .navLinks li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navItem {
+    display: block; /* Ocupa a largura total do li */
+    padding: 15px 0; /* Mais padding para itens do menu mobile */
+    font-size: 18px; /* Texto maior no mobile */
+    border-bottom: none !important; /* Remove o traçado em mobile para não conflitar com o padding */
+  }
+
+  .hamburger {
+    display: block; /* Mostra o botão hambúrguer */
+    margin-left: auto; /* Empurra para a direita */
+    order: 2; /* Garante que o hambúrguer fique depois do rightSection no flex */
+  }
+
+  /* Ajusta a ordem dos elementos dentro da navbar */
+  .leftSection {
+    flex-grow: 1; /* Permite que a seção esquerda ocupe espaço */
+    justify-content: flex-start;
+  }
+
+  .rightSection {
+    order: 1; /* Coloca a seção direita (busca e TN) antes do hambúrguer */
+    margin-left: auto; /* Empurra a seção direita para a direita */
+    gap: 15px; /* Ajusta o gap */
+  }
+
+  .searchBar {
+    width: 180px; /* Ajusta a largura da barra de busca para mobile */
+  }
+}
+
+@media (max-width: 768px) { /* Celulares e tablets menores */
+  .navbar {
+    padding: 15px 15px;
+  }
+
+  .logo {
+    font-size: 24px;
+    margin-right: 15px;
+  }
+
+  .searchBar {
+    width: 150px; /* Ainda mais estreita */
+  }
+
+  .tnButton {
+    padding: 7px 12px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 500px) { /* Celulares bem pequenos */
+  .navbar {
+    padding: 10px 10px;
+    height: 60px; /* Reduz altura da navbar */
+  }
+
+  .logo {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .searchBar {
+    display: none; /* Oculta a barra de busca em telas muito pequenas */
+  }
+
+  .rightSection {
+    gap: 10px; /* Reduz o espaço */
+  }
+
+  .tnButton {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
+/* Animação para o hambúrguer quando o menu está aberto */
+.hamburger.isMenuOpen .hamburgerLine:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.isMenuOpen .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.isMenuOpen .hamburgerLine:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }

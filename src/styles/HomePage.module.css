@@ -1,7 +1,18 @@
 /* src/styles/HomePage.module.css */
 
 .homePageContainer {
-padding: 20px 40px;
-
+  padding: 20px 40px; /* Padding padrão para desktop */
+  /* Adicione media queries aqui se quiser padding lateral diferente para toda a página */
 }
 
+@media (max-width: 992px) {
+  .homePageContainer {
+    padding: 15px 20px; /* Ajusta padding para telas médias */
+  }
+}
+
+@media (max-width: 500px) {
+  .homePageContainer {
+    padding: 10px 15px; /* Ajusta padding para telas pequenas */
+  }
+}

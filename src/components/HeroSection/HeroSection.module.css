@@ -1,0 +1,60 @@
+/* src/components/HeroSection/HeroSection.module.css */
+
+.heroSection {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px; /* Padding padrão para desktop */
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  box-sizing: border-box; /* Garante que o padding seja incluído na largura/altura */
+}
+
+.heroTitle {
+  font-size: 4.5em; /* Tamanho grande para "EQUADOR X BRASIL" */
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  /* Garante que o texto não seja cortado por overflow, se a seção for menor que o texto */
+  overflow-wrap: break-word; /* Permite quebrar palavras longas */
+  word-wrap: break-word; /* Compatibilidade */
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 992px) {
+  .heroSection {
+    padding: 30px; /* Reduz o padding para telas médias */
+    min-height: 350px;
+  }
+
+  .heroTitle {
+    font-size: 3.5em; /* Reduz o tamanho da fonte */
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 20px; /* Reduz ainda mais o padding */
+    min-height: 300px;
+  }
+
+  .heroTitle {
+    font-size: 2.8em; /* Ajuste para tablets e celulares grandes */
+  }
+}
+
+@media (max-width: 500px) {
+  .heroSection {
+    padding: 15px; /* Padding menor para celulares */
+    min-height: 250px;
+  }
+
+  .heroTitle {
+    font-size: 2.2em; /* Tamanho da fonte para celulares pequenos */
+    text-align: left; /* Garante o alinhamento à esquerda */
+    width: 100%; /* Ocupa a largura total disponível */
+  }
+}
