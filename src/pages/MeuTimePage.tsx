@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import styles from '../styles/MeuTimePage.module.css';
 
 // --- Interfaces ---
@@ -71,7 +72,7 @@ interface Coach {
   imageUrl: string;
 }
 
-// NOVA INTERFACE: Para um Troféu
+// Interface para um Troféu
 interface Trophy {
   id: string;
   name: string;
@@ -302,18 +303,22 @@ const dummyCoaches: Coach[] = [
 
 // NOVOS DADOS FICTÍCIOS: Troféus
 const dummyTrophies: Trophy[] = [
-  { id: 't1', name: 'Copa Libertadores', count: 3, imageUrl: 'http://googleusercontent.com/file_content/3' }, // From 1.png
-  { id: 't2', name: 'Campeonato Brasileiro', count: 12, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 1.png & 2.png
-  { id: 't3', name: 'Copa do Brasil', count: 4, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 1.png & 2.png
-  { id: 't4', name: 'Copa dos Campeões', count: 1, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 2.png
-  { id: 't5', name: 'Campeonato Paulista', count: 1, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 2.png
-  { id: 't6', name: 'Recopa Sul-Americana', count: 9, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 2.png
-  { id: 't7', name: 'Supercopa do Brasil', count: 1, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 2.png
-  { id: 't8', name: 'Torneio Rio-São Paulo', count: 5, imageUrl: 'http://googleusercontent.com/file_content/2' }, // From 2.png
-  { id: 't9', name: 'Copa Mercosul', count: 1, imageUrl: 'http://googleusercontent.com/file_content/3' }, // From 1.png
+  { id: 't1', name: 'Copa Libertadores', count: 3, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Libertadores' },
+  { id: 't9', name: 'Copa Mercosul', count: 1, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Mercosul' },
+  { id: 't2', name: 'Campeonato Brasileiro', count: 12, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Brasileiro' },
+  { id: 't6', name: 'Recopa Sul-Americana', count: 9, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Recopa' },
+  { id: 't3', name: 'Copa do Brasil', count: 4, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=CopaBR' },
+  { id: 't7', name: 'Supercopa do Brasil', count: 1, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Supercopa' },
+  { id: 't4', name: 'Copa dos Campeões', count: 1, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Campeoes' },
+  { id: 't8', name: 'Torneio Rio-São Paulo', count: 5, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=RioSP' },
+  { id: 't5', name: 'Campeonato Paulista', count: 1, imageUrl: 'https://placehold.co/80x80/2a2a2a/ffffff?text=Paulista' },
 ];
 
+
 const MeuTimePage: React.FC = () => {
+  // Inicializa o hook de navegação do react-router-dom
+  const navigate = useNavigate();
+
   // State para controlar a aba principal ativa
   const [activeTab, setActiveTab] = useState('GERAL');
   // State para controlar a sub-aba ativa dentro de "PLANTEL"
@@ -324,17 +329,33 @@ const MeuTimePage: React.FC = () => {
   const nextMatch = dummyNextMatch;
   const latestGames = dummyLatestGames;
   const teamInfo = dummyTeamInfo;
-  const trophies = dummyTrophies; // Usando os novos dados de troféus
+  const trophies = dummyTrophies;
 
   // Filtra jogadores e treinadores com base na sub-aba ativa
   const filteredPlayers = dummyPlayers.filter(player => player.role === activeSubTabPlatel);
   const filteredCoaches = dummyCoaches.filter(coach => coach.role === activeSubTabPlatel);
 
+  // Função para lidar com o clique na seta de voltar
+  const handleGoBack = () => {
+    navigate(-1); // Volta para a entrada anterior no histórico
+  };
+
+  // Funções para redirecionar para outras páginas
+  const goToLoja = () => {
+    navigate('/loja'); // Redireciona para a rota /loja
+  };
+
+  const goToQuizes = () => {
+    navigate('/quizes'); // Redireciona para a rota /quizes
+  };
+
+
   return (
     <div className={styles.container}>
       {/* Seção do Cabeçalho */}
       <header className={styles.header}>
-        <div className={styles.arrowBack}>&larr;</div> {/* Seta para voltar */}
+        {/* Adiciona onClick para a seta de voltar */}
+        <div className={styles.arrowBack} onClick={handleGoBack}>&larr;</div> {/* Seta para voltar */}
         <div className={styles.palmeirasLogoContainer}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sociedade_Esportiva_Palmeiras_logo.svg/1200px-Sociedade_Esportiva_Palmeiras_logo.svg.png"
@@ -345,8 +366,9 @@ const MeuTimePage: React.FC = () => {
           <h1 className={styles.palmeirasTitle}>SE PALMEIRAS</h1>
         </div>
         <nav className={styles.mainNav}>
-          <button className={styles.navButton}>LOJA</button>
-          <button className={styles.navButton}>QUIZES</button>
+          {/* Adiciona onClick para os botões de navegação */}
+          <button className={styles.navButton} onClick={goToLoja}>LOJA</button>
+          <button className={styles.navButton} onClick={goToQuizes}>QUIZES</button>
         </nav>
       </header>
 
@@ -569,7 +591,7 @@ const MeuTimePage: React.FC = () => {
         </section>
       )}
 
-      {/* NOVA SEÇÃO: Palmarés */}
+      {/* Seção: Palmarés */}
       {activeTab === 'PALMARÉS' && (
         <section className={styles.palmaresSection}>
           <h2 className={styles.sectionTitle}>Títulos Conquistados</h2>
