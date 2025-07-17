@@ -6,6 +6,7 @@ import styles from '../styles/ProfilePage.module.css';
 const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
 
+  // Funções de navegação permanecem as mesmas
   const goToQuizzes = () => {
     navigate('/quizes');
   };
@@ -42,9 +43,8 @@ const ProfilePage: React.FC = () => {
     navigate('/qualidade-streaming');
   };
 
-  // NOVA: Função para redirecionar para a página "Proteção do PIN"
   const goToPinProtection = () => {
-    navigate('/protecao-pin'); // Rota para a página "Proteção do PIN"
+    navigate('/protecao-pin');
   };
 
   return (
@@ -61,6 +61,7 @@ const ProfilePage: React.FC = () => {
                 <span className={styles.userName}>Tomás Nelo</span>
               </div>
             </div>
+            {/* O botão 'Editar o teu perfil' já possui seu próprio onClick */}
             <button className={styles.editProfileButton} onClick={goToEditProfile}>
               Editar o teu perfil
             </button>
@@ -70,6 +71,7 @@ const ProfilePage: React.FC = () => {
           </div>
 
           <div className={styles.profileOptionsCardGroup}>
+            {/* Clicável em qualquer parte do card, onClick no div do card */}
             <div className={styles.optionCard} onClick={goToQuizzes}>
               Acompanha os teus Quizzes <span className={styles.arrowIconRight}>›</span>
             </div>
@@ -83,42 +85,42 @@ const ProfilePage: React.FC = () => {
         </div>
 
         <div className={styles.featureCardsGrid}>
-          <div className={styles.featureCard} onClick={goToSubscription}>
+          {/* Estes permanecem clicáveis apenas na seta */}
+          <div className={styles.featureCard}>
             <span className={styles.icon}>💎</span>
             <h4>Subscrição DAZZLE</h4>
             <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom}>→</span>
+            <span className={styles.arrowIconBottom} onClick={goToSubscription}>→</span>
           </div>
-          <div className={styles.featureCard} onClick={goToDevices}>
+          <div className={styles.featureCard}>
             <span className={styles.icon}>📱</span>
             <h4>Dispositivos suportados</h4>
             <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom}>→</span>
+            <span className={styles.arrowIconBottom} onClick={goToDevices}>→</span>
           </div>
-          <div className={styles.featureCard} onClick={goToOffers}>
+          <div className={styles.featureCard}>
             <span className={styles.icon}>🎁</span>
             <h4>As tuas ofertas</h4>
             <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom}>→</span>
+            <span className={styles.arrowIconBottom} onClick={goToOffers}>→</span>
           </div>
-          <div className={styles.featureCard} onClick={goToAboutUs}>
+          <div className={styles.featureCard}>
             <span className={styles.icon}>ℹ️</span>
             <h4>Sobre nós</h4>
             <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom}>→</span>
+            <span className={styles.arrowIconBottom} onClick={goToAboutUs}>→</span>
           </div>
-          <div className={styles.featureCard} onClick={goToStreamingQuality}>
+          <div className={styles.featureCard}>
             <span className={styles.icon}>🌟</span>
             <h4>Qualidade do streaming</h4>
             <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom}>→</span>
+            <span className={styles.arrowIconBottom} onClick={goToStreamingQuality}>→</span>
           </div>
-          {/* Adicione onClick para redirecionar para Proteção do PIN */}
-          <div className={styles.featureCard} onClick={goToPinProtection}>
+          <div className={styles.featureCard}>
             <span className={styles.icon}>🔒</span>
             <h4>Proteção do PIN</h4>
             <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom}>→</span>
+            <span className={styles.arrowIconBottom} onClick={goToPinProtection}>→</span>
           </div>
         </div>
 

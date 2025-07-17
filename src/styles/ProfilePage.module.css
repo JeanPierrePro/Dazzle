@@ -1,3 +1,4 @@
+/* src/components/styles/ProfilePage.module.css */
 .profilePage {
   background-color: #f0f0f0; /* Fundo branco/cinza claro */
   min-height: 100vh; /* Garante que a página ocupe no mínimo a altura da viewport */
@@ -145,13 +146,13 @@
   background-color: white; /* Fundo branco */
   border: none; /* Remove qualquer borda individual */
   padding: 25px 25px; /* Padding ajustado */
-  cursor: pointer;
+  cursor: pointer; /* Agora todo o card é clicável */
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.1em;
   color: #333; /* Cor do texto */
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adiciona transição para o card */
 }
 
 /* Adiciona a borda superior preta a todos os cards, exceto o primeiro */
@@ -159,15 +160,25 @@
   border-top: 2px solid black; /* Borda preta fina entre os itens */
 }
 
+/* Efeito de hover para o optionCard (replicado do featureCard) */
 .optionCard:hover {
-  background-color: #f8f8f8;
+  transform: translateY(-5px); /* Move o card 5px para cima */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Aumenta a sombra */
 }
 
 .arrowIconRight {
   font-weight: bold;
   font-size: 1.2em;
   color: #000000;
+  /* Não precisa de cursor: pointer aqui, pois o pai já o define */
+  transition: transform 0.2s ease-in-out; /* Animação para a seta */
 }
+
+/* Animação para a seta do optionCard ao passar o mouse sobre ela (ainda funcional, mas o clique é no pai) */
+.optionCard:hover .arrowIconRight {
+  transform: translateX(5px); /* Move a seta 5px para a direita quando o card é hover */
+}
+
 
 /* --- Feature Cards Grid --- */
 .featureCardsGrid {
@@ -188,12 +199,16 @@
   min-height: 160px; /* Altura mínima para consistência */
   box-sizing: border-box;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
-  transition: background-color 0.3s ease;
+  cursor: default; /* Altera o cursor para padrão no card */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Animação para o card */
 }
 
+/* Efeito de hover para o featureCard */
 .featureCard:hover {
-  background-color: #f8f8f8;
+  transform: translateY(-5px); /* Move o card 5px para cima */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Aumenta a sombra */
 }
+
 
 .featureCard .icon {
   font-size: 2.2em; /* Ícones maiores */
@@ -228,7 +243,16 @@
   justify-content: center;
   width: 25px; /* Largura fixa para a caixa, ajuste conforme necessário */
   height: 25px; /* Altura fixa para a caixa, ajuste conforme necessário */
+  cursor: pointer; /* Cursor de ponteiro apenas na seta */
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out; /* Animação para a seta */
 }
+
+/* Animação para a seta do featureCard ao passar o mouse sobre ela */
+.arrowIconBottom:hover {
+  transform: translateX(5px); /* Move a seta 5px para a direita */
+  background-color: #333; /* Escurece um pouco o fundo da seta */
+}
+
 
 /* --- Footer --- */
 .dazzleLogoFooterProfile {
