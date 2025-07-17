@@ -16,6 +16,11 @@ const ProfilePage: React.FC = () => {
     navigate('/alertas'); // Redireciona para a rota '/alertas'
   };
 
+  // NOVA: Função para redirecionar para a página de catálogo
+  const goToCatalog = () => {
+    navigate('/catalogo'); // Redireciona para a rota '/catalogo'
+  };
+
   return (
     <div className={styles.profilePage}>
       {/* <Header /> */}
@@ -43,11 +48,11 @@ const ProfilePage: React.FC = () => {
             <div className={styles.optionCard} onClick={goToQuizzes}>
               Acompanha os teus Quizzes <span className={styles.arrowIconRight}>›</span>
             </div>
-            {/* Adicione onClick para redirecionar para os Alertas */}
             <div className={styles.optionCard} onClick={goToAlerts}>
               Alertas <span className={styles.arrowIconRight}>›</span>
             </div>
-            <div className={styles.optionCard}>
+            {/* Adicione onClick para redirecionar para o Catálogo */}
+            <div className={styles.optionCard} onClick={goToCatalog}>
               Catálogo <span className={styles.arrowIconRight}>›</span>
             </div>
           </div>

@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import LojaPage from './pages/LojaPage';
 import QuizesPage from './pages/QuizesPage';
 import AlertasPage from './pages/AlertasPage';
+import CatalogoPage from './pages/CatalogoPage';
 
 import './App.css'; // Estilos específicos do App
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/loja" element={<LojaPage />} />
           <Route path="/quizes" element={<QuizesPage />} />
           <Route path="/alertas" element={<AlertasPage />} />
+          <Route path="/catalogo" element={<CatalogoPage />} />
           {/* Você pode adicionar uma rota para 404 Not Found aqui também */}
           {/* <Route path="*" element={<NotFoundPage />} /> */}
         </Routes>

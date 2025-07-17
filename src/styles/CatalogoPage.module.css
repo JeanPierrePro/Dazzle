@@ -1,0 +1,294 @@
+/* src/styles/CatalogoPage.module.css */
+
+.catalogoPage {
+  background-color: #1a1a1a; /* Fundo escuro */
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.header {
+  width: 100%;
+  background-color: #000; /* Header preto */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: flex-start; /* Alinha a seta à esquerda */
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative; /* Para posicionar a seta */
+}
+
+/* Estilo para a seta de voltar */
+.arrowBack {
+  font-size: 2em;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; /* Garante que a seta fique acima de outros elementos */
+}
+
+/* O estilo .dazzleLogo foi removido pois o elemento foi retirado */
+
+.mainContent {
+  padding: 40px 20px;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.mainTitle {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.plansGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px; /* Espaço maior entre os cards */
+  justify-content: center;
+  align-items: flex-start; /* Alinha os cards pelo topo */
+}
+
+.planCard {
+  background-color: #2b2b2b; /* Fundo mais escuro para os cards normais */
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  border: 1px solid #333; /* Borda sutil */
+}
+
+.highlightedPlan {
+  background-color: #3d3d3d; /* Fundo um pouco mais claro para o card destacado */
+  border: 2px solid #ffcc00; /* Borda amarela para o destaque */
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); /* Sombra amarela */
+  padding-top: 50px; /* Mais padding para a badge */
+}
+
+.bestExperienceBadge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffcc00; /* Cor da badge */
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap; /* Impede quebra de linha */
+}
+
+.planTitle {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.planDescription {
+  font-size: 0.95em;
+  color: #bbb;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.planPrice {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.subscribeButton {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-bottom: 30px;
+  width: 80%; /* Ajusta largura do botão */
+}
+
+.subscribeButton:hover {
+  background-color: #555;
+  border-color: #888;
+}
+
+.highlightedButton {
+  background-color: #ffcc00; /* Cor amarela para o botão destacado */
+  color: #333;
+  border: none;
+}
+
+.highlightedButton:hover {
+  background-color: #e6b800; /* Escurece um pouco no hover */
+}
+
+.logosGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas para os logos */
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 0 10px; /* Padding para não encostar na borda */
+}
+
+.logoImage {
+  width: 100%; /* Ocupa a largura da célula */
+  height: auto;
+  max-height: 40px; /* Altura máxima para os logos */
+  object-fit: contain; /* Garante que o logo caiba sem cortar */
+  filter: grayscale(100%) brightness(200%); /* Deixa os logos brancos, como na imagem */
+  opacity: 0.8;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.featuresList li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha o texto à esquerda */
+  font-size: 0.9em;
+  color: #bbb;
+  margin-bottom: 8px;
+  padding-left: 10px; /* Espaço para o ícone */
+}
+
+.starIcon {
+  color: #ffcc00; /* Estrela amarela */
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .arrowBack {
+    font-size: 1.8em;
+    left: 15px;
+  }
+
+  .mainTitle {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  .plansGrid {
+    grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    gap: 25px;
+  }
+
+  .planCard {
+    padding: 25px;
+  }
+
+  .highlightedPlan {
+    padding-top: 45px;
+  }
+
+  .planTitle {
+    font-size: 1.6em;
+  }
+
+  .planDescription {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+  }
+
+  .planPrice {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  .subscribeButton {
+    font-size: 1em;
+    padding: 10px 25px;
+    margin-bottom: 25px;
+  }
+
+  .logosGrid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Mais colunas pequenas */
+    gap: 8px;
+    padding: 0 5px;
+  }
+
+  .logoImage {
+    max-height: 35px;
+  }
+
+  .featuresList li {
+    font-size: 0.85em;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 20px 15px;
+  }
+
+  .mainTitle {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  .planCard {
+    padding: 20px;
+  }
+
+  .highlightedPlan {
+    padding-top: 40px;
+  }
+
+  .bestExperienceBadge {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+
+  .planTitle {
+    font-size: 1.4em;
+  }
+
+  .planPrice {
+    font-size: 1.6em;
+  }
+
+  .subscribeButton {
+    font-size: 0.9em;
+    padding: 8px 20px;
+  }
+
+  .logosGrid {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+
+  .logoImage {
+    max-height: 30px;
+  }
+}
