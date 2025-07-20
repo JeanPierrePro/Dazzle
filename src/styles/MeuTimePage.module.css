@@ -1,5 +1,3 @@
-/* MeuTimePage.module.css */
-
 .container {
   background-color: #181717; /* Dark green similar to the background */
   min-height: 100vh;
@@ -13,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: #003a31; /* Slightly darker green for header */
+  background-color: #227220b0; /* Slightly darker green for header */
   position: relative;
   overflow: hidden;
   height: 200px; /* Make header taller as in the image */
@@ -86,7 +84,7 @@
 }
 
 .navButton {
-  background-color: #00665c; /* Green button */
+  background-color: #042c18ab; /* Green button */
   color: white;
   border: none;
   padding: 12px 25px; /* Slightly larger padding */
@@ -100,7 +98,7 @@
 }
 
 .navButton:hover {
-  background-color: #008073;
+  background-color: #042c18;
   transform: translateY(-2px); /* Slight lift on hover */
 }
 
@@ -131,7 +129,7 @@
 
 .activeSubMenuItem {
   color: white;
-  border-bottom: 3px solid #00e676; /* Bright green underline for active */
+  border-bottom: 3px solid #e69d00; /* Bright green underline for active */
   font-weight: bold;
 }
 
@@ -177,16 +175,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 230, 118, 0.1), rgba(0, 230, 118, 0.05)); /* Green gradient overlay */
+  background: linear-gradient(45deg, rgba(0, 230, 118, 0.05), transparent); /* Subtle gradient overlay */
   z-index: 0;
 }
 
 .clubLogos {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 20px;
-  z-index: 1; /* Above the gradient */
+  z-index: 1;
 }
 
 .clubLogoMatch {
@@ -207,501 +204,706 @@
 }
 
 .matchDate {
-  font-size: 1.4em;
+  font-size: 1.3em;
   font-weight: bold;
-  color: #00e676;
+  color: #00e676; /* Bright green for date */
 }
 
 .latestGamesSection {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  display: flex; /* Changed from grid to flex */
+  flex-direction: column; /* Stack items vertically */
+  /* Removed gap as border-bottom will handle separation */
   margin-bottom: 30px;
+  background-color: #202020; /* Darker background for the section */
+  border-radius: 10px; /* Rounded corners for the section container */
+  overflow: hidden; /* Ensures content respects border-radius */
 }
 
-.gameResultCard {
-  background-color: #2a2a2a;
-  border-radius: 10px;
-  padding: 15px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  display: grid;
-  grid-template-columns: 80px 1fr 1fr 40px; /* Date | Team 1 | Team 2 | Result */
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #3a3a3a;
-}
-
-.gameDate {
+.gameResultRow {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 10px 15px;
   display: flex;
-  flex-direction: column;
-  font-size: 0.85em;
-  color: #bbb;
+  align-items: center;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #333;
+  position: relative;
+  overflow: hidden;
+  justify-content: space-between; /* MUITO IMPORTANTE: Distribui o espaço entre os itens */
+}
+
+.gameResultRow:last-child {
+  border-bottom: none;
+}
+
+.gameResultRow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.01), transparent); /* Very subtle gradient */
+  z-index: 0;
+}
+
+.gameDateAndTime {
+  display: flex; /* MUDANÇA: Altera para display flex */
+  flex-direction: row; /* MUDANÇA: Altera para arranjo horizontal (um ao lado do outro) */
+  align-items: center; /* Centraliza verticalmente a data e a hora */
+  justify-content: center; /* Centraliza horizontalmente (se o espaço permitir) */
+  min-width: 180px; /* Aumentado para acomodar data e hora lado a lado confortavelmente */
   text-align: center;
+  margin-right: 89px; /* Ajusta espaçamento à direita */
+  gap: 20px; /* Adiciona um pequeno espaço entre a data e a hora */
 }
 
-.gameTeams {
+.gameDateText {
+  font-size: 0.9em;
+  color: #bbb;
+  margin-bottom: 2px; /* Small space between date and time */
+}
+
+.gameTimeText {
+  color: #aaa;
+  font-size: 0.85em; /* Slightly smaller for time */
+}
+.gameDetailsContainer {
+  display: flex;
+  flex-direction: column; /* Empilha as linhas de time */
+  flex-grow: 1; /* Permite que ocupe o espaço disponível */
+  justify-content: center;
+  gap: 8px; /* Espaço entre as linhas do time da casa e do visitante */
+  z-index: 1;
+}
+
+.teamScoreLine {
+  display: flex;
+  justify-content: space-between; /* Distribui logo/nome para a esquerda e score para a direita */
+  align-items: center;
+  width: 100%; /* Ocupa a largura total do seu container pai */
+}
+.teamLogoSmall {
+  width: 24px; /* Slightly smaller logos */
+  height: 24px;
+  object-fit: contain;
+  margin-right: 18px; /* Closer to team name */
+}
+.teamNameText {
+  font-size: 1em;
+  color: white;
+  /* Removido flex-grow: 1; daqui para permitir que o placar fique mais próximo */
+  text-align: left;
+}
+
+
+.scoresDisplay {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.95em;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white; /* Score color */
+}
+
+.teamScorePair {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha time e placar à esquerda */
+  gap: 15px; /* Espaço entre nome do time e placar */
+}
+.teamScorePair:last-child {
+  margin-bottom: 0;
+}
+
+
+.homeTeamDisplay,
+.awayTeamDisplay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.teamNameText {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.scoresDisplay { /* New container for scores */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white; /* Score color */
+}
+
+.scoreSeparator {
+  color: #ccc; /* Color for the separator */
 }
 
 .teamLogoSmall {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
 .gameScore {
   font-weight: bold;
+  font-size: 1.1em;
   color: white;
-  margin-left: auto; /* Push score to the right */
+  flex-shrink: 0; /* Garante que o placar não diminua */
+  min-width: 30px; /* Garante uma largura mínima para o placar para alinhamento */
+  text-align: right; /* Alinha o placar à direita dentro de sua própria caixa */
+  margin-right: 260px; /* Espaço entre o nome do time (truncado) e o placar */
+}
+
+.teamNameAndLogo {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Espaço entre logo e nome */
+  flex-grow: 1; /* Permite que o nome do time cresça e empurre o placar */
+  min-width: 0; /* Permite que o item encolha se o texto for muito longo */
 }
 
 .resultIndicator {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
+  padding: 6px 10px;
+  border-radius: 3px;
+  font-weight: bold;
+  color: white;
+  font-size: 0.9em;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  font-size: 0.8em;
-  color: white;
+  flex-shrink: 0;
+  z-index: 1;
+  margin-left: 15px; /* Adicionado um espaço à esquerda do indicador de resultado */
 }
 
-.resultIndicator.V {
+.V {
   background-color: #00e676; /* Green for Victory */
 }
 
-.resultIndicator.D {
-  background-color: #e53935; /* Red for Defeat */
+.D {
+  background-color: #e60000; /* Red for Defeat */
 }
 
-.resultIndicator.E {
-  background-color: #ffb300; /* Amber for Draw (Empate) */
+.E {
+  background-color: #ffc107; /* Yellow for Draw */
 }
 
+/* Updated .infoCard styles */
 .infoCard {
   background-color: #2a2a2a;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  border: 1px solid #3a3a3a;
+  border: 1px solid white; /* White border as in the image */
 }
 
+/* Updated .infoItem styles */
 .infoItem {
   display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #3a3a3a;
-  padding-bottom: 10px;
+  flex-direction: column; /* Stack label and value */
+  align-items: flex-start; /* Align text to the left */
+  padding: 15px 0; /* Increase vertical padding for more space */
+  border-bottom: none; /* Remove dashed line */
 }
 
 .infoItem:last-child {
-  border-bottom: none; /* No border for the last item */
-  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .infoLabel {
-  font-size: 0.9em;
-  color: #bbb;
-  margin-bottom: 5px;
+  font-weight: normal; /* Labels are not bold in the image */
+  color: #ccc; /* Lighter grey for labels */
+  font-size: 0.9em; /* Smaller font for labels */
+  margin-bottom: 5px; /* Space between label and value */
 }
 
 .infoValue {
-  font-size: 1.2em;
-  font-weight: bold;
   color: white;
-  font-style: italic; /* Match image style */
+  font-size: 1.8em; /* Much larger font size for values */
+  font-style: italic; /* Italicized as in the image */
+  font-weight: bold; /* Values are bold in the image */
+  text-transform: uppercase; /* All caps as in the image */
 }
 
 .noDataMessage {
   text-align: center;
-  color: #bbb;
+  color: #aaa;
   font-style: italic;
-  margin-top: 20px;
-}
-
-/* --- Transfers Tab Styles (existing, with minor adjustments) --- */
-.transfersGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-  justify-content: center;
-}
-
-.transferCard {
-  background-color: #2a2a2a; /* Darker gray for cards */
-  border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  border: 1px solid #3a3a3a; /* Subtle border */
-}
-
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85em; /* Slightly smaller font */
-  color: #ccc;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #444;
-}
-
-.transferStatus {
-  font-weight: bold;
-  color: #00e676; /* Bright green for status */
-  text-transform: uppercase; /* Match image */
-}
-
-.transferDate {
-  font-weight: 500;
-}
-
-.playerInfo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.playerImage {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #00e676;
-  flex-shrink: 0; /* Prevent shrinking */
-}
-
-.playerDetails {
-  flex-grow: 1;
-}
-
-.playerName {
-  font-size: 1.15em; /* Slightly smaller */
-  font-weight: bold;
-  margin-bottom: 3px; /* Reduce space */
-  color: white;
-}
-
-.playerRole {
-  font-size: 0.85em; /* Slightly smaller */
-  color: #bbb;
-}
-
-.clubLogoSmall {
-  width: 35px; /* Slightly smaller */
-  height: 35px; /* Slightly smaller */
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.transferDetails {
-  font-size: 0.95em;
-  color: #ccc;
-  display: flex;
-  flex-direction: column; /* Stack club transfer text and fee */
-  align-items: flex-start; /* Align text to left */
-}
-
-.clubTransferText {
-  margin-bottom: 8px; /* Space between the two lines */
-}
-
-.arrow {
-  margin: 0 5px;
-  font-weight: bold;
-  color: #00e676;
-}
-
-.transferFee {
-  font-size: 1.15em; /* Slightly smaller */
-  font-weight: bold;
-  color: white;
-  margin-top: 0; /* Remove top margin */
 }
 
 /* --- Plantel Tab Styles --- */
 .plantelSubMenu {
   display: flex;
   justify-content: center;
-  background-color: #1a1a1a;
-  padding: 15px 0;
-  border-bottom: 1px solid #333;
-  gap: 20px; /* Adjusted gap for more items */
+  background-color: #2a2a2a; /* Darker background for this sub-menu */
+  padding: 10px 0;
+  border-radius: 10px;
+  margin: 0 40px 30px 40px; /* Margin to match section padding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 10px; /* Smaller gap for sub-sub-menu */
 }
 
 .plantelSubMenuItem {
   background: none;
   border: none;
   color: #bbb;
-  font-size: 1em;
-  padding: 8px 15px; /* Smaller padding for more items */
+  font-size: 0.9em; /* Smaller font for sub-sub-menu */
+  padding: 8px 15px;
   cursor: pointer;
-  transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+  border-radius: 5px; /* Rounded buttons */
   white-space: nowrap;
-  font-weight: 600;
-  border-radius: 5px; /* Slightly rounded for button feel */
 }
 
 .plantelSubMenuItem:hover {
+  background-color: #3a3a3a;
   color: white;
-  background-color: #2a2a2a; /* Subtle background on hover */
 }
 
 .activePlantelSubMenuItem {
-  color: white;
-  background-color: #00e676; /* Bright green background for active */
+  background-color: #00e676; /* Bright green for active sub-sub-menu item */
+  color: #181717; /* Dark text on green background */
   font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 230, 118, 0.3); /* Subtle shadow */
 }
 
 .playerGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjusted minmax for player cards */
-  gap: 25px;
-  justify-content: center;
-  margin-top: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Adjust min-width for player cards */
+  gap: 20px;
 }
 
 .playerCard {
   background-color: #2a2a2a;
   border-radius: 10px;
   padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   border: 1px solid #3a3a3a;
   position: relative;
   overflow: hidden;
 }
 
+.playerCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.03), transparent);
+  z-index: 0;
+}
+
 .playerImageSmall {
-  width: 60px;
-  height: 60px;
+  width: 80px; /* Larger player image */
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #00e676;
-  flex-shrink: 0;
+  margin-bottom: 10px;
+  border: 2px solid #00e676; /* Green border around player image */
+  z-index: 1;
 }
 
 .playerNameSmall {
-  font-size: 1.1em;
   font-weight: bold;
-  color: white;
-  flex-grow: 1;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  z-index: 1;
 }
 
 .playerClubLogo {
-  width: 40px;
-  height: 40px;
+  width: 30px; /* Smaller club logo next to number */
+  height: 30px;
   object-fit: contain;
-  flex-shrink: 0;
+  position: absolute; /* Position absolutely */
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
 }
 
 .playerNumber {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
-  font-size: 1.8em;
+  background-color: #00e676;
+  color: #181717;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.2); /* Faded white */
-  z-index: 0; /* Behind other content */
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  z-index: 1;
 }
 
-/* --- NOVO: Palmarés Tab Styles --- */
-.palmaresSection {
-  padding: 40px;
-  text-align: center; /* Centraliza o título da seção */
-}
-
+/* --- Palmarés Tab Styles --- */
 .trophyGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 2 colunas em telas maiores, 1 em menores */
-  gap: 20px; /* Espaço entre os cards de troféus */
-  justify-content: center;
-  margin-top: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller cards for trophies */
+  gap: 20px;
 }
 
 .trophyCard {
-  background-color: #2a2a2a; /* Cor de fundo do card */
+  background-color: #2a2a2a;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 15px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   border: 1px solid #3a3a3a;
+  position: relative;
+  overflow: hidden;
+}
+
+.trophyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 215, 0, 0.05), transparent); /* Gold-like gradient */
+  z-index: 0;
 }
 
 .trophyImage {
-  width: 80px; /* Tamanho do ícone do troféu */
-  height: 80px;
+  width: 70px; /* Adjust size */
+  height: 70px;
   object-fit: contain;
-  flex-shrink: 0;
+  margin-bottom: 10px;
+  z-index: 1;
 }
 
 .trophyDetails {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Alinha texto à esquerda dentro do card */
+  z-index: 1;
 }
 
 .trophyName {
-  font-size: 1.2em;
   font-weight: bold;
-  color: white;
+  font-size: 1em;
   margin-bottom: 5px;
+  color: #ccc;
 }
 
 .trophyCount {
-  font-size: 2.5em; /* Tamanho grande para o número */
+  font-size: 1.5em;
   font-weight: bold;
-  color: #00e676; /* Verde brilhante para o número */
+  color: #ffd700; /* Gold color for count */
 }
 
+/* --- Transferências Tab Styles --- */
+.transfersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); /* Increased min-width for wider cards */
+  gap: 20px;
+}
+
+.transferCard {
+  background-color: #49494933; /* Dark background for the card */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  border: 1px solid #3a3a3a; /* Subtle border */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 10px; /* Space between sections */
+  overflow: hidden; /* Ensure rounded corners are respected */
+  position: relative;
+}
+
+.transferCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.05), transparent); /* Subtle gradient overlay */
+  z-index: 0;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #444; /* Separator line */
+  z-index: 1;
+}
+
+.transferStatus {
+  background-color: #f7f7f700; /* Bright green background for status */
+  color: #f5f0f0; /* Dark text on green */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.85em;
+  text-transform: uppercase;
+}
+
+.transferDate {
+  color: #ccc;
+  font-size: 0.85em;
+}
+
+.playerInfoSection { /* Novo estilo para a seção de informações do jogador */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute items */
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #444; /* Separator line */
+  z-index: 1;
+}
+
+.playerImage {
+  width: 60px; /* Player image size */
+  height: 60px;
+  border-radius: 50%; /* Circular image */
+  object-fit: cover;
+  border: 2px solid #00e676; /* Green border */
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.playerDetails {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow details to take available space */
+  text-align: left; /* Align text to the left */
+}
+
+.playerName {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.playerRole {
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+.toClubLogo { /* Novo estilo para a logo do clube de destino */
+  width: 40px; /* Tamanho da logo */
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.clubTransferTextContainer { /* Novo estilo para o container de texto dos clubes */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #444; /* Separator line */
+  z-index: 1;
+}
+
+.fromClubText,
+.toClubText {
+  background-color: #3a3a3a; /* Darker background for the club names */
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.95em;
+  flex-grow: 1; /* Allow text to grow and fill space */
+  text-align: center; /* Center the text within its background */
+}
+
+.arrow {
+  font-size: 1.5em;
+  color: #00e676; /* Green arrow */
+  font-weight: bold;
+  flex-shrink: 0; /* Prevent arrow from shrinking */
+}
+
+.transferFeeContainer {
+  text-align: center; /* Center the fee */
+  padding-top: 10px;
+  z-index: 1;
+}
+
+.transferFee {
+  font-size: 1.4em; /* Larger font for fee */
+  font-weight: bold;
+  color: #ffffff; /* Gold color for transfer fee */
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
     height: auto;
-    padding-top: 50px; /* Make space for arrow */
-    padding-bottom: 100px; /* Make space for nav buttons */
-    /* NOVO: Ajuste do border-radius para mobile */
-    border-bottom-left-radius: 20px; /* Reduz o raio para telas menores */
-    border-bottom-right-radius: 20px; /* Reduz o raio para telas menores */
-  }
-
-  .arrowBack {
-    top: 15px;
-    left: 15px;
+    padding: 20px;
   }
 
   .palmeirasLogoContainer {
-    position: static; /* Reset positioning */
+    position: static;
     transform: none;
     margin-bottom: 20px;
   }
 
   .mainNav {
-    position: static; /* Reset positioning */
-    flex-direction: row; /* Keep row for smaller screens if space */
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
+    position: static;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    width: auto;
+  }
+
+  .navButton {
+    width: 100%;
   }
 
   .subMenu {
-    flex-wrap: wrap; /* Allow wrapping of menu items */
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px;
   }
 
   .subMenuItem {
-    padding: 5px 10px;
-    font-size: 1em;
+    flex-basis: calc(50% - 5px); /* Two items per row */
+    text-align: center;
   }
+
 
   .generalSection,
   .transfersSection,
   .plantelSection,
-  .palmaresSection { /* Adicionado palmaresSection */
+  .palmaresSection {
     padding: 20px;
   }
 
-  .transfersGrid,
+  .latestGamesSection {
+  }
+
+  .gameTeamsAndScores {
+    flex-direction: column; /* Stack teams and scores vertically */
+    width: 100%; /* Take full width */
+    padding: 10px 0; /* Adjust padding */
+  }
+
+  .homeTeamDisplay,
+  .awayTeamDisplay,
+  .scoresDisplay {
+    justify-content: center; /* Center content when stacked */
+    width: 95%;
+  }
+
+  .gameDateAndTime,
+  .resultIndicator {
+    width: 90%; /* Take full width */
+    text-align: center; /* Center text */
+    align-items: center; /* Center items */
+    margin-bottom: 1px; /* Add some space */
+  }
+  
+
+  .latestGamesSection,
   .playerGrid,
-  .trophyGrid { /* Adicionado trophyGrid */
+  .trophyGrid,
+  .transfersGrid {
     grid-template-columns: 1fr; /* Single column on small screens */
   }
 
-  .gameResultCard {
-    grid-template-columns: 60px 1fr 1fr 30px; /* Adjust grid for smaller screens */
-    gap: 5px;
+  .gameResultCard, /* This class is now gameResultRow */
+  .playerCard,
+  .trophyCard,
+  .transferCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .gameDate {
-    font-size: 0.75em;
+  .gameTeams { /* This class is no longer used directly in the game result row */
+    flex-direction: column;
+    text-align: center;
   }
 
-  .gameTeams {
-    font-size: 0.85em;
-  }
-
-  .teamLogoSmall {
-    width: 25px;
-    height: 25px;
-  }
-
-  .resultIndicator {
-    width: 20px;
-    height: 20px;
-    font-size: 0.7em;
-  }
-
-  .plantelSubMenu {
-    gap: 10px; /* Reduce gap for more compact sub-menu */
-    padding: 10px;
-  }
-
-  .plantelSubMenuItem {
-    font-size: 0.9em;
-    padding: 6px 10px;
-  }
-
-  .trophyImage {
-    width: 60px; /* Ajusta tamanho do troféu em telas menores */
-    height: 60px;
-  }
-
-  .trophyCount {
-    font-size: 2em; /* Ajusta tamanho do número do troféu em telas menores */
-  }
-}
-
-@media (max-width: 480px) {
-  .palmeirasLogo {
-    width: 80px;
-  }
-
-  .palmeirasTitle {
-    font-size: 2em;
-  }
-
-  .navButton {
-    font-size: 1em;
-    padding: 10px 15px;
-  }
-
-  .clubLogoMatch {
-    width: 60px;
-    height: 60px;
-  }
-
-  .leagueLogo {
-    width: 40px;
-    height: 40px;
-  }
-
-  .matchDate {
-    font-size: 1.2em;
-  }
-
-  .infoLabel {
-    font-size: 0.8em;
-  }
-
-  .infoValue {
+  .gameScore {
+    font-weight: bold;
     font-size: 1.1em;
+    color: white;
+    flex-shrink: 0;
+    padding-left: 200px; /* Adiciona um pequeno espaço à esquerda do score */
+  }
+
+  .playerClubLogo, .playerNumber {
+    position: static; /* Remove absolute positioning on small screens */
+    margin-top: 5px;
+  }
+
+  .playerInfoSection { /* Adjusted for mobile */
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px;
+    width: 100%; /* Ensure it takes full width */
+  }
+
+  .playerDetails {
+    text-align: center; /* Center text when stacked */
+  }
+
+  .clubTransferTextContainer { /* Adjusted for mobile */
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* Ensure it takes full width */
+  }
+
+  .fromClubText,
+  .toClubText {
+    width: 100%; /* Make text backgrounds take full width */
+  }
+   .teamNameAndLogo {
+    display: flex;
+    justify-content: center; /* Centraliza o logo e o nome do time */
+    gap: 70px;
+    margin-bottom: 0px; /* Espaço entre o nome do time e o placar */
+    margin-left: 95px;
+  }
+  .gameResultRow {
+    flex-direction: column; /* Empilha os itens verticalmente no mobile */
+    align-items: center; /* Centraliza os itens horizontalmente quando empilhados */
+    padding: 15px; /* Ajuste o padding para melhor visualização */
+  }
+
+  .teamScoreLine {
+    display: flex;
+    justify-content: space-between; /* Distribui logo/nome para a esquerda e score para a direita */
+    align-items: center;
+    width: 90%; /* Ajuste a largura para controlar o espaço interno */
+    max-width: 300px; /* Opcional: limite a largura em telas maiores */
+    /* background-color: #333; /* Para visualização, remova depois */
+  }
+  .teamLogoSmall{padding: auto;
+  display: flex;}
+  .gameDateAndTime {
+    width: 100%; /* Ocupa a largura total */
+    justify-content: center; /* Centraliza a data e a hora */
+    margin-right: 0; /* Remove o margin-right que estava empurrando */
+    margin-bottom: 10px; /* Adiciona espaço abaixo da data/hora */
+  }
+
+  .gameDetailsContainer {
+    width: 100%; /* Ocupa a largura total */
+    display: flex; /* Adiciona display flex para centralizar as linhas de time */
+    flex-direction: column; /* Para empilhar as linhas de time */
+    align-items: center; /* Centraliza as linhas de time */
+    gap: 10px; /* Espaço entre as linhas de time (opcional) */
   }
 }

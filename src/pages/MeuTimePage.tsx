@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
-import styles from '../styles/MeuTimePage.module.css';
+import styles from '../styles/MeuTimePage.module.css'; // Caminho corrigido para o CSS
 
 // --- Interfaces ---
 
@@ -15,7 +15,7 @@ interface Transfer {
   toClub: string;
   transferFee: string;
   playerImageUrl: string;
-  clubLogoUrl: string;
+  clubLogoUrl: string; // Esta URL será usada como a logo do "toClub"
 }
 
 // Interface para a próxima partida
@@ -91,32 +91,32 @@ const dummyTransfers: Transfer[] = [
     fromClub: 'Benfica',
     toClub: 'Palmeiras',
     transferFee: '10 000 000 €',
-    playerImageUrl: 'https://placehold.co/60x60/00e676/ffffff?text=Player',
+    playerImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Angel_Di_Maria_2018.jpg/200px-Angel_Di_Maria_2018.jpg',
     clubLogoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sociedade_Esportiva_Palmeiras_logo.svg/1200px-Sociedade_Esportiva_Palmeiras_logo.svg.png',
   },
   {
     id: 'transfer-2',
     status: 'NEGÓCIO FECHADO',
     date: '30/05/2025',
-    playerName: 'Ángel Di Maria',
-    playerRole: 'Meia-campista',
-    fromClub: 'Benfica',
-    toClub: 'Palmeiras',
-    transferFee: '10 000 000 €',
-    playerImageUrl: 'https://placehold.co/60x60/00e676/ffffff?text=Player',
-    clubLogoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sociedade_Esportiva_Palmeiras_logo.svg/1200px-Sociedade_Esportiva_Palmeiras_logo.svg.png',
+    playerName: 'Neymar Jr.',
+    playerRole: 'Atacante',
+    fromClub: 'PSG',
+    toClub: 'Al-Hilal',
+    transferFee: '90 000 000 €',
+    playerImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Neymar_Jr._with_Al_Hilal%2C_2023.jpg/200px-Neymar_Jr._with_Al_Hilal%2C_2023.jpg',
+    clubLogoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Al-Hilal_FC_logo.svg/1200px-Al-Hilal_FC_logo.svg.png',
   },
   {
     id: 'transfer-3',
     status: 'NEGÓCIO FECHADO',
     date: '30/05/2025',
-    playerName: 'Ángel Di Maria',
-    playerRole: 'Meia-campista',
-    fromClub: 'Benfica',
-    toClub: 'Palmeiras',
-    transferFee: '10 000 000 €',
-    playerImageUrl: 'https://placehold.co/60x60/00e676/ffffff?text=Player',
-    clubLogoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sociedade_Esportiva_Palmeiras_logo.svg/1200px-Sociedade_Esportiva_Palmeiras_logo.svg.png',
+    playerName: 'Cristiano Ronaldo',
+    playerRole: 'Atacante',
+    fromClub: 'Manchester Utd',
+    toClub: 'Al-Nassr',
+    transferFee: '200 000 000 €',
+    playerImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Cristiano_Ronaldo_2014_FIFA_World_Cup_-_cropped.jpg/200px-Cristiano_Ronaldo_2014_FIFA_World_Cup_-_cropped.jpg',
+    clubLogoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Al_Nassr_FC_logo.svg/1200px-Al_Nassr_FC_logo.svg.png',
   },
 ];
 
@@ -441,35 +441,43 @@ const MeuTimePage: React.FC = () => {
             <p className={styles.noDataMessage}>Nenhuma próxima partida encontrada.</p>
           )}
 
-          {/* Seção Últimos Jogos */}
+          {/* Seção Últimos Jogos - MODIFIED HERE */}
           <h2 className={styles.sectionTitle}>Últimos jogos</h2>
           <div className={styles.latestGamesSection}>
             {latestGames.length > 0 ? (
               latestGames.map((game) => (
-                <div key={game.id} className={styles.gameResultCard}>
-                  <div className={styles.gameDate}>
-                    <span>{game.date}</span>
-                    <span>{game.time}</span>
+                <div key={game.id} className={styles.gameResultRow}>
+                  <div className={styles.gameDateAndTime}>
+                    <span className={styles.gameDateText}>{game.date}</span>
+                    <span className={styles.gameTimeText}>{game.time}</span>
                   </div>
-                  <div className={styles.gameTeams}>
-                    <img
-                      src={game.homeTeamLogo}
-                      alt={game.homeTeamName}
-                      className={styles.teamLogoSmall}
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/30x30/004d40/ffffff?text=H'; }}
-                    />
-                    <span>{game.homeTeamName}</span>
-                    <span className={styles.gameScore}>{game.homeScore}</span>
-                  </div>
-                  <div className={styles.gameTeams}>
-                    <img
-                      src={game.awayTeamLogo}
-                      alt={game.awayTeamName}
-                      className={styles.teamLogoSmall}
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/30x30/004d40/ffffff?text=A'; }}
-                    />
-                    <span>{game.awayTeamName}</span>
-                    <span className={styles.gameScore}>{game.awayScore}</span>
+                  <div className={styles.gameDetailsContainer}> {/* New container for teams and scores */}
+                    <div className={styles.teamScoreLine}>
+                      {/* Envolver logo e nome do time em um novo div */}
+                      <div className={styles.teamNameAndLogo}>
+                        <img
+                          src={game.homeTeamLogo}
+                          alt={game.homeTeamName}
+                          className={styles.teamLogoSmall}
+                          onError={(e) => { e.currentTarget.src = 'https://placehold.co/30x30/004d40/ffffff?text=H'; }}
+                        />
+                        <span className={styles.teamNameText}>{game.homeTeamName}</span>
+                      </div>
+                      <span className={styles.gameScore}>{game.homeScore}</span>
+                    </div>
+                    <div className={styles.teamScoreLine}>
+                      {/* Envolver logo e nome do time em um novo div */}
+                      <div className={styles.teamNameAndLogo}>
+                        <img
+                          src={game.awayTeamLogo}
+                          alt={game.awayTeamName}
+                          className={styles.teamLogoSmall}
+                          onError={(e) => { e.currentTarget.src = 'https://placehold.co/30x30/004d40/ffffff?text=A'; }}
+                        />
+                        <span className={styles.teamNameText}>{game.awayTeamName}</span>
+                      </div>
+                      <span className={styles.gameScore}>{game.awayScore}</span>
+                    </div>
                   </div>
                   <div className={`${styles.resultIndicator} ${styles[game.result]}`}>
                     {game.result}
@@ -591,7 +599,6 @@ const MeuTimePage: React.FC = () => {
         </section>
       )}
 
-      {/* Seção: Palmarés */}
       {activeTab === 'PALMARÉS' && (
         <section className={styles.palmaresSection}>
           <h2 className={styles.sectionTitle}>Títulos Conquistados</h2>
@@ -635,7 +642,7 @@ const MeuTimePage: React.FC = () => {
                     <span className={styles.transferStatus}>{transfer.status}</span>
                     <span className={styles.transferDate}>{transfer.date}</span>
                   </div>
-                  <div className={styles.playerInfo}>
+                  <div className={styles.playerInfoSection}> {/* Div para agrupar player info */}
                     <img
                       src={transfer.playerImageUrl}
                       alt={transfer.playerName}
@@ -646,17 +653,20 @@ const MeuTimePage: React.FC = () => {
                       <p className={styles.playerName}>{transfer.playerName}</p>
                       <p className={styles.playerRole}>{transfer.playerRole}</p>
                     </div>
+                    {/* Logo do clube para o qual o jogador vai */}
                     <img
                       src={transfer.clubLogoUrl}
-                      alt="Palmeiras Club Logo"
-                      className={styles.clubLogoSmall}
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/35x35/004d40/ffffff?text=Club'; }}
+                      alt={transfer.toClub + ' Logo'}
+                      className={styles.toClubLogo}
+                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/40x40/004d40/ffffff?text=To'; }}
                     />
                   </div>
-                  <div className={styles.transferDetails}>
-                    <p className={styles.clubTransferText}>
-                      {transfer.fromClub} <span className={styles.arrow}>&rarr;</span> {transfer.toClub}
-                    </p>
+                  <div className={styles.clubTransferTextContainer}> {/* Nova seção para os textos dos clubes */}
+                    <span className={styles.fromClubText}>{transfer.fromClub}</span>
+                    <span className={styles.arrow}>&rarr;</span>
+                    <span className={styles.toClubText}>{transfer.toClub}</span>
+                  </div>
+                  <div className={styles.transferFeeContainer}>
                     <p className={styles.transferFee}>{transfer.transferFee}</p>
                   </div>
                 </div>
