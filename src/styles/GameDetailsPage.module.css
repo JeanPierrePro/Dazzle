@@ -590,6 +590,120 @@
   object-fit: cover;
 }
 
+/* --- Onze Inicial (Escalação) --- */
+/* --------------------------------------------------------------------------- */
+/* COLE ESTE BLOCO NO SEU ARQUIVO GameDetailsPage.module.css */
+
+.lineupContainer {
+  background-color: #1a1a1a;
+  margin: 40px 30px 20px 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.lineupHeader {
+  display: flex;
+  height: 120px;
+}
+
+.headerTeam {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerTeam img {
+  height: 60%;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.palmeiras {
+  background-color: #006437;
+}
+
+.flamengo {
+  background-color: #9b0000;
+}
+
+.lineupBody {
+  display: flex;
+}
+
+.teamColumn {
+  flex: 1;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.teamColumn + .teamColumn {
+  border-left: 1px solid #333;
+}
+
+.teamName {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin: 24px 0 20px 0; /* Adicionado espaço em cima */
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.playerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playerList li {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.playerNumber {
+  color: #888;
+  margin-right: 12px;
+  min-width: 25px;
+}
+
+.playerName {
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.lineupDivider {
+  border: none;
+  height: 1px;
+  background-color: #333;
+  margin: 24px 0;
+}
+
+.coachSection {
+  text-align: center;
+  padding-bottom: 24px; /* Adicionado espaço embaixo */
+}
+
+.coachLabel {
+  color: #888;
+  font-size: 13px;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+}
+
+.coachName {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
 
 /* --- Sidebar de Recomendações --- */
 /* --------------------------------------------------------------------------- */
