@@ -62,6 +62,7 @@ const GameCard: React.FC<GameCardProps> = ({
         </div>
       </div>
       <p className={styles.gameCardChampionship}>{championship}</p>
+      <hr className={styles.customDividerGameCard} />
       <p className={styles.gameCardDescription}>
         Os maiores clássicos, jogadas geniais e gols históricos. Viva a paixão do futebol aqui!
       </p>

@@ -1,20 +1,37 @@
-/* CSS Variables for easier theme management */
+/**
+ * =============================================================================
+ * ARQUIVO DE ESTILOS ORGANIZADO PARA A PÁGINA DE JOGOS
+ * =============================================================================
+ * Estrutura:
+ * 1. Estilos Fundamentais (Root & Body)
+ * 2. Layout e Navegação
+ * 3. Estilos de Componentes
+ * 4. Estilos Responsivos
+ * =============================================================================
+ */
+
+/**
+ * =============================================================================
+ * 1. ESTILOS FUNDAMENTAIS (ROOT & BODY)
+ * =============================================================================
+ */
+
 :root {
   --background-color: #000;
   --header-bg-color: #000;
-  --secondary-nav-bg-color: #1a1a1a;
+  --secondary-nav-bg-color: #1A1D22; /* Cor ajustada para corresponder à imagem */
   --text-color-default: #a0a0a0;
   --text-color-active: #fff;
-  --accent-color: #ffd700; /* Gold-like color for active underline */
+  --accent-color: #ffd700;
   --border-color: #333;
   --font-family: Arial, sans-serif;
-  --spacing-unit: 8px; /* Base unit for consistent spacing */
-  --card-bg-color: #1a1a1a; /* Background for game cards */
-  --button-bg-color: #007bff; /* Example button background */
+  --spacing-unit: 8px;
+  --card-bg-color: #282434;
+  --button-bg-color: #007bff;
   --button-text-color: #fff;
 }
 
-.jogosContainer { /* Changed to camelCase for consistency with JS modules */
+.jogosContainer {
   background-color: var(--background-color);
   color: var(--text-color-default);
   font-family: var(--font-family);
@@ -23,25 +40,34 @@
   flex-direction: column;
 }
 
-.jogosHeader { /* Changed to camelCase */
+/**
+ * =============================================================================
+ * 2. LAYOUT E NAVEGAÇÃO
+ * =============================================================================
+ */
+
+/* Header & Navegação Principal */
+/* -------------------------------------------------------------------------- */
+
+.jogosHeader {
   display: flex;
   align-items: center;
   padding: calc(2 * var(--spacing-unit)) calc(4 * var(--spacing-unit)); /* 16px 32px */
   border-bottom: 1px solid var(--border-color);
-  flex-wrap: wrap; /* Allow wrapping of navigation items */
-  gap: calc(2 * var(--spacing-unit)); /* Space between logo and nav */
+  flex-wrap: wrap;
+  gap: calc(2 * var(--spacing-unit));
 }
 
-.dazzleLogo { /* Changed to camelCase */
+.dazzleLogo {
   font-weight: bold;
   font-size: 24px;
   color: var(--text-color-default);
-  flex-shrink: 0; /* Prevent shrinking */
-  margin-right: calc(4 * var(--spacing-unit)); /* 32px margin */
+  flex-shrink: 0;
+  margin-right: calc(4 * var(--spacing-unit));
 }
 
-.mainNav { /* Changed to camelCase */
-  flex-grow: 1; /* Allows nav to take available space */
+.mainNav {
+  flex-grow: 1;
 }
 
 .mainNav ul {
@@ -50,48 +76,56 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: calc(3 * var(--spacing-unit)); /* 24px space between main nav items */
+  gap: calc(3 * var(--spacing-unit));
+  
 }
 
-.mainNav li {
+.mainNav li  {
   font-size: 16px;
   cursor: pointer;
-  padding-bottom: var(--spacing-unit); /* 8px for underline space */
+  padding-bottom: var(--spacing-unit);
   position: relative;
   color: var(--text-color-default);
-  white-space: nowrap; /* Prevent text from breaking */
-  transition: color 0.2s ease-in-out; /* Smooth transition for color change */
+  white-space: nowrap;
+  transition: color 0.2s ease-in-out;
+  padding: 8px 70px;
 }
 
 .mainNav li:hover {
-  color: var(--text-color-active); /* Slightly brighten on hover */
+  color: var(--text-color-active);
 }
 
-/* IMPORTANT: When using CSS Modules, you generally want to avoid
-    nesting class names for direct targeting like .main-nav li.active.
-    Instead, you'd apply the 'active' class directly to the li element
-    in your JavaScript. However, for pseudo-elements like ::after,
-    you can still target based on the class. */
-.mainNavLiActive { /* New class to represent the active state on the li */
-  color: var(--text-color-active);
+.mainNavLiActive {
+  color: var(--accent-color);
   font-weight: bold;
 }
 
 .mainNavLiActive::after {
   content: '';
   position: absolute;
-  left: 0;
   bottom: 0;
-  width: 100%;
+  /* Centraliza a linha subtraindo o padding */
+  left: 70px; /* Começa a linha depois do padding esquerdo */
+  width: calc(100% - 140px); /* Largura total menos o padding esquerdo (16px) e direito (16px) */
+  
   height: 3px;
   background-color: var(--accent-color);
-  transition: width 0.3s ease-in-out; /* Smooth transition for underline */
+  transition: width 0.3s ease-in-out;
 }
 
 
-.secondaryNav { /* Changed to camelCase */
+/* Navegação Secundária (Países/Regiões) */
+/* -------------------------------------------------------------------------- */
+
+.secondaryNav {
   background-color: var(--secondary-nav-bg-color);
-  padding: calc(1.5 * var(--spacing-unit)) calc(4 * var(--spacing-unit)); /* 12px 32px */
+  padding: 8px 32px;
+  max-width: 2000px;
+  min-width: 1800px;
+  margin: 28px auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 0px 1px;
 }
 
 .secondaryNav ul {
@@ -100,84 +134,94 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: calc(2.5 * var(--spacing-unit)); /* 20px space between secondary nav items */
+  align-items: center;
+  
 }
 
 .secondaryNav li {
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   color: var(--text-color-default);
-  padding: calc(0.5 * var(--spacing-unit)) 0; /* 4px padding */
   white-space: nowrap;
-  transition: color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  padding: 8px 110px;
+  border-left: 1px solid #333;
+
+}
+
+.secondaryNav li:first-child {
+  border-left: none;
 }
 
 .secondaryNav li:hover {
   color: var(--text-color-active);
 }
 
-.secondaryNavLiActive { /* New class for the active state on secondary nav li */
-  color: var(--text-color-active);
+.secondaryNavLiActive {
+  background-color: #E1E1E1;
+  color: #1A1D22;
   font-weight: bold;
+  border-radius: 5px;
+  border-left: none;
 }
 
-.dateNavigation { /* Changed to camelCase */
+.secondaryNavLiActive + li {
+  border-left: none;
+}
+
+
+/* Navegação de Data */
+/* -------------------------------------------------------------------------- */
+
+.dateNavigation {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: calc(4 * var(--spacing-unit)); /* 32px top margin */
+  margin-top: calc(4 * var(--spacing-unit));
   font-size: 14px;
   color: var(--text-color-default);
 }
 
-.dateNavigationArrow { /* Changed to camelCase */
+.dateNavigationArrow {
   font-size: 24px;
   cursor: pointer;
-  margin: 0 calc(2 * var(--spacing-unit)); /* 16px horizontal margin */
-  user-select: none; /* Prevent text selection on arrows */
+  margin: 0 calc(2 * var(--spacing-unit));
+  user-select: none;
 }
 
-.dateNavigationDateDisplay { /* Changed to camelCase */
+.dateNavigationDateDisplay {
   text-align: center;
   line-height: 1.4;
 }
 
-.noGamesMessage { /* Changed to camelCase */
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: var(--text-color-default);
-  padding: calc(3 * var(--spacing-unit)); /* 24px padding */
-}
+/**
+ * =============================================================================
+ * 3. ESTILOS DE COMPONENTES
+ * =============================================================================
+ */
 
-.noGamesMessageInfoIcon { /* Changed to camelCase */
-  margin-bottom: calc(2.5 * var(--spacing-unit)); /* 20px bottom margin */
-  color: var(--text-color-default); /* Icon color matches text */
-}
+/* Grid dos Cards de Jogo */
+/* -------------------------------------------------------------------------- */
 
-.noGamesMessage p {
-  font-size: 18px;
-  margin: calc(0.5 * var(--spacing-unit)) 0; /* 4px vertical margin */
-}
-
-/* --- Game Card Styles --- */
 .gameCardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
-  gap: calc(3 * var(--spacing-unit)); /* 24px gap between cards */
-  padding: calc(4 * var(--spacing-unit)); /* 32px padding around the grid */
-  justify-content: center; /* Center cards if they don't fill the row */
-  max-width: 1200px; /* Max width for the grid */
-  margin: 0 auto; /* Center the grid container */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: calc(3 * var(--spacing-unit));
+  padding: calc(4 * var(--spacing-unit));
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
+
+/* Componente Card de Jogo */
+/* -------------------------------------------------------------------------- */
 
 .gameCard {
   background-color: var(--card-bg-color);
   border-radius: 8px;
-  padding: calc(2 * var(--spacing-unit)); /* 16px padding inside the card */
+  padding: calc(2 * var(--spacing-unit));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -187,24 +231,24 @@
 }
 
 .gameCard:hover {
-  transform: translateY(-5px); /* Slight lift on hover */
+  transform: translateY(-5px);
 }
 
 .gameCardHeader {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: calc(2 * var(--spacing-unit)); /* 16px */
+  margin-bottom: calc(2 * var(--spacing-unit));
   font-size: 14px;
 }
 
 .gameCardDate {
-  color: var(--accent-color); /* Match image yellow color */
+  color: white;
   font-weight: bold;
 }
 
 .experienceTag {
-  background-color: #555; /* Darker background for the tag */
+  background-color: #555;
   color: #fff;
   padding: 4px 8px;
   border-radius: 4px;
@@ -215,8 +259,8 @@
 .gameCardTeams {
   display: flex;
   align-items: center;
-  gap: calc(2 * var(--spacing-unit)); /* 16px gap between teams and 'x' */
-  margin-bottom: calc(2 * var(--spacing-unit)); /* 16px */
+  gap: calc(2 * var(--spacing-unit));
+  margin-bottom: calc(2 * var(--spacing-unit));
 }
 
 .gameCardTeam {
@@ -226,17 +270,17 @@
 }
 
 .gameCardTeamLogo {
-  width: 60px; /* Adjust as needed */
-  height: 60px; /* Adjust as needed */
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  margin-bottom: calc(0.5 * var(--spacing-unit)); /* 4px */
+  margin-bottom: calc(0.5 * var(--spacing-unit));
 }
 
 .gameCardTeamName {
   font-size: 18px;
   font-weight: bold;
   color: var(--text-color-active);
-  white-space: nowrap; /* Prevent team name from wrapping */
+  white-space: nowrap;
 }
 
 .gameCardVs {
@@ -248,36 +292,77 @@
 .gameCardChampionship {
   font-size: 14px;
   color: var(--text-color-default);
-  margin-bottom: calc(2 * var(--spacing-unit)); /* 16px */
+  margin-bottom: calc(2 * var(--spacing-unit));
+}
+
+.customDividerGameCard {
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.692);
+  margin: 12px 0;
+  width: 100%;
 }
 
 .gameCardDescription {
   font-size: 13px;
   color: var(--text-color-default);
-  margin-bottom: calc(3 * var(--spacing-unit)); /* 24px */
+  margin-bottom: calc(3 * var(--spacing-unit));
   line-height: 1.5;
 }
 
 .gameCardButton {
-  background-color: var(--button-bg-color); /* Example blue button */
-  color: var(--button-text-color);
+  background-color: white;
+  color: black;
   border: none;
   border-radius: 5px;
-  padding: calc(1.5 * var(--spacing-unit)) calc(3 * var(--spacing-unit)); /* 12px 24px */
+  padding: calc(1.5 * var(--spacing-unit)) calc(3 * var(--spacing-unit));
   font-size: 16px;
   cursor: pointer;
   text-transform: uppercase;
   font-weight: bold;
   transition: background-color 0.2s ease-in-out;
-  width: 100%; /* Make button full width of card */
+  width: 100%;
 }
 
 .gameCardButton:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #ca9502;
 }
 
 
-/* Basic Responsiveness */
+/* Componente de Mensagem "Sem Jogos" */
+/* -------------------------------------------------------------------------- */
+
+.noGamesMessage {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #666; 
+  padding: calc(3 * var(--spacing-unit));
+}
+
+.noGamesMessageInfoIcon {
+  width: 56px;  
+  height: 56px; 
+  margin-bottom: calc(3 * var(--spacing-unit)); 
+  color: #444; 
+}
+
+.noGamesMessage p {
+  font-size: 20px; 
+  margin: 0; 
+  color: #888;
+}
+
+
+/**
+ * =============================================================================
+ * 4. ESTILOS RESPONSIVOS
+ * =============================================================================
+ */
+
 @media (max-width: 768px) {
   .jogosHeader {
     flex-direction: column;
@@ -292,8 +377,8 @@
 
   .mainNav ul,
   .secondaryNav ul {
-    justify-content: center; /* Center items when wrapping */
-    gap: calc(1.5 * var(--spacing-unit)); /* Smaller gap on small screens */
+    justify-content: center;
+    gap: calc(1.5 * var(--spacing-unit));
   }
 
   .secondaryNav {
@@ -301,13 +386,13 @@
   }
 
   .gameCardsGrid {
-    padding: calc(2 * var(--spacing-unit)); /* Reduce padding on smaller screens */
-    gap: calc(2 * var(--spacing-unit)); /* Reduce gap */
+    padding: calc(2 * var(--spacing-unit));
+    gap: calc(2 * var(--spacing-unit));
   }
 }
 
 @media (max-width: 480px) {
   .gameCardsGrid {
-    grid-template-columns: 1fr; /* Single column on very small screens */
+    grid-template-columns: 1fr;
   }
 }
