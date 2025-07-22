@@ -442,8 +442,9 @@ const MeuTimePage: React.FC = () => {
           )}
 
           {/* Seção Últimos Jogos - MODIFIED HERE */}
-          <h2 className={styles.sectionTitle}>Últimos jogos</h2>
           <div className={styles.latestGamesSection}>
+            <h2 className={styles.sectionTitleLast}>Últimos jogos</h2>
+            <hr className={styles.customDivider} />
             {latestGames.length > 0 ? (
               latestGames.map((game) => (
                 <div key={game.id} className={styles.gameResultRow}>
