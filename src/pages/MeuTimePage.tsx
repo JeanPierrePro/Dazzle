@@ -518,87 +518,115 @@ const MeuTimePage: React.FC = () => {
       )}
 
       {activeTab === 'PLANTEL' && (
-        <section className={styles.plantelSection}>
-          {/* Sub-menu para Plantel */}
-          <nav className={styles.plantelSubMenu}>
-            <button
-              className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Guarda-Redes' ? styles.activePlantelSubMenuItem : ''}`}
-              onClick={() => setActiveSubTabPlatel('Guarda-Redes')}
-            >
-              GUARDA-REDES
-            </button>
-            <button
-              className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Defesas' ? styles.activePlantelSubMenuItem : ''}`}
-              onClick={() => setActiveSubTabPlatel('Defesas')}
-            >
-              DEFESAS
-            </button>
-            <button
-              className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Médios' ? styles.activePlantelSubMenuItem : ''}`}
-              onClick={() => setActiveSubTabPlatel('Médios')}
-            >
-              MÉDIOS
-            </button>
-            <button
-              className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Avançados' ? styles.activePlantelSubMenuItem : ''}`}
-              onClick={() => setActiveSubTabPlatel('Avançados')}
-            >
-              AVANÇADOS
-            </button>
-            <button
-              className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Treinadores' ? styles.activePlantelSubMenuItem : ''}`}
-              onClick={() => setActiveSubTabPlatel('Treinadores')}
-            >
-              TREINADORES
-            </button>
-          </nav>
+  <section className={styles.plantelSection}>
+    {/* Sub-menu para Plantel (sem alterações) */}
+    <nav className={styles.plantelSubMenu}>
+        <button
+          className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Guarda-Redes' ? styles.activePlantelSubMenuItem : ''}`}
+          onClick={() => setActiveSubTabPlatel('Guarda-Redes')}
+        >
+          GUARDA-REDES
+        </button>
+        <button
+          className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Defesas' ? styles.activePlantelSubMenuItem : ''}`}
+          onClick={() => setActiveSubTabPlatel('Defesas')}
+        >
+          DEFESAS
+        </button>
+        <button
+          className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Médios' ? styles.activePlantelSubMenuItem : ''}`}
+          onClick={() => setActiveSubTabPlatel('Médios')}
+        >
+          MÉDIOS
+        </button>
+        <button
+          className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Avançados' ? styles.activePlantelSubMenuItem : ''}`}
+          onClick={() => setActiveSubTabPlatel('Avançados')}
+        >
+          AVANÇADOS
+        </button>
+        <button
+          className={`${styles.plantelSubMenuItem} ${activeSubTabPlatel === 'Treinadores' ? styles.activePlantelSubMenuItem : ''}`}
+          onClick={() => setActiveSubTabPlatel('Treinadores')}
+        >
+          TREINADORES
+        </button>
+    </nav>
 
-          {/* Grid de Jogadores/Treinadores baseado na sub-aba ativa */}
-          <div className={styles.playerGrid}>
-            {activeSubTabPlatel !== 'Treinadores' ? (
-              filteredPlayers.length > 0 ? (
-                filteredPlayers.map((player) => (
-                  <div key={player.id} className={styles.playerCard}>
-                    <img
-                      src={player.imageUrl}
-                      alt={player.name}
-                      className={styles.playerImageSmall}
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/60x60/00e676/ffffff?text=P'; }}
-                    />
-                    <span className={styles.playerNameSmall}>{player.name}</span>
-                    <img
-                      src={player.clubLogoUrl}
-                      alt="Palmeiras Logo"
-                      className={styles.playerClubLogo}
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/40x40/004d40/ffffff?text=C'; }}
-                    />
-                    <span className={styles.playerNumber}>{player.number}</span>
-                  </div>
-                ))
-              ) : (
-                <p className={styles.noDataMessage}>Nenhum jogador encontrado para esta posição.</p>
-              )
-            ) : (
-              filteredCoaches.length > 0 ? (
-                filteredCoaches.map((coach) => (
-                  <div key={coach.id} className={styles.playerCard}> {/* Reutilizando estilo playerCard para treinadores */}
-                    <img
-                      src={coach.imageUrl}
-                      alt={coach.name}
-                      className={styles.playerImageSmall}
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/60x60/00e676/ffffff?text=C'; }}
-                    />
-                    <span className={styles.playerNameSmall}>{coach.name}</span>
-                    {/* Não há logo do clube ou número para treinadores na imagem */}
-                  </div>
-                ))
-              ) : (
-                <p className={styles.noDataMessage}>Nenhum treinador encontrado.</p>
-              )
-            )}
-          </div>
-        </section>
+    {/* Grid de Jogadores/Treinadores com a estrutura do card ATUALIZADA */}
+    <div className={styles.playerGrid}>
+      {activeSubTabPlatel !== 'Treinadores' ? (
+        filteredPlayers.length > 0 ? (
+          filteredPlayers.map((player) => {
+            // Lógica para dividir o nome em duas partes (primeiro nome e sobrenome)
+            const nameParts = player.name.split(' ');
+            const firstName = nameParts[0];
+            const lastName = nameParts.slice(1).join(' ');
+
+            return (
+              <div key={player.id} className={styles.playerCard}>
+                <img
+                  src={player.imageUrl}
+                  alt={`Foto de ${player.name}`}
+                  className={styles.playerImageSmall}
+                  onError={(e) => { e.currentTarget.src = 'https://placehold.co/60x60/2D2D2D/ffffff?text=P'; }}
+                />
+
+                {/* NOVO: Container para o nome, permitindo duas linhas */}
+                <div className={styles.playerNameContainer}>
+                  <span className={styles.playerNameSmall}>{firstName}</span>
+                  {/* Renderiza o sobrenome apenas se existir */}
+                  {lastName && <span className={styles.playerNameSmall}>{lastName}</span>}
+                </div>
+                
+                {/* NOVO: Container para o logo com o efeito diagonal */}
+                <div className={styles.logoContainer}>
+                  <img
+                    src={player.clubLogoUrl}
+                    alt="Escudo do Palmeiras"
+                    className={styles.playerClubLogo}
+                    onError={(e) => { e.currentTarget.src = 'https://upload.wikimedia.org/wikipedia/commons/1/10/Palmeiras_logo.svg'; }}
+                  />
+                </div>
+
+                <span className={styles.playerNumber}>{player.number}</span>
+              </div>
+            );
+          })
+        ) : (
+          <p className={styles.noDataMessage}>Nenhum jogador encontrado para esta posição.</p>
+        )
+      ) : (
+        filteredCoaches.length > 0 ? (
+          filteredCoaches.map((coach) => {
+            // Lógica similar para o nome do treinador
+            const nameParts = coach.name.split(' ');
+            const firstName = nameParts[0];
+            const lastName = nameParts.slice(1).join(' ');
+
+            return (
+              // Estrutura simplificada para treinadores (sem logo e número)
+              <div key={coach.id} className={styles.playerCard}>
+                <img
+                  src={coach.imageUrl}
+                  alt={coach.name}
+                  className={styles.playerImageSmall}
+                  onError={(e) => { e.currentTarget.src = 'https://placehold.co/60x60/2D2D2D/ffffff?text=T'; }}
+                />
+                <div className={styles.playerNameContainer}>
+                  <span className={styles.playerNameSmall}>{firstName}</span>
+                  {lastName && <span className={styles.playerNameSmall}>{lastName}</span>}
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p className={styles.noDataMessage}>Nenhum treinador encontrado.</p>
+        )
       )}
+    </div>
+  </section>
+)}
 
       {activeTab === 'PALMARÉS' && (
         <section className={styles.palmaresSection}>
