@@ -1,18 +1,38 @@
-/* GameDetailsPage.module.css */
+/**
+ * =============================================================================
+ * ARQUIVO DE ESTILOS ORGANIZADO - GameDetailsPage
+ * =============================================================================
+ * Estrutura:
+ * 1. Configuração Geral da Página
+ * 2. Layout Principal (Estrutura de Colunas)
+ * 3. Componentes
+ * - Player de Vídeo/Imagem Principal
+ * - Informações Abaixo do Vídeo
+ * - Abas de Navegação
+ * - Seção de Odds (Apostas)
+ * - Sidebar de Recomendações
+ * - Mensagem de Loading
+ * 4. Estilos Responsivos
+ * =============================================================================
+ */
+
+/**
+ * =============================================================================
+ * 1. CONFIGURAÇÃO GERAL DA PÁGINA
+ * =============================================================================
+ */
 
 .container {
-  background-color: #121212; /* Darker background to match the image */
+  background-color: #000000;
   color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Slightly different font */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent body scroll if content overflows due to small screens */
+  overflow: hidden;
 }
 
-/* You might remove .header and .logo if your header is a global component
-   and not specific to this page. I'll keep them commented out as they were in your original CSS. */
-/*
+/* Header global (se aplicável)
 .header {
   background-color: #000000;
   padding: 10px 30px;
@@ -30,17 +50,32 @@
 }
 */
 
+/**
+ * =============================================================================
+ * 2. LAYOUT PRINCIPAL (ESTRUTURA DE COLUNAS)
+ * =============================================================================
+ */
+
 .mainContent {
   display: flex;
   flex-grow: 1;
-  padding: 20px 30px; /* Padding around the main content area */
-  gap: 25px; /* Slightly more space between sections */
-  align-items: flex-start; /* Align items to the top */
+  padding: 20px 30px;
+  gap: 25px;
+  align-items: flex-start;
 }
 
+/**
+ * =============================================================================
+ * 3. COMPONENTES
+ * =============================================================================
+ */
+
+/* --- Player de Vídeo/Imagem Principal --- */
+/* --------------------------------------------------------------------------- */
+
 .featuredSection {
-  flex: 2; /* Still takes more space */
-  background-color: #1a1a1a; /* Background for the main content area */
+  flex: 2;
+  background-color: #1a1a1a;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -50,7 +85,7 @@
 
 .videoPlaceholder {
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%; /* Proporção 16:9 */
   position: relative;
   background-color: #000;
   display: flex;
@@ -64,10 +99,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover; /* Cover the area */
-  background-position: center; /* Center the image */
-  filter: brightness(0.6); /* Slightly dim the background image */
-  /* The actual background-image url will be set dynamically via style prop in TSX */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6);
 }
 
 .videoOverlay {
@@ -76,7 +110,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Darker, more opaque overlay */
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,13 +120,13 @@
 }
 
 .warningIcon {
-  font-size: 55px; /* Adjusted size */
-  color: #ffc107; /* A subtle yellow/amber, closer to the image */
+  font-size: 55px;
+  color: #ffc107;
   margin-bottom: 10px;
-  border: 3px solid #ffc107; /* Thicker border */
+  border: 3px solid #ffc107;
   border-radius: 50%;
-  width: 75px; /* Adjusted size */
-  height: 75px; /* Adjusted size */
+  width: 75px;
+  height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,199 +135,23 @@
 
 .overlayTextMain {
   margin: 5px 0;
-  font-size: 20px; /* Larger font for main text */
+  font-size: 20px;
   font-weight: 500;
-  color: #f0f0f0; /* Off-white for readability */
+  color: #f0f0f0;
 }
 
 .overlayTextTime {
-    margin: 0;
-    font-size: 16px; /* Slightly smaller for time */
-    color: #cccccc; /* Lighter grey */
-}
-
-/* This part was originally for the title *inside* the featured section, but
-   now the featuredSectionInfo takes care of it, so this can likely be removed.
-   Keeping it commented for reference.
-.featuredSectionTitle {
-  padding: 15px 20px;
-  background-color: #fa000000;
-  border-top: 1px solid #222222;
-}
-
-.featuredSectionTitle h2 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-  color: #ffffff;
-}
-*/
-
-.recommendationsSection {
-  flex: 0 0 450px; /* Fixed width for recommendations as seen in image */
-  background-color: #000000; /* Background for recommendations */
-  border-radius: 8px;
-  padding: 20px; /* Adjusted padding */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  overflow-y: auto; /* Enable scrolling */
-  max-height: calc(100vh - 40px - 20px - 20px); /* Adjust to fit screen (header + top/bottom padding) */
-  /* Custom scrollbar for Webkit browsers (Chrome, Safari) */
-  &::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #2b2b2b; /* Track color */
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #555; /* Thumb color */
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #777; /* Thumb color on hover */
-  }
+  font-size: 16px;
+  color: #cccccc;
 }
 
-
-.recommendationsSection h3 {
-  margin-top: 0;
-  margin-bottom: 15px; /* Space below heading */
-  font-size: 20px;
-  font-weight: 600;
-  color: #ffbb00; /* Lighter text for heading */
-  border-bottom: 1px solid #333333; /* Underline for heading */
-  padding-bottom: 10px;
-}
-
-.recommendationsList {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Less gap between cards */
-}
-
-.gameRecommendationCard { /* Renamed from .newsCard */
-  background-color: #000000; /* Slightly darker card background */
-  border-radius: 6px; /* Slightly less rounded corners */
-  display: flex;
-  align-items: center;
-  padding: 8px; /* Less padding inside cards */
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  border: 1px solid #3a3a3a; /* Subtle border */
-}
-
-.gameRecommendationCard:hover { /* Renamed from .newsCard:hover */
-  background-color: #333333; /* Darker hover effect */
-  transform: translateY(-2px); /* Slight lift on hover */
-}
-
-.cardImage {
-  width: 70px; /* Slightly smaller image */
-  height: 70px; /* Slightly smaller image */
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 12px; /* Less margin */
-  border: 1px solid #555; /* Small border around image */
-}
-
-.cardInfo {
-  flex-grow: 1;
-}
-
-.cardTitle {
-  font-size: 15px; /* Slightly smaller title */
-  font-weight: 500;
-  margin: 0 0 3px 0;
-  color: #ffffff;
-  line-height: 1.3;
-}
-
-.cardDescription {
-  font-size: 13px; /* Slightly smaller description */
-  color: #b0b0b0; /* Lighter grey for description */
-  margin: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 900px) {
-  .mainContent {
-    flex-direction: column;
-    padding: 15px;
-  }
-
-  .featuredSection {
-    width: 100%; /* Take full width */
-    flex: none; /* Remove flex grow */
-  }
-
-  .recommendationsSection {
-    flex: none; /* Remove fixed width */
-    width: 100%; /* Take full width */
-    max-height: 400px; /* Limit height to prevent excessive scrolling on small screens */
-    margin-top: 20px; /* Space between sections */
-  }
-
-  .videoOverlay p {
-    font-size: 16px;
-  }
-
-  .warningIcon {
-    font-size: 45px;
-    width: 65px;
-    height: 65px;
-  }
-
-  /* This was for .featuredSectionTitle h2 */
-  /*
-  .featuredSectionTitle h2 {
-    font-size: 20px;
-  }
-  */
-}
-
-@media (max-width: 500px) {
-    /* .header {
-        padding: 10px 15px;
-    }
-    .logo {
-        font-size: 22px;
-    } */
-    .mainContent {
-        padding: 10px 15px;
-    }
-    .warningIcon {
-        font-size: 35px;
-        width: 55px;
-        height: 55px;
-    }
-    .overlayTextMain {
-        font-size: 18px;
-    }
-    .overlayTextTime {
-        font-size: 14px;
-    }
-    /* .featuredSectionTitle h2 {
-        font-size: 18px;
-    } */
-    .cardTitle {
-        font-size: 14px;
-    }
-    .cardDescription {
-        font-size: 12px;
-    }
-    .cardImage {
-        width: 60px;
-        height: 60px;
-    }
-}
-/* Estilos existentes... */
+/* --- Informações Abaixo do Vídeo --- */
+/* --------------------------------------------------------------------------- */
 
 .featuredSectionInfo {
   padding: 15px 20px;
-  background-color: #1a1a1a; /* Mesmo background da featuredSection */
+  background-color: #000000;
 }
 
 .featuredSectionInfo h2 {
@@ -307,7 +165,7 @@
 .featuredSectionInfo .subtitle {
   margin-bottom: 10px;
   font-size: 16px;
-  color: #999999;
+  color: #dad9d9;
 }
 
 .featuredSectionInfo .description {
@@ -338,9 +196,12 @@
 }
 
 .qualityButtonActive {
-  background-color: #ffc107; /* Cor amarela/dourada para o botão ativo */
+  background-color: #ffffff;
   color: #000000;
 }
+
+/* --- Abas de Navegação --- */
+/* --------------------------------------------------------------------------- */
 
 .navigationTabs {
   display: flex;
@@ -363,24 +224,27 @@
 }
 
 .navTabActive {
-  color: #ffc107;
+  color: #ffffff;
   border-bottom: 2px solid #ffc107;
 }
+
+/* --- Seção de Odds (Apostas) --- */
+/* --------------------------------------------------------------------------- */
 
 .oddsSection {
   display: flex;
   padding: 20px;
   gap: 20px;
-  background-color: #121212; /* Mesmo background do container */
-  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-  justify-content: center; /* Center cards when wrapped */
+  background-color: #000000;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .oddsCard {
   background-color: #1a1a1a;
   border-radius: 8px;
   padding: 15px;
-  width: 300px; /* Largura aproximada do card */
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -391,7 +255,7 @@
 }
 
 .betanoLogo img {
-  height: 30px; /* Altura aproximada do logo */
+  height: 30px;
 }
 
 .odds {
@@ -419,11 +283,11 @@
 .oddValue {
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff;
+  color: #aaaaaa;
 }
 
 .betButton {
-  background-color: #ffc107;
+  background-color: #ffffff;
   color: #000000;
   border: none;
   padding: 10px 20px;
@@ -431,38 +295,316 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%; /* Make button fill the card width */
+  width: 100%;
 }
 
 .betButton:hover {
   background-color: #e0a800;
 }
 
-/* New style for loading message */
-.loadingMessage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 24px;
-    color: #fff;
-    background-color: #121212;
+/* --- Chat de Bancada --- */
+/* --------------------------------------------------------------------------- */
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  flex-grow: 1;
+  /* CORREÇÃO: Aumentada a margem superior para afastar da navegação */
+  margin: 40px 30px 20px 30px; 
+  border-radius: 8px;
+  overflow: hidden;
+  height: 500px;
 }
 
-/* Adaptações responsivas (podem precisar de ajustes dependendo do seu layout geral) */
+.messageList {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.messageList::-webkit-scrollbar { width: 6px; }
+.messageList::-webkit-scrollbar-track { background: #2b2b2b; }
+.messageList::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
+.messageList::-webkit-scrollbar-thumb:hover { background: #777; }
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.messageContent p {
+  margin: 0;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.chatInputArea {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaço entre o input e os emojis */
+  padding: 10px 20px;
+  background-color: #000000;
+}
+
+/* NOVO: Estilo para o container que une o input e o botão */
+.inputWrapper {
+  flex-grow: 1; /* Faz ocupar o espaço disponível */
+  display: flex;
+  align-items: center;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 20px;
+  padding: 0 5px 0 15px; /* Padding interno para o input e o botão */
+}
+.inputWrapper:focus-within {
+  border-color: #ffc107;
+}
+
+/* MODIFICADO: O input agora é transparente e sem borda */
+.chatInput {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.emojiBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emojiButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 4px;
+}
+
+/* MODIFICADO: O botão de enviar agora não tem fundo próprio */
+.sendButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sendButton svg path {
+    transition: stroke 0.2s ease-in-out;
+}
+
+.sendButton:hover svg path {
+    stroke: #fff; /* Muda a cor do ícone no hover */
+}
+
+/* --- Sidebar de Recomendações --- */
+/* --------------------------------------------------------------------------- */
+
+.recommendationsSection {
+  flex: 0 0 450px;
+  background-color: #000000;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+  max-height: calc(100vh - 80px); /* Ajustado para um valor mais simples */
+}
+
+/* Custom scrollbar */
+.recommendationsSection::-webkit-scrollbar {
+  width: 8px;
+}
+.recommendationsSection::-webkit-scrollbar-track {
+  background: #2b2b2b;
+  border-radius: 10px;
+}
+.recommendationsSection::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+.recommendationsSection::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+.recommendationsSection h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #ffbb00;
+  padding-bottom: 10px;
+}
+
+.recommendationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gameRecommendationCard {
+  background-color: #000000;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: 1px solid #3a3a3a;
+}
+
+.gameRecommendationCard:hover {
+  background-color: #333333;
+  transform: translateY(-2px);
+}
+
+.cardImage {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 12px;
+  border: 1px solid #555;
+}
+
+.cardInfo {
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 3px 0;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-size: 13px;
+  color: #b0b0b0;
+  margin: 0;
+}
+
+/* --- Mensagem de Loading --- */
+/* --------------------------------------------------------------------------- */
+
+.loadingMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 24px;
+  color: #fff;
+  background-color: #121212;
+}
+
+/**
+ * =============================================================================
+ * 4. ESTILOS RESPONSIVOS
+ * =============================================================================
+ */
+
+@media (max-width: 900px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 15px;
+  }
+  .featuredSection {
+    width: 100%;
+    flex: none;
+  }
+  .recommendationsSection {
+    flex: none;
+    width: 100%;
+    max-height: 400px;
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .oddsSection {
     flex-direction: column;
     align-items: center;
   }
-
   .oddsCard {
-    width: 90%; /* Adjust width for smaller screens */
-    max-width: 300px; /* Maintain max width */
+    width: 90%;
+    max-width: 300px;
   }
-
   .qualityButtons {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .videoOverlay p {
+    font-size: 16px;
+  }
+  .warningIcon {
+    font-size: 45px;
+    width: 65px;
+    height: 65px;
+  }
+}
+
+@media (max-width: 500px) {
+  .mainContent {
+    padding: 10px 15px;
+  }
+  .warningIcon {
+    font-size: 35px;
+    width: 55px;
+    height: 55px;
+  }
+  .overlayTextMain {
+    font-size: 18px;
+  }
+  .overlayTextTime {
+    font-size: 14px;
+  }
+  .cardTitle {
+    font-size: 14px;
+  }
+  .cardDescription {
+    font-size: 12px;
+  }
+  .cardImage {
+    width: 60px;
+    height: 60px;
   }
 }

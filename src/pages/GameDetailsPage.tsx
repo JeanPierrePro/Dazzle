@@ -1,92 +1,105 @@
 // pages/GameDetailsPage.tsx
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // Assumindo que você está usando React Router DOM
+import React, { useState, useEffect, useRef } from 'react'; // Adicionado useRef
+import { useLocation } from 'react-router-dom';
 import styles from '../styles/GameDetailsPage.module.css';
 
-// Define a interface para os detalhes do jogo AQUI, FORA DO COMPONENTE
+// Interface GameDetails (sem alterações)
 interface GameDetails {
   id: number;
   homeTeam: string;
   awayTeam: string;
   championship: string;
-  // A URL da imagem principal para o background do player de vídeo (ex: estádio)
   image: string;
-  // URLs para os logos dos times (opcional, se for usar no cabeçalho ou em outro lugar)
   homeTeamLogo?: string;
   awayTeamLogo?: string;
-  // Outros dados que virão do Firebase, como streamUrl, startTime, etc.
-  // streamUrl: string;
-  // startTime: string;
 }
+
+// NOVO: Interface para uma mensagem de chat
+interface ChatMessage {
+    id: number;
+    user: {
+        name: string;
+        initial: string;
+        avatarColor: string;
+    };
+    text: string;
+}
+
+// NOVO: Dados mockados para o chat
+const initialMessages: ChatMessage[] = [
+    { id: 1, user: { name: 'Thiago', initial: 'T', avatarColor: '#3498db' }, text: 'Quem vocês acham que leva essa?' },
+    { id: 2, user: { name: 'Natália', initial: 'N', avatarColor: '#2ecc71' }, text: 'Acho que o time da casa tá mais forte hoje.' },
+    { id: 3, user: { name: 'Neymar', initial: 'N', avatarColor: '#f1c40f' }, text: 'O hexa vem.' },
+    { id: 4, user: { name: 'Silvio Santos', initial: 'S', avatarColor: '#e74c3c' }, text: 'maoe' },
+    { id: 5, user: { name: 'Luana Romão', initial: 'L', avatarColor: '#e74c3c' }, text: 'Olá chat' },
+];
 
 const GameDetailsPage: React.FC = () => {
   const location = useLocation();
   const initialGame = location.state as GameDetails | undefined;
 
   const [currentGame, setCurrentGame] = useState<GameDetails | null>(initialGame || null);
-  const [activeTab, setActiveTab] = useState('ODDS CASAS DE APOSTAS');
+  const [activeTab, setActiveTab] = useState('CHAT DE BANCADA'); // Aba inicial alterada para o chat
 
-  // Simulação de como você lidaria com dados do Firebase
+  // --- LÓGICA DO CHAT ---
+  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+  const [newMessage, setNewMessage] = useState('');
+  const messageListRef = useRef<HTMLDivElement>(null); // Ref para a lista de mensagens
+
+  // Efeito para rolar para a última mensagem
+  useEffect(() => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+    }
+  }, [messages]);
+  
+  // Função para enviar uma nova mensagem
+  const handleSendMessage = () => {
+    if (newMessage.trim() === '') return;
+
+    const myNewMessage: ChatMessage = {
+      id: messages.length + 1,
+      user: { // Em um app real, isso viria do usuário logado
+        name: 'Você',
+        initial: 'V',
+        avatarColor: '#9b59b6'
+      },
+      text: newMessage,
+    };
+
+    setMessages(prevMessages => [...prevMessages, myNewMessage]);
+    setNewMessage(''); // Limpa o input
+  };
+
+  const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
+  const handleEmojiClick = (emoji: string) => {
+    setNewMessage(prevMessage => prevMessage + emoji);
+  };
+  // --- FIM DA LÓGICA DO CHAT ---
+
   useEffect(() => {
     if (!initialGame) {
-      // CENÁRIO: A página foi acessada diretamente ou a navegação não passou dados.
-      // Aqui você faria uma chamada ao Firebase para buscar os dados do jogo
-      // Usaria, por exemplo, o ID do jogo da URL (se você tiver uma rota tipo /game-details/:id)
-      // fetchGameDataFromFirebase(gameIdFromUrl).then(data => setCurrentGame(data));
-
-      // Por agora, um fallback para um jogo padrão
       setCurrentGame({
-        id: 0,
-        homeTeam: 'Jogo Padrão',
-        awayTeam: 'Visitante Padrão',
-        championship: 'Liga Amigável',
-        image: '/images/stadium.jpeg', // Imagem de fallback
-        homeTeamLogo: '/images/default_home_logo.png', // Logo de fallback
-        awayTeamLogo: '/images/default_away_logo.png', // Logo de fallback
+        id: 0, homeTeam: 'Jogo Padrão', awayTeam: 'Visitante Padrão', championship: 'Liga Amigável', image: '/images/stadium.jpeg',
       });
     }
-  }, [initialGame]); // Depende apenas de initialGame para evitar loops
+  }, [initialGame]);
 
-  // Dados mockados para a seção de recomendações.
-  // No mundo real, viriam de uma busca no Firebase por "jogos recomendados"
   const recommendedGames: GameDetails[] = [
-    {
-      id: 2,
-      homeTeam: 'Corinthians',
-      awayTeam: 'São Paulo',
-      championship: 'Copa do Brasil',
-      image: '/images/corinthians_sp.png', // Placeholder - substituir por URL do Firebase
-    },
-    {
-      id: 3,
-      homeTeam: 'Grêmio',
-      awayTeam: 'Internacional',
-      championship: 'Gauchão',
-      image: '/images/gremio_inter.png', // Placeholder - substituir por URL do Firebase
-    },
-    {
-      id: 4,
-      homeTeam: 'Cruzeiro',
-      awayTeam: 'Atlético-MG',
-      championship: 'Campeonato Mineiro',
-      image: '/images/cruzeiro_atletico.png', // Placeholder - substituir por URL do Firebase
-    },
-    // Adicione mais jogos ou busque do Firebase
+    { id: 2, homeTeam: 'Corinthians', awayTeam: 'São Paulo', championship: 'Copa do Brasil', image: '/images/corinthians_sp.png' },
+    { id: 3, homeTeam: 'Grêmio', awayTeam: 'Internacional', championship: 'Gauchão', image: '/images/gremio_inter.png' },
   ];
 
-  const handleRecommendationClick = (game: GameDetails) => {
-    setCurrentGame(game);
-    setActiveTab('ODDS CASAS DE APOSTAS');
-    console.log('Viewing game:', game.homeTeam, 'x', game.awayTeam);
-  };
-
-  const handleTabClick = (tabName: string) => {
-    setActiveTab(tabName);
-    console.log('Clicked tab:', tabName);
-  };
-
+  const handleRecommendationClick = (game: GameDetails) => setCurrentGame(game);
+  const handleTabClick = (tabName: string) => setActiveTab(tabName);
+  
   if (!currentGame) {
-    return <div className={styles.loadingMessage}>Carregando detalhes do jogo...</div>;
+    return <div className={styles.loadingMessage}>Carregando...</div>;
   }
 
   return (
@@ -94,43 +107,24 @@ const GameDetailsPage: React.FC = () => {
       <div className={styles.mainContent}>
         <div className={styles.featuredSection}>
           <div className={styles.videoPlaceholder}>
-            {/* A URL da imagem do Firebase viria em currentGame.image */}
-            <div
-              className={styles.stadiumBackground}
-              style={{ backgroundImage: `url(${currentGame.image})` }}
-            ></div>
+            <div className={styles.stadiumBackground} style={{ backgroundImage: `url(${currentGame.image})` }} ></div>
             <div className={styles.videoOverlay}>
               <span className={styles.warningIcon}>!</span>
-              <p className={styles.overlayTextMain}>Conteúdo temporariamente indisponível</p>
+              <p className={styles.overlayTextMain}>Conteúdo indisponível</p>
               <p className={styles.overlayTextTime}>O jogo começa dentro de 00:45:59</p>
             </div>
-            {/* Aqui você embedaria o player de vídeo, possivelmente usando currentGame.streamUrl */}
           </div>
-
           <div className={styles.featuredSectionInfo}>
             <h2>{currentGame.homeTeam} x {currentGame.awayTeam}</h2>
             <p className={styles.subtitle}>{currentGame.championship}</p>
-            <p className={styles.description}>
-              Entre na ação e não perca os melhores momentos. Subscreva para teres a experiência completa.
-            </p>
-            <div className={styles.qualityButtons}>
-              <button className={`${styles.qualityButton} ${styles.qualityButtonActive}`}>QUALIDADE FHD</button>
-              <button className={styles.qualityButton}>HD</button>
-              <button className={styles.qualityButton}>NORMAL</button>
-            </div>
+            {/* ... (outros detalhes) ... */}
           </div>
         </div>
-
         <div className={styles.recommendationsSection}>
           <h3>Recomendações</h3>
           <div className={styles.recommendationsList}>
             {recommendedGames.map((game) => (
-              <div
-                key={game.id}
-                className={styles.gameRecommendationCard}
-                onClick={() => handleRecommendationClick(game)}
-              >
-                {/* A URL da imagem do Firebase viria em game.image */}
+              <div key={game.id} className={styles.gameRecommendationCard} onClick={() => handleRecommendationClick(game)} >
                 <img src={game.image} alt={`${game.homeTeam} vs ${game.awayTeam}`} className={styles.cardImage} />
                 <div className={styles.cardInfo}>
                   <p className={styles.cardTitle}>{game.homeTeam} x {game.awayTeam}</p>
@@ -143,95 +137,64 @@ const GameDetailsPage: React.FC = () => {
       </div>
 
       <div className={styles.navigationTabs}>
-        <button
-          className={`${styles.navTabButton} ${activeTab === 'Votação' ? styles.navTabActive : ''}`}
-          onClick={() => handleTabClick('Votação')}
-        >
-          Votação
-        </button>
-        <button
-          className={`${styles.navTabButton} ${activeTab === 'Escalação' ? styles.navTabActive : ''}`}
-          onClick={() => handleTabClick('Escalação')}
-        >
-          Escalação
-        </button>
-        <button
-          className={`${styles.navTabButton} ${activeTab === 'ODDS CASAS DE APOSTAS' ? styles.navTabActive : ''}`}
-          onClick={() => handleTabClick('ODDS CASAS DE APOSTAS')}
-        >
-          ODDS CASAS DE APOSTAS
-        </button>
-        <button
-          className={`${styles.navTabButton} ${activeTab === 'CHAT DE BANCADA' ? styles.navTabActive : ''}`}
-          onClick={() => handleTabClick('CHAT DE BANCADA')}
-        >
-          CHAT DE BANCADA
-        </button>
+        {['Votação', 'Escalação', 'ODDS CASAS DE APOSTAS', 'CHAT DE BANCADA'].map(tab => (
+          <button key={tab} className={`${styles.navTabButton} ${activeTab === tab ? styles.navTabActive : ''}`} onClick={() => handleTabClick(tab)}>
+            {tab}
+          </button>
+        ))}
       </div>
 
+      {/* RENDERIZAÇÃO CONDICIONAL DO CHAT */}
+      {activeTab === 'CHAT DE BANCADA' && (
+        <div className={styles.chatContainer}>
+            <div className={styles.messageList} ref={messageListRef}>
+                {messages.map(msg => (
+                    <div key={msg.id} className={styles.message}>
+                        <div className={styles.userInfo}>
+                            <div className={styles.avatar} style={{ backgroundColor: msg.user.avatarColor }}>
+                                {msg.user.initial}
+                            </div>
+                            <span className={styles.userName}>{msg.user.name}</span>
+                        </div>
+                        <div className={styles.messageContent}>
+                            <p>{msg.text}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+    {/* DEPOIS (NOVA ESTRUTURA) */}
+    <div className={styles.chatInputArea}>
+    {/* Novo container que agrupa o input e o botão */}
+    <div className={styles.inputWrapper}>
+        <input
+            type="text"
+            placeholder="Escreve algo..."
+            className={styles.chatInput}
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={handleInputKeyPress}
+        />
+        <button className={styles.sendButton} onClick={handleSendMessage}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 2L11 13" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+        </button>
+    </div>
+    
+    {/* Os emojis agora ficam do lado de fora do novo container */}
+    <div className={styles.emojiBar}>
+        <button className={styles.emojiButton} onClick={() => handleEmojiClick('😀')}>😀</button>
+        <button className={styles.emojiButton} onClick={() => handleEmojiClick('😎')}>😎</button>
+        <button className={styles.emojiButton} onClick={() => handleEmojiClick('😂')}>😂</button>
+    </div>
+    </div>
+        </div>
+      )}
+      
       {activeTab === 'ODDS CASAS DE APOSTAS' && (
         <div className={styles.oddsSection}>
-          <div className={styles.oddsCard}>
-            <div className={styles.betanoLogo}>
-              {/* O logo da Betano (ou de outras casas de apostas) também pode vir do Firebase */}
-              <img src="/images/betano_logo.png" alt="Betano" />
-            </div>
-            <div className={styles.odds}>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>1x</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>X</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>2x</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-            </div>
-            <button className={styles.betButton}>Apostar</button>
-          </div>
-          <div className={styles.oddsCard}>
-            <div className={styles.betanoLogo}>
-              <img src="/images/betano_logo.png" alt="Betano" />
-            </div>
-            <div className={styles.odds}>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>1x</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>X</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>2x</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-            </div>
-            <button className={styles.betButton}>Apostar</button>
-          </div>
-          <div className={styles.oddsCard}>
-            <div className={styles.betanoLogo}>
-              <img src="/images/betano_logo.png" alt="Betano" />
-            </div>
-            <div className={styles.odds}>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>1x</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>X</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-              <div className={styles.oddItem}>
-                <span className={styles.oddLabel}>2x</span>
-                <span className={styles.oddValue}>2.30</span>
-              </div>
-            </div>
-            <button className={styles.betButton}>Apostar</button>
-          </div>
+          {/* ... seu conteúdo de odds ... */}
         </div>
       )}
     </div>
