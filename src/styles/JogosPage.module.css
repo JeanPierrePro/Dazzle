@@ -53,7 +53,6 @@
   display: flex;
   align-items: center;
   padding: calc(2 * var(--spacing-unit)) calc(4 * var(--spacing-unit)); /* 16px 32px */
-  border-bottom: 1px solid var(--border-color);
   flex-wrap: wrap;
   gap: calc(2 * var(--spacing-unit));
 }
@@ -89,6 +88,7 @@
   white-space: nowrap;
   transition: color 0.2s ease-in-out;
   padding: 8px 70px;
+  max-height: 100px;
 }
 
 .mainNav li:hover {
@@ -120,12 +120,11 @@
 .secondaryNav {
   background-color: var(--secondary-nav-bg-color);
   padding: 8px 32px;
-  max-width: 2000px;
-  min-width: 1800px;
+  max-width: 1800px;
   margin: 28px auto;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  padding: 0px 1px;
+  padding: 0; 
 }
 
 .secondaryNav ul {
@@ -133,9 +132,17 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  
+  flex-wrap: nowrap;     /* Corrigido de "nowwrap" */
+  overflow-x: auto;     /* Permite a rolagem horizontal */
+}
+
+.secondaryNav ul::-webkit-scrollbar {
+  display: none;
+}
+.secondaryNav ul {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .secondaryNav li {
@@ -148,7 +155,6 @@
   text-transform: uppercase;
   padding: 8px 110px;
   border-left: 1px solid #333;
-
 }
 
 .secondaryNav li:first-child {
@@ -376,13 +382,17 @@
   }
 
   .mainNav ul,
-  .secondaryNav ul {
-    justify-content: center;
-    gap: calc(1.5 * var(--spacing-unit));
+  .secondaryNav li {
+    padding: 8px 20px;
   }
 
   .secondaryNav {
-    padding: calc(1.5 * var(--spacing-unit));
+    width: 100%;
+    max-width: 100%;
+    margin: 1px 0; /* Ajusta margem vertical */
+
+    border-left: none;
+    border-right: none;
   }
 
   .gameCardsGrid {
