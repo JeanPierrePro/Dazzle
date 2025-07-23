@@ -194,3 +194,38 @@
   color: #aaa;
   font-size: 1.2em;
 }
+/**
+ * =============================================================================
+ * 4. ESTILOS RESPONSIVOS (JÁ EXISTENTE NO SEU ARQUIVO)
+ * =============================================================================
+ */
+
+@media (max-width: 768px) {
+    /* ... suas outras regras responsivas ... */
+
+    /* --- NOVO: AJUSTES PARA A sportsNav NO MOBILE --- */
+    .sportsNav {
+        /* Ativa a rolagem horizontal */
+        overflow-x: auto;
+        /* Garante que os itens não quebrem a linha */
+        flex-wrap: nowrap;
+        /* Adiciona um espaçamento consistente entre os itens na rolagem */
+        gap: 8px;
+    }
+
+    /* Esconde a barra de rolagem visualmente, mas mantém a funcionalidade */
+    .sportsNav::-webkit-scrollbar {
+      display: none;
+    }
+    .sportsNav {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .sportNavItem {
+        /* Desativa o comportamento de esticar no mobile */
+        flex-grow: 0;
+        /* Deixa o item ter sua largura natural */
+        flex-basis: auto;
+    }
+}
