@@ -429,17 +429,19 @@
 }
 
 .emojiBar {
+  /* Outros estilos... */
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-wrap: wrap; /* Permite que os emojis quebrem para a próxima linha se não houver espaço */
+  gap: 8px; /* Adiciona um pequeno espaço entre os emojis */
+  padding: 10px; /* Adiciona um pouco de padding ao redor dos emojis */
 }
 
 .emojiButton {
+  font-size: 1.5em; /* Ajuste o tamanho conforme necessário */
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 22px;
-  padding: 4px;
+  padding: 5px; /* Adiciona um pequeno padding aos botões dos emojis */
 }
 
 /* MODIFICADO: O botão de enviar agora não tem fundo próprio */
