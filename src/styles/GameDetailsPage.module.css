@@ -22,6 +22,7 @@
  * =============================================================================
  */
 
+/* DEPOIS */
 .container {
   background-color: #000000;
   color: #ffffff;
@@ -29,9 +30,12 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  
+  /* --- ALTERAÇÕES --- */
+  width: 100%; /* Garante que o container principal ocupe toda a largura */
+  overflow-x: hidden; /* Evita barras de rolagem horizontais acidentais */
+  box-sizing: border-box; /* Boa prática para o layout não quebrar com padding */
 }
-
 /* Header global (se aplicável)
 .header {
   background-color: #000000;
@@ -204,9 +208,22 @@
 /* --------------------------------------------------------------------------- */
 
 .navigationTabs {
-  display: flex;
+  display: flex; /* Mantém o display flex */
   background-color: #000000;
   border-bottom: 1px solid #222222;
+  width: 100%; /* Garante que o container ocupe toda a largura */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  /* REMOVIDO: A lógica de rolagem não é mais necessária */
+  /* overflow-x: auto; */
+  /* flex-wrap: nowrap; */
+}
+.navigationTabs::-webkit-scrollbar {
+  display: none;
+}
+.navigationTabs {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .navTabButton {
@@ -217,6 +234,16 @@
   font-size: 16px;
   cursor: pointer;
   transition: color 0.3s ease;
+  white-space: nowrap;
+
+  /* --- MUDANÇAS PRINCIPAIS AQUI --- */
+
+  /* NOVO: Faz cada botão crescer para preencher o espaço vazio igualmente */
+  flex-grow: 1;
+  /* NOVO: Garante uma base de cálculo igual para todos os botões */
+  flex-basis: 0;
+  /* NOVO: Centraliza o texto dentro do botão que agora está maior */
+  text-align: center;
 }
 
 .navTabButton:hover {
@@ -373,7 +400,7 @@
   align-items: center;
   gap: 15px; /* Espaço entre o input e os emojis */
   padding: 10px 20px;
-  background-color: #000000;
+  background-color: #252525;
 }
 
 /* NOVO: Estilo para o container que une o input e o botão */
@@ -592,14 +619,31 @@
 
 /* --- Onze Inicial (Escalação) --- */
 /* --------------------------------------------------------------------------- */
-/* COLE ESTE BLOCO NO SEU ARQUIVO GameDetailsPage.module.css */
 
-.lineupContainer {
+/* Novo container geral que agrupa os dois blocos */
+.lineupSectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espaço entre o bloco dos jogadores e o do treinador */
+  max-width: 1300px;
+  margin: 40px auto 20px auto;
+}
+
+/* Bloco dos jogadores */
+.lineupPlayersBlock {
   background-color: #1a1a1a;
-  margin: 40px 30px 20px 30px;
-  border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  /* Arredonda apenas os cantos de cima */
+  border-radius: 12px 12px 0 0;
+}
+
+/* Novo bloco para os treinadores */
+.lineupCoachBlock {
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  /* Arredonda apenas os cantos de baixo */
+  border-radius: 0 0 12px 12px;
 }
 
 .lineupHeader {
@@ -608,7 +652,7 @@
 }
 
 .headerTeam {
-  flex: 1;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -628,26 +672,28 @@
   background-color: #9b0000;
 }
 
+/* Estilo do corpo, reutilizado nos dois blocos */
 .lineupBody {
   display: flex;
 }
 
 .teamColumn {
-  flex: 1;
-  padding: 0 32px;
+  width: 50%;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .teamColumn + .teamColumn {
-  border-left: 1px solid #333;
+  border-left: 1px solid #333; /* Mantém a linha vertical */
 }
 
 .teamName {
   font-size: 20px;
   font-weight: 600;
   color: white;
-  margin: 24px 0 20px 0; /* Adicionado espaço em cima */
+  margin: 0 0 20px 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -678,16 +724,13 @@
   font-weight: 500;
 }
 
-.lineupDivider {
-  border: none;
-  height: 1px;
-  background-color: #333;
-  margin: 24px 0;
-}
-
 .coachSection {
   text-align: center;
-  padding-bottom: 24px; /* Adicionado espaço embaixo */
+  /* Adiciona flexbox para centralizar verticalmente no seu novo espaço */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .coachLabel {

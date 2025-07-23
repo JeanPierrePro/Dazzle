@@ -189,36 +189,66 @@ const GameDetailsPage: React.FC = () => {
         </div>
       )}
 
-      {activeTab === 'ONZE INICIAL' && (
-        <div className={styles.lineupContainer}>
-          <div className={styles.lineupHeader}>
-            <div className={`${styles.headerTeam} ${styles.palmeiras}`}><img src="/images/palmeiras_logo.png" alt="Palmeiras"/></div>
-            <div className={`${styles.headerTeam} ${styles.flamengo}`}><img src="/images/flamengo_logo.png" alt="Flamengo"/></div>
-          </div>
-          <div className={styles.lineupBody}>
-            <div className={styles.teamColumn}>
-              <h3 className={styles.teamName}>Palmeiras</h3>
-              <ul className={styles.playerList}>
-                {lineups.Palmeiras.players.map((p, i) => (<li key={p.id}><span className={styles.playerNumber}>{i + 1}.</span><span className={styles.playerName}>{p.name}</span></li>))}
-              </ul>
-              <hr className={styles.lineupDivider} />
-              <div className={styles.coachSection}>
-                <p className={styles.coachLabel}>TREINADOR</p><p className={styles.coachName}>{lineups.Palmeiras.coach.name}</p>
-              </div>
+{activeTab === 'ONZE INICIAL' && (
+  // Novo container principal para agrupar os dois blocos
+  <div className={styles.lineupSectionContainer}>
+
+    {/* Bloco 1: Apenas os Jogadores */}
+    <div className={styles.lineupPlayersBlock}>
+        <div className={styles.lineupHeader}>
+            <div className={`${styles.headerTeam} ${styles.palmeiras}`}>
+                <img src="/images/palmeiras_logo.png" alt="Palmeiras"/>
             </div>
-            <div className={styles.teamColumn}>
-              <h3 className={styles.teamName}>Flamengo</h3>
-              <ul className={styles.playerList}>
-                {lineups.Flamengo.players.map((p, i) => (<li key={p.id}><span className={styles.playerNumber}>{i + 1}.</span><span className={styles.playerName}>{p.name}</span></li>))}
-              </ul>
-              <hr className={styles.lineupDivider} />
-              <div className={styles.coachSection}>
-                <p className={styles.coachLabel}>TREINADOR</p><p className={styles.coachName}>{lineups.Flamengo.coach.name}</p>
-              </div>
+            <div className={`${styles.headerTeam} ${styles.flamengo}`}>
+                <img src="/images/flamengo_logo.png" alt="Flamengo"/>
             </div>
-          </div>
         </div>
-      )}
+        <div className={styles.lineupBody}>
+            <div className={styles.teamColumn}>
+                <h3 className={styles.teamName}>Palmeiras</h3>
+                <ul className={styles.playerList}>
+                    {lineups.Palmeiras.players.map((player, index) => (
+                        <li key={player.id}>
+                            <span className={styles.playerNumber}>{index + 1}.</span>
+                            <span className={styles.playerName}>{player.name}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className={styles.teamColumn}>
+                <h3 className={styles.teamName}>Flamengo</h3>
+                <ul className={styles.playerList}>
+                    {lineups.Flamengo.players.map((player, index) => (
+                        <li key={player.id}>
+                            <span className={styles.playerNumber}>{index + 1}.</span>
+                            <span className={styles.playerName}>{player.name}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {/* Bloco 2: Apenas os Treinadores */}
+    <div className={styles.lineupCoachBlock}>
+        <div className={styles.lineupBody}>
+            <div className={styles.teamColumn}>
+                <div className={styles.coachSection}>
+                    <p className={styles.coachLabel}>TREINADOR</p>
+                    <p className={styles.coachName}>{lineups.Palmeiras.coach.name}</p>
+                </div>
+            </div>
+            <div className={styles.teamColumn}>
+                <div className={styles.coachSection}>
+                    <p className={styles.coachLabel}>TREINADOR</p>
+                    <p className={styles.coachName}>{lineups.Flamengo.coach.name}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+)}
 
       {activeTab === 'CHAT DE BANCADA' && (
         <div className={styles.chatContainer}>
