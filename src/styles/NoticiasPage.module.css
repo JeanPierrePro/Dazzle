@@ -1,15 +1,40 @@
+/**
+ * =============================================================================
+ * ARQUIVO DE ESTILOS ORGANIZADO - NoticiasPage
+ * =============================================================================
+ * Estrutura:
+ * 1. Configuração Geral da Página
+ * 2. Layout e Navegação
+ * 3. Componentes (Grid e Cards de Vídeo)
+ * =============================================================================
+ */
+
+/**
+ * =============================================================================
+ * 1. CONFIGURAÇÃO GERAL DA PÁGINA
+ * =============================================================================
+ */
+
 .container {
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
+  background-color: #000;
+  color: #fff;
   min-height: 100vh;
-  font-family: sans-serif; /* General sans-serif font */
+  font-family: sans-serif;
   padding: 20px;
   box-sizing: border-box;
 }
 
+/**
+ * =============================================================================
+ * 2. LAYOUT E NAVEGAÇÃO
+ * =============================================================================
+ */
+
+/* --- Cabeçalho Principal --- */
 .header {
   padding-bottom: 20px;
-  border-bottom: 1px solid #333; /* Darker border for separation */
+  border-bottom: 1px solid #333;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -20,15 +45,17 @@
   text-transform: uppercase;
 }
 
+/* --- Navegação Principal (Favoritos / Global) --- */
 .navigation {
   padding: 20px 0;
   display: flex;
-  justify-content: flex-start; /* Align to the left */
+  justify-content: flex-start;
+  margin-left: 20px;
 }
 
 .navItemContainer {
   display: flex;
-  gap: 30px; /* Space between "FAVORITOS" and "GLOBAL" */
+  gap: 30px;
 }
 
 .navItem {
@@ -40,7 +67,7 @@
 }
 
 .navItem.active {
-  color: #fff; /* Active item is white */
+  color: #fff;
 }
 
 .navItem.active::after {
@@ -50,53 +77,96 @@
   bottom: 0;
   width: 100%;
   height: 3px;
-  background-color: #fdd835; /* Yellow underline for active item */
+  background-color: #fdd835;
 }
 
+/* --- Navegação Secundária (Esportes) - ESTILO ATUALIZADO --- */
 .sportsNav {
-  display: flex;
-  gap: 15px; /* Space between sport buttons */
-  margin-top: 20px;
+  /* Estilo da barra principal */
+  background-color: #1A1D22;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px;
   margin-bottom: 30px;
-  /* Permite que os botões quebrem para a próxima linha em telas menores */
-  flex-wrap: wrap;
+  
+  display: flex;
+  /* REMOVIDO: a lógica de rolagem */
+  /* overflow-x: auto; */
+  /* flex-wrap: nowrap; */
 }
 
-.sportButton {
-  background-color: #333; /* Dark gray background for inactive buttons */
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+/* Removemos os estilos de esconder a barra de rolagem */
+
+.sportNavItem {
+  /* Estilo do texto */
   font-size: 0.9em;
   font-weight: bold;
-  transition: background-color 0.3s ease;
-  white-space: nowrap; /* Evita que o texto quebre dentro do botão */
+  color: #a0a0a0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  
+  /* Layout e espaçamento */
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  
+  /* Divisor vertical */
+  border-left: 1px solid #333;
+  
+  /* --- ADICIONADO --- */
+  /* Faz cada item crescer para ocupar o espaço disponível igualmente */
+  flex-grow: 1;
+  flex-basis: 0;
+  text-align: center; /* Centraliza o texto dentro do item maior */
 }
 
-.sportButton.activeSport {
-  background-color: #fff; /* White background for active sport */
-  color: #000; /* Black text for active sport */
+.sportNavItem:first-child {
+  border-left: none;
 }
+
+.sportNavItem:hover {
+  color: #fff;
+}
+
+/* Estilo para o item ATIVO */
+.sportNavItem.activeSport {
+  background-color: #E1E1E1; /* Fundo cinza claro */
+  color: #1A1D22; /* Texto escuro */
+  border-left: none;
+}
+
+/* Remove a borda do item que vem depois do ativo */
+.sportNavItem.activeSport + .sportNavItem {
+  border-left: none;
+}
+
+/**
+ * =============================================================================
+ * 3. COMPONENTES (GRID E CARDS DE VÍDEO)
+ * =============================================================================
+ */
 
 .videoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
-  gap: 20px; /* Space between video cards */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .videoCard {
-  background-color: #1a1a1a; /* Slightly lighter black for card background */
+  background-color: #1a1a1a;
   border-radius: 8px;
-  overflow: hidden; /* Ensures image corners are rounded */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 800px;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio (height / width * 100) */
+  padding-top: 56.25%; /* 16:9 */
   overflow: hidden;
 }
 
@@ -106,7 +176,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cover the area, cropping if necessary */
+  object-fit: cover;
 }
 
 .videoTitle {
@@ -118,7 +188,7 @@
 }
 
 .noVideosMessage {
-  grid-column: 1 / -1; /* Faz a mensagem ocupar toda a largura do grid */
+  grid-column: 1 / -1;
   text-align: center;
   padding: 50px;
   color: #aaa;
