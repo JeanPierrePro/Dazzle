@@ -84,45 +84,55 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.featureCardsGrid}>
-          {/* Estes permanecem clicáveis apenas na seta */}
-          <div className={styles.featureCard}>
-            <span className={styles.icon}>💎</span>
-            <h4>Subscrição DAZZLE</h4>
-            <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom} onClick={goToSubscription}>→</span>
-          </div>
-          <div className={styles.featureCard}>
-            <span className={styles.icon}>📱</span>
-            <h4>Dispositivos suportados</h4>
-            <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom} onClick={goToDevices}>→</span>
-          </div>
-          <div className={styles.featureCard}>
-            <span className={styles.icon}>🎁</span>
-            <h4>As tuas ofertas</h4>
-            <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom} onClick={goToOffers}>→</span>
-          </div>
-          <div className={styles.featureCard}>
-            <span className={styles.icon}>ℹ️</span>
-            <h4>Sobre nós</h4>
-            <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom} onClick={goToAboutUs}>→</span>
-          </div>
-          <div className={styles.featureCard}>
-            <span className={styles.icon}>🌟</span>
-            <h4>Qualidade do streaming</h4>
-            <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom} onClick={goToStreamingQuality}>→</span>
-          </div>
-          <div className={styles.featureCard}>
-            <span className={styles.icon}>🔒</span>
-            <h4>Proteção do PIN</h4>
-            <p>Gere a tua subscrição e método de pagamento</p>
-            <span className={styles.arrowIconBottom} onClick={goToPinProtection}>→</span>
-          </div>
-        </div>
+<div className={styles.featureCardsGrid}>
+  {/* Card 1: Subscrição */}
+  <div className={styles.featureCard}>
+    <img src="src/icons/diamante.png" alt="Ícone de subscrição" className={styles.iconImage} />
+    <h4>Subscrição DAZZLE</h4>
+    <p>Gere a tua subscrição e método de pagamento</p>
+    <span className={styles.arrowIconBottom} onClick={goToSubscription}>→</span>
+  </div>
+
+  {/* Card 2: Dispositivos */}
+  <div className={styles.featureCard}>
+    <img src="src/icons/dispositivos.png" alt="Ícone de dispositivos" className={styles.iconImage} />
+    <h4>Dispositivos suportados</h4>
+    <p>Gere a tua subscrição e método de pagamento</p>
+    <span className={styles.arrowIconBottom} onClick={goToDevices}>→</span>
+  </div>
+
+  {/* Card 3: Ofertas */}
+  <div className={styles.featureCard}>
+    <img src="src/icons/ofertas.png" alt="Ícone de ofertas" className={styles.iconImage} />
+    <h4>As tuas ofertas</h4>
+    <p>Gere a tua subscrição e método de pagamento</p>
+    <span className={styles.arrowIconBottom} onClick={goToOffers}>→</span>
+  </div>
+
+  {/* Card 4: Sobre nós */}
+  <div className={styles.featureCard}>
+    <img src="src\icons\about us.png" alt="Ícone sobre nós" className={styles.iconImage} />
+    <h4>Sobre nós</h4>
+    <p>Gere a tua subscrição e método de pagamento</p>
+    <span className={styles.arrowIconBottom} onClick={goToAboutUs}>→</span>
+  </div>
+
+  {/* Card 5: Qualidade */}
+  <div className={styles.featureCard}>
+    <img src="src\icons\streaming.png" alt="Ícone de qualidade de streaming" className={styles.iconImage} />
+    <h4>Qualidade do streaming</h4>
+    <p>Gere a tua subscrição e método de pagamento</p>
+    <span className={styles.arrowIconBottom} onClick={goToStreamingQuality}>→</span>
+  </div>
+
+  {/* Card 6: PIN */}
+  <div className={styles.featureCard}>
+    <img src="src\icons\pin code.png" alt="Ícone de proteção de PIN" className={styles.iconImage} />
+    <h4>Proteção do PIN</h4>
+    <p>Gere a tua subscrição e método de pagamento</p>
+    <span className={styles.arrowIconBottom} onClick={goToPinProtection}>→</span>
+  </div>
+</div>
 
         <div className={styles.dazzleLogoFooterProfile}>
           DAZZLE

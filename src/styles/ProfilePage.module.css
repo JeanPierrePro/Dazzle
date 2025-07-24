@@ -247,6 +247,14 @@
   transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out; /* Animação para a seta */
 }
 
+/* Adicione esta classe ao seu arquivo ProfilePage.module.css */
+.iconImage {
+  width: 28px;      /* Largura do ícone */
+  height: 28px;     /* Altura do ícone */
+  margin-left: -2px;
+  margin-bottom: 5px; /* Espaço entre o ícone e o título */
+}
+
 /* Animação para a seta do featureCard ao passar o mouse sobre ela */
 .arrowIconBottom:hover {
   transform: translateX(5px); /* Move a seta 5px para a direita */
