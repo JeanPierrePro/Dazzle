@@ -1,7 +1,7 @@
 /* src/styles/CatalogoPage.module.css */
 
 .catalogoPage {
-  background-color: #1a1a1a; /* Fundo escuro */
+  background-color: #000000; /* Fundo escuro */
   min-height: 100vh;
   color: #fff;
   font-family: 'Arial', sans-serif;
@@ -24,12 +24,12 @@
 
 /* Estilo para a seta de voltar */
 .arrowBack {
-  font-size: 2em;
+  font-size: 3em;
   color: white;
   cursor: pointer;
   position: absolute;
   left: 20px;
-  top: 50%;
+  top: 80%;
   transform: translateY(-50%);
   z-index: 10; /* Garante que a seta fique acima de outros elementos */
 }
@@ -59,7 +59,7 @@
 }
 
 .planCard {
-  background-color: #2b2b2b; /* Fundo mais escuro para os cards normais */
+  background-color: #18141c; /* Fundo mais escuro para os cards normais */
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -68,11 +68,11 @@
   align-items: center;
   text-align: center;
   position: relative;
-  border: 1px solid #333; /* Borda sutil */
+  border: 1px solid #fffefe; /* Borda sutil */
 }
 
 .highlightedPlan {
-  background-color: #3d3d3d; /* Fundo um pouco mais claro para o card destacado */
+  background-color: #080404; /* Fundo um pouco mais claro para o card destacado */
   border: 2px solid #ffcc00; /* Borda amarela para o destaque */
   box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); /* Sombra amarela */
   padding-top: 50px; /* Mais padding para a badge */
