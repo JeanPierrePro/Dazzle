@@ -1,314 +1,275 @@
 /* src/styles/AlertasPage.module.css */
 
+/* ============================
+   1. ESTRUTURA PRINCIPAL
+   ============================ */
+
 .alertasPage {
   display: flex;
   min-height: 100vh;
-  background-color: #f0f2f5; /* More accurate light gray background */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A common, clean font */
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #1d1d1f;
 }
 
 .sidebar {
-  width: 280px; /* Largura da barra lateral */
-  background-color: #ffffff; /* Fundo branco da barra lateral */
-  padding: 20px 0;
-  border-right: 1px solid #dcdcdc; /* Borda divisória mais visível */
-  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.03); /* Sombra mais sutil */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
-  padding-left: 20px; /* Add some left padding for the logo and item */
+  width: 250px;
+  padding: 40px 20px;
+  background-color: #f7f7f7;
+  flex-shrink: 0; /* Impede que a sidebar encolha */
 }
 
-.dazzleLogo {
-  font-size: 1.6em;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  margin-left: 20px; /* More consistent left margin */
-}
-
-.sidebarItem {
-  width: calc(100% - 20px); /* Adjust width for padding */
-  padding: 12px 20px;
-  color: #333;
-  font-weight: 500;
-  background-color: #f0f0f0; /* Fundo mais claro para o item "Alertas" selecionado, como na imagem */
-  border-left: 3px solid #000000; /* Borda esquerda preta para indicar seleção */
+.sidebarHeader {
   display: flex;
   align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  margin-left: 20px; /* Consistent left margin */
-  border-radius: 4px; /* Slight border radius for the active item */
+  gap: 15px;
 }
 
-.arrowBack {
-  font-size: 1.3em;
-  color: #555;
+.backButton {
+  background: none;
+  border: none;
   cursor: pointer;
-  margin-right: 10px;
+  padding: 0;
+  font-size: 1.8em;
+  color: #1d1d1f;
+  line-height: 1;
+}
+
+.sidebarTitle {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.verticalSeparator {
+  width: 1px;
+  background-color: #000000;
 }
 
 .mainContent {
   flex-grow: 1;
-  background-color: #ffffff; /* Fundo branco para a área de conteúdo */
-  padding: 30px;
+  padding: 40px;
+  background-color: #f7f7f7;
 }
 
+/* ============================
+   2. CABEÇALHO E ABAS
+   ============================ */
+
 .contentHeader {
-  margin-bottom: 25px;
-  position: relative;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #000000;
 }
 
 .sectionTitle {
-  font-size: 1.7em;
-  color: #222;
-  margin-bottom: 15px;
+  font-size: 1.2em;
   font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .tabs {
   display: flex;
-  gap: 15px;
-  border-bottom: 2px solid #e7e7e7;
-  margin-bottom: 1px;
+  gap: 30px;
 }
 
 .tabButton {
   background: none;
   border: none;
-  padding: 8px 0;
-  font-size: 0.95em;
-  font-weight: 500;
-  color: #777; /* Softer color for inactive tabs */
+  padding-bottom: 15px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #8a8a8e;
   cursor: pointer;
   outline: none;
-  transition: color 0.3s ease;
   text-transform: uppercase;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease-in-out;
 }
 
 .tabButton.active {
-  color: #222; /* Darker color for active tab */
-  position: relative;
+  color: #1d1d1f;
+  border-bottom-color: #1d1d1f;
 }
 
-.tabsUnderline {
-  height: 2px;
-  background-color: #007bff; /* Blue underline for active tab */
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  transition: all 0.3s ease;
-}
 
-.tabContent {
-  padding-top: 20px;
-}
+/* ============================
+   3. CARD DE ALERTA
+   ============================ */
 
-/* Estilos para os itens de Alerta (jogador, equipe, competição) */
 .alertaItemCard {
-  background-color: #ffffff; /* Fundo branco para os cards de alerta */
-  border: 1px solid #050505; /* Borda mais exposta/visível */
-  border-radius: 6px;
-  margin-bottom: 15px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra mais visível, como na imagem */
+  background-color: #f7f7f7; /* Fundo branco para se destacar no cinza */
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid #1d1c1c; /* Borda cinza mais sutil */
 }
 
 .alertaItemHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 15px;
+  padding: 15px 20px;
   cursor: pointer;
-  background-color: #ffffff;
 }
 
 .alertaItemInfo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .alertaItemAvatar {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  background-color: #eee;
+  background-color: #f0f0f0;
 }
 
 .alertaItemName {
   font-weight: 500;
-  color: #333;
-  font-size: 0.95em;
+  font-size: 1em;
 }
 
 .alertaItemToggleIcon {
-  font-size: 1em;
-  color: #777;
+  font-size: 1.2em;
+  color: #8a8a8e;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.alertaItemToggleIcon.open {
+  transform: rotate(90deg);
 }
 
 .alertaItemOptions {
-  padding: 10px 15px;
-  border-top: 1px solid #e7e7e7;
-  background-color: #f9f9f9; /* Light gray background for options */
+  padding: 10px 20px 20px 67px;
+  border-top: 1px solid #f0f0f0;
 }
 
+/* ============================
+   4. OPÇÕES E TOGGLE SWITCH
+   ============================ */
 .alertOption {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px; /* Ajustado para dar mais espaço */
-  color: #555;
-  font-size: 0.9em;
-  flex-wrap: wrap; /* Permite a quebra de linha para o texto abaixo */
+  padding: 10px 0;
 }
 
-.alertOption span:first-child {
-  flex-basis: 100%; /* Faz o texto principal ocupar a linha toda */
-  margin-bottom: 3px; /* Espaçamento entre o título e a descrição */
+.alertOptionText {
+  display: flex;
+  flex-direction: column;
 }
 
-.alertOption span:nth-child(2) { /* "Enviar notificações" */
-  font-size: 0.8em; /* Tamanho da fonte menor para a descrição */
-  color: #888;
+.optionTitle {
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #1d1d1f;
 }
 
-
-.alertOption:last-of-type {
-  margin-bottom: 0;
+.optionSubtitle {
+  font-size: 0.8em;
+  color: #8a8a8e;
+  margin-top: 2px;
 }
 
 .toggleSwitch {
-  width: 36px;
-  height: 18px;
-  background-color: #ccc;
-  border-radius: 9px;
+  width: 44px;
+  height: 26px;
+  background-color: #e9e9ea;
+  border-radius: 13px;
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s;
-  flex-shrink: 0; /* Impede que o toggle diminua */
-  margin-left: auto; /* Alinha o toggle à direita */
+  flex-shrink: 0;
 }
 
-.toggleSwitch .toggleKnob {
-  width: 16px;
-  height: 16px;
+.toggleKnob {
+  width: 22px;
+  height: 22px;
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  top: 1px;
-  left: 1px;
-  transition: transform 0.3s;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-.toggleSwitch .toggleKnob.toggleOn {
+.toggleOn .toggleKnob {
   transform: translateX(18px);
-  background-color: #007bff;
 }
 
-.toggleSwitch.toggleOn {
-  background-color: #007bff;
-}
-
-.emailDisplay {
-  font-size: 0.8em;
-  color: #777;
-  margin-top: 5px;
-  text-align: right;
-  display: block;
+.toggleOn {
+  background-color: #000000;
 }
 
 .tabPlaceholder {
-  color: #777;
-  text-align: center;
-  padding: 40px 0;
-  font-size: 0.9em;
+    color: #8a8a8e;
+    text-align: center;
+    padding: 50px 0;
 }
 
-/* Responsividade (minor adjustments for better alignment with the image) */
+
+/* =======================================
+   5. ESTILOS RESPONSIVOS (MOBILE)
+   ======================================= */
 @media (max-width: 768px) {
+  .alertasPage {
+    flex-direction: column; /* Empilha a sidebar e o conteúdo */
+  }
+
   .sidebar {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #e7e7e7;
-    padding-left: 15px;
+    width: 100%; /* Ocupa a largura toda */
+    height: auto;
+    padding: 20px 15px; /* Reduz o padding vertical e horizontal */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
   }
 
-
-  .sidebarItem {
-    margin-left: 0;
-    padding: 10px 15px;
-    border-left: none;
-    border-radius: 0;
-    background-color: transparent;
+  .sidebarTitle {
+    font-size: 1.3em;
   }
 
-  .arrowBack {
-    margin-left: 10px;
-    margin-right: 5px;
+  .backButton {
+    font-size: 1.6em;
   }
 
-  .sidebarItem span {
-    display: block; /* Show "Alertas" text on smaller screens if needed */
+  .verticalSeparator {
+    display: none; /* Esconde a linha vertical */
   }
 
   .mainContent {
-    padding: 20px;
-  }
-
-  .sectionTitle {
-    font-size: 1.4em;
-    margin-bottom: 10px;
+    padding: 25px 15px; /* Reduz o padding */
   }
 
   .tabs {
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px; /* Reduz o espaço entre as abas */
+    flex-wrap: wrap; /* Permite que as abas quebrem a linha */
+  }
+  
+  .tabButton {
+    font-size: 0.85em;
   }
 
-  .tabButton {
-    font-size: 0.9em;
-    padding: 6px 0;
+  .alertaItemCard {
+    /* Mantém os estilos do card, mas os paddings internos serão ajustados */
+    border-color: #e0e0e0;
   }
 
   .alertaItemHeader {
-    padding: 10px 12px;
+    padding: 15px;
   }
-
-  .alertaItemName {
-    font-size: 0.9em;
-  }
-
-  .alertaItemAvatar {
-    width: 28px;
-    height: 28px;
-  }
-
+  
   .alertaItemOptions {
-    padding: 10px 12px;
+    /* Remove o padding esquerdo grande para alinhar com o card */
+    padding: 15px; 
   }
 
   .alertOption {
-    font-size: 0.85em;
-    margin-bottom: 6px;
-    flex-direction: column; /* Empilha o texto e o toggle em mobile */
-    align-items: flex-start; /* Alinha o texto à esquerda */
+    flex-direction: column; /* Empilha o texto e o toggle */
+    align-items: flex-start; /* Alinha tudo à esquerda */
+    gap: 8px; /* Adiciona um espaço entre o texto e o toggle */
   }
 
-  .alertOption span:first-child {
-    margin-bottom: 0; /* Remove margem extra */
-  }
-
-  .alertOption .toggleSwitch {
-    margin-top: 5px; /* Espaço entre o texto e o toggle */
-    margin-left: 0; /* Remove alinhamento à direita */
-  }
 }
