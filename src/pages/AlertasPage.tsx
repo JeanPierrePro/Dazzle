@@ -1,6 +1,6 @@
 // src/components/pages/AlertasPage.tsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importe o useNavigate
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/AlertasPage.module.css';
 
 // --- Componente AlertOption (sem alterações) ---
@@ -26,14 +26,15 @@ const AlertOption: React.FC<AlertOptionProps> = ({ title, subtitle, isToggled, o
   </div>
 );
 
-// --- Componente AlertaItem (sem alterações) ---
+// --- COMPONENTE DE ITEM DE ALERTA (SEM ALTERAÇÕES) ---
 interface AlertaItemProps {
   name: string;
   avatarSrc?: string;
-  email: string;
+  email?: string; // Tornando opcional para o caso de jogadores
+  subtitleForNews?: string; // Subtítulo customizado para a opção de notícias
 }
 
-const AlertaItem: React.FC<AlertaItemProps> = ({ name, avatarSrc, email }) => {
+const AlertaItem: React.FC<AlertaItemProps> = ({ name, avatarSrc, email, subtitleForNews }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [gameAlerts, setGameAlerts] = useState(false);
   const [newsAlerts, setNewsAlerts] = useState(false);
@@ -59,7 +60,7 @@ const AlertaItem: React.FC<AlertaItemProps> = ({ name, avatarSrc, email }) => {
           />
           <AlertOption
             title="Noticias"
-            subtitle={email}
+            subtitle={subtitleForNews || email || "Enviar notificações"}
             isToggled={newsAlerts}
             onToggle={() => setNewsAlerts(!newsAlerts)}
           />
@@ -72,51 +73,111 @@ const AlertaItem: React.FC<AlertaItemProps> = ({ name, avatarSrc, email }) => {
 
 // --- PÁGINA PRINCIPAL ATUALIZADA ---
 const AlertasPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'geral' | 'equipas' | 'competicoes' | 'jogadores'>('competicoes');
-  const navigate = useNavigate(); // Hook de navegação
+  // Estado inicial agora é 'geral'
+  const [activeTab, setActiveTab] = useState<'geral' | 'equipas' | 'competicoes' | 'jogadores'>('geral');
+  const navigate = useNavigate();
 
-  // NOVO: Função para navegar para a página de perfil
+  // --- DADOS MOCK PARA CADA CATEGORIA ---
+  const competicoesData = [
+    { 
+      id: 'cl',
+      name: "Champions League", 
+      avatarSrc: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/UEFA_Champions_League_logo_2.svg/1200px-UEFA_Champions_League_logo_2.svg.png",
+      email: "tomasnelo2025@gmail.com"
+    }
+  ];
+
+  const equipasData = [
+    {
+      id: 'slb',
+      name: "SL Benfica",
+      avatarSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/SL_Benfica_logo.svg/1200px-SL_Benfica_logo.svg.png",
+      email: "tomasnelo2025@gmail.com"
+    }
+  ];
+
+  const jogadoresData = [
+    {
+      id: 'messi',
+      name: "L. Messi",
+      avatarSrc: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel_Messi_Copa_Am%C3%A9rica_2024.png",
+      subtitleForNews: "Enviar notificações" // Subtítulo específico para jogador
+    }
+  ];
+  
+  // Junta todos os dados para a aba "Geral"
+  const todosOsAlertas = [...competicoesData, ...equipasData, ...jogadoresData];
+
+
   const goToProfile = () => {
-    navigate('/profiles'); // Certifique-se que '/profile' é a rota correta
+    navigate('/profiles');
   };
 
   const renderContent = () => {
-    // ... (lógica do renderContent permanece a mesma)
     switch (activeTab) {
-        case 'competicoes':
-          return (
-            <div className={styles.tabContent}>
-              <AlertaItem 
-                name="Champions League" 
-                avatarSrc="https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/UEFA_Champions_League_logo_2.svg/1200px-UEFA_Champions_League_logo_2.svg.png"
-                email="tomasnelo2025@gmail.com" 
-              />
-            </div>
-          );
-        case 'equipas':
-          return <div className={styles.tabPlaceholder}>Nenhuma equipa selecionada para alertas.</div>;
-        case 'jogadores':
-          return <div className={styles.tabPlaceholder}>Nenhum jogador selecionado para alertas.</div>;
-        default:
-          return <div className={styles.tabPlaceholder}>Configurações gerais de alertas.</div>;
-      }
+      case 'geral':
+        return (
+          // Adicione a classe 'geralTabContent' aqui
+          <div className={`${styles.tabContent} ${styles.geralTabContent}`}>
+            {todosOsAlertas.length > 0 ? (
+              todosOsAlertas.map(item => (
+                <AlertaItem 
+                  key={item.id}
+                  name={item.name} 
+                  avatarSrc={item.avatarSrc}
+                  email={item.email}
+                  subtitleForNews={item.subtitleForNews}
+                />
+              ))
+            ) : (
+              <div className={styles.tabPlaceholder}>Nenhum alerta ativo.</div>
+            )}
+          </div>
+        );
+
+      case 'equipas':
+        return (
+          <div className={styles.tabContent}>
+            {equipasData.map(item => (
+              <AlertaItem key={item.id} {...item} />
+            ))}
+          </div>
+        );
+
+      case 'competicoes':
+        return (
+          <div className={styles.tabContent}>
+            {competicoesData.map(item => (
+              <AlertaItem key={item.id} {...item} />
+            ))}
+          </div>
+        );
+
+      case 'jogadores':
+        return (
+          <div className={styles.tabContent}>
+            {jogadoresData.map(item => (
+              <AlertaItem key={item.id} {...item} />
+            ))}
+          </div>
+        );
+
+      default:
+        return null;
+    }
   };
 
   return (
     <div className={styles.alertasPage}>
-      {/* Coluna da Esquerda */}
       <div className={styles.sidebar}>
-        {/* ALTERADO: Adicionado container com botão de voltar e título */}
         <div className={styles.sidebarHeader}>
           <button className={styles.backButton} onClick={goToProfile}>←</button>
           <h1 className={styles.sidebarTitle}>Alertas</h1>
         </div>
       </div>
 
-      {/* Linha Vertical */}
       <div className={styles.verticalSeparator}></div>
 
-      {/* Conteúdo Principal da Direita */}
       <div className={styles.mainContent}>
         <div className={styles.contentHeader}>
           <h2 className={styles.sectionTitle}>A SEGUIR</h2>

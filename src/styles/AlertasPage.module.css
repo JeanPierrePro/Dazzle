@@ -16,7 +16,7 @@
   width: 250px;
   padding: 40px 20px;
   background-color: #f7f7f7;
-  flex-shrink: 0; /* Impede que a sidebar encolha */
+  flex-shrink: 0;
 }
 
 .sidebarHeader {
@@ -101,7 +101,7 @@
   border-radius: 8px;
   margin-bottom: 20px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  border: 1px solid #1d1c1c; /* Borda cinza mais sutil */
+  border: 1px solid #070707; /* Borda cinza mais sutil */
 }
 
 .alertaItemHeader {
@@ -217,14 +217,14 @@
    ======================================= */
 @media (max-width: 768px) {
   .alertasPage {
-    flex-direction: column; /* Empilha a sidebar e o conteúdo */
+    flex-direction: column;
   }
 
   .sidebar {
-    width: 100%; /* Ocupa a largura toda */
+    width: 100%;
     height: auto;
-    padding: 20px 15px; /* Reduz o padding vertical e horizontal */
-    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+    padding: 20px 15px;
+    box-sizing: border-box;
   }
 
   .sidebarTitle {
@@ -236,16 +236,16 @@
   }
 
   .verticalSeparator {
-    display: none; /* Esconde a linha vertical */
+    display: none;
   }
 
   .mainContent {
-    padding: 25px 15px; /* Reduz o padding */
+    padding: 25px 15px;
   }
 
   .tabs {
-    gap: 20px; /* Reduz o espaço entre as abas */
-    flex-wrap: wrap; /* Permite que as abas quebrem a linha */
+    gap: 20px;
+    flex-wrap: wrap;
   }
   
   .tabButton {
@@ -253,7 +253,6 @@
   }
 
   .alertaItemCard {
-    /* Mantém os estilos do card, mas os paddings internos serão ajustados */
     border-color: #e0e0e0;
   }
 
@@ -262,14 +261,39 @@
   }
   
   .alertaItemOptions {
-    /* Remove o padding esquerdo grande para alinhar com o card */
     padding: 15px; 
   }
 
   .alertOption {
-    flex-direction: column; /* Empilha o texto e o toggle */
-    align-items: flex-start; /* Alinha tudo à esquerda */
-    gap: 8px; /* Adiciona um espaço entre o texto e o toggle */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
+}
 
+/* =================================================================
+   6. ESTILOS ESPECÍFICOS PARA A ABA GERAL (MOVIDO PARA FORA DO @MEDIA)
+   ================================================================= */
+
+/* Transforma o container da aba 'Geral' em um único card grande */
+.geralTabContent {
+  background-color: #f7f7f7;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 0; 
+}
+
+/* Remove o estilo de card dos itens DENTRO da aba 'Geral' */
+.geralTabContent .alertaItemCard {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+/* Adiciona uma linha separadora entre os itens, exceto no último */
+.geralTabContent .alertaItemCard:not(:last-child) {
+  border-bottom: 1px solid #4e4e4e;
 }
