@@ -5,32 +5,34 @@ import styles from '../styles/EditProfilePage.module.css';
 
 const EditProfilePage: React.FC = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState('Tomás Nelo'); //
-  const [email, setEmail] = useState('tomasnelo2025@gmail.com'); //
-  const [password, setPassword] = useState('**********'); // (hidden for display)
-  const [gender, setGender] = useState('Híbrido'); //
+  const [name, setName] = useState('Tomás Nelo');
+  const [email, setEmail] = useState('tomasnelo2025@gmail.com');
+  const [password, setPassword] = useState('**********');
+  const [gender, setGender] = useState('Homem');
 
   const handleGoBack = () => {
-    navigate(-1); // Volta para a página anterior
+    navigate(-1);
   };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para salvar as alterações
     console.log('Dados salvos:', { name, email, password, gender });
     alert('Perfil atualizado com sucesso!');
-    // Opcional: Navegar de volta ou mostrar uma mensagem de sucesso
   };
 
   return (
     <div className={styles.editProfilePage}>
-      <header className={styles.header}>
-        <div className={styles.arrowBack} onClick={handleGoBack}>&larr;</div>
-      </header>
+      {/* O <header> foi removido daqui */}
+
       <main className={styles.mainContent}>
-        <div className={styles.breadcrumb}>
-          A minha conta {'>'} Perfil
+        {/* NOVO: Container para a seta e o breadcrumb */}
+        <div className={styles.navigationHeader}>
+          <button className={styles.arrowBack} onClick={handleGoBack}>&larr;</button>
+          <div className={styles.breadcrumb}>
+            A minha conta {'>'} Perfil
+          </div>
         </div>
+
         <h1 className={styles.pageTitle}>Perfil</h1>
 
         <div className={styles.formContainer}>
@@ -71,16 +73,13 @@ const EditProfilePage: React.FC = () => {
             <div className={styles.inputGroup}>
               <label htmlFor="gender">Género</label>
               <input
-                type="text" // Poderia ser um <select> para opções fixas
+                type="text"
                 id="gender"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 className={styles.inputField}
               />
             </div>
-
-            {/* Você pode adicionar um botão de salvar se quiser que o usuário explicitamente salve */}
-            {/* <button type="submit" className={styles.saveButton}>Salvar Alterações</button> */}
           </form>
         </div>
       </main>
