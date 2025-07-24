@@ -30,8 +30,8 @@ const AlertOption: React.FC<AlertOptionProps> = ({ title, subtitle, isToggled, o
 interface AlertaItemProps {
   name: string;
   avatarSrc?: string;
-  email?: string; // Tornando opcional para o caso de jogadores
-  subtitleForNews?: string; // Subtítulo customizado para a opção de notícias
+  email?: string;
+  subtitleForNews?: string;
 }
 
 const AlertaItem: React.FC<AlertaItemProps> = ({ name, avatarSrc, email, subtitleForNews }) => {
@@ -72,13 +72,22 @@ const AlertaItem: React.FC<AlertaItemProps> = ({ name, avatarSrc, email, subtitl
 
 
 // --- PÁGINA PRINCIPAL ATUALIZADA ---
+
+// NOVO: Interface unificada para todos os tipos de alertas
+interface Alerta {
+  id: string;
+  name: string;
+  avatarSrc: string;
+  email?: string; // Propriedade opcional
+  subtitleForNews?: string; // Propriedade opcional
+}
+
 const AlertasPage: React.FC = () => {
-  // Estado inicial agora é 'geral'
   const [activeTab, setActiveTab] = useState<'geral' | 'equipas' | 'competicoes' | 'jogadores'>('geral');
   const navigate = useNavigate();
 
-  // --- DADOS MOCK PARA CADA CATEGORIA ---
-  const competicoesData = [
+  // --- DADOS MOCK COM A NOVA TIPAGEM ---
+  const competicoesData: Alerta[] = [
     { 
       id: 'cl',
       name: "Champions League", 
@@ -87,7 +96,7 @@ const AlertasPage: React.FC = () => {
     }
   ];
 
-  const equipasData = [
+  const equipasData: Alerta[] = [
     {
       id: 'slb',
       name: "SL Benfica",
@@ -96,17 +105,16 @@ const AlertasPage: React.FC = () => {
     }
   ];
 
-  const jogadoresData = [
+  const jogadoresData: Alerta[] = [
     {
       id: 'messi',
       name: "L. Messi",
       avatarSrc: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel_Messi_Copa_Am%C3%A9rica_2024.png",
-      subtitleForNews: "Enviar notificações" // Subtítulo específico para jogador
+      subtitleForNews: "Enviar notificações"
     }
   ];
   
-  // Junta todos os dados para a aba "Geral"
-  const todosOsAlertas = [...competicoesData, ...equipasData, ...jogadoresData];
+  const todosOsAlertas: Alerta[] = [...competicoesData, ...equipasData, ...jogadoresData];
 
 
   const goToProfile = () => {
@@ -117,9 +125,9 @@ const AlertasPage: React.FC = () => {
     switch (activeTab) {
       case 'geral':
         return (
-          // Adicione a classe 'geralTabContent' aqui
           <div className={`${styles.tabContent} ${styles.geralTabContent}`}>
             {todosOsAlertas.length > 0 ? (
+              // Agora o TypeScript não reclama mais aqui
               todosOsAlertas.map(item => (
                 <AlertaItem 
                   key={item.id}
@@ -169,15 +177,14 @@ const AlertasPage: React.FC = () => {
 
   return (
     <div className={styles.alertasPage}>
+      {/* O resto do JSX permanece igual */}
       <div className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
           <button className={styles.backButton} onClick={goToProfile}>←</button>
           <h1 className={styles.sidebarTitle}>Alertas</h1>
         </div>
       </div>
-
       <div className={styles.verticalSeparator}></div>
-
       <div className={styles.mainContent}>
         <div className={styles.contentHeader}>
           <h2 className={styles.sectionTitle}>A SEGUIR</h2>
