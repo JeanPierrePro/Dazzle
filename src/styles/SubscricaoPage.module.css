@@ -56,9 +56,18 @@
 
 .tabsContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Impede que as abas quebrem a linha */
+  overflow-x: auto; /* Habilita o scroll horizontal se necessário */
   border-bottom: 1px solid #dcdcdc; /* Linha abaixo de todas as abas */
-  margin-bottom: 30px;
+  margin-bottom: 40px; /* Aumenta o espaço abaixo das abas */
+
+  /* Esconde a barra de scroll visualmente */
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none;  /* Para IE/Edge */
+}
+
+.tabsContainer::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari, Opera */
 }
 
 .tabButton {
@@ -72,7 +81,7 @@
   color: #555;
   transition: color 0.2s ease, border-bottom 0.2s ease;
   white-space: nowrap;
-  border-bottom: 3px solid transparent; /* Borda "placeholder" */
+  border-bottom: 3px solid transparent; /* Borda "placeholder" para manter o alinhamento */
 }
 
 .tabButton:hover {
