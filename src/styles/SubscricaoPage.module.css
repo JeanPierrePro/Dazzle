@@ -1,81 +1,78 @@
 /* src/styles/SubscricaoPage.module.css */
 
+/* ... (Estilos das seções 1, 2, 3 e 4 permanecem os mesmos) ... */
+/* ============================
+   1. ESTRUTURA E TEMA GERAL
+   ============================ */
+
 .subscricaoPage {
-  background-color: #f0f2f5; /* Fundo claro geral */
+  background-color: #ffffff;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #333;
-}
-
-.header {
-  width: 100%;
-  background-color: #fff; /* Fundo branco do cabeçalho */
-  padding: 20px 40px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  position: relative;
-}
-
-.arrowBack {
-  font-size: 2em;
-  color: #333;
-  cursor: pointer;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
 }
 
 .mainContent {
-  padding: 30px 40px;
-  max-width: 1200px;
+  padding: 40px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+
+/* ============================
+   2. NAVEGAÇÃO E TÍTULOS
+   ============================ */
+
+.navigationHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.arrowBack {
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  color: #333;
+  cursor: pointer;
+  padding: 0;
 }
 
 .breadcrumb {
   font-size: 0.9em;
-  color: #777;
-  margin-bottom: 20px;
+  color: #555;
 }
 
 .pageTitle {
-  font-size: 1.8em;
-  font-weight: bold;
-  color: #222;
-  margin-bottom: 30px;
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 20px;
 }
+
+/* ============================
+   3. ABAS DE NAVEGAÇÃO
+   ============================ */
 
 .tabsContainer {
   display: flex;
-  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+  border-bottom: 1px solid #dcdcdc; /* Linha abaixo de todas as abas */
   margin-bottom: 30px;
-  padding: 10px;
-  overflow-x: auto; /* Permite scroll horizontal em telas muito pequenas */
-  -webkit-overflow-scrolling: touch; /* Melhor scroll em iOS */
-  scrollbar-width: none; /* Esconde a barra de rolagem para Firefox */
-  -ms-overflow-style: none; /* Esconde a barra de rolagem para IE/Edge */
-}
-
-.tabsContainer::-webkit-scrollbar {
-  display: none; /* Esconde a barra de rolagem para Chrome/Safari/Opera */
 }
 
 .tabButton {
   background-color: transparent;
   border: none;
-  padding: 10px 15px;
+  padding: 15px 0;
+  margin-right: 30px;
   cursor: pointer;
   font-size: 0.9em;
   font-weight: 600;
   color: #555;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  white-space: nowrap; /* Evita quebra de linha nos botões */
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent; /* Borda "placeholder" */
 }
 
 .tabButton:hover {
@@ -84,65 +81,74 @@
 
 .tabButton.active {
   color: #000;
-  border-bottom: 3px solid #000; /* Linha preta ativa */
+  border-bottom: 3px solid #000;
 }
+
+/* ============================
+   4. CARD DO PLANO ATUAL
+   ============================ */
 
 .contentSection {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
 .currentPlanCard {
-  background-color: #fff;
+  background-color: #f0ecec;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dcdcdc;
   padding: 25px 30px;
-}
-
-.currentPlanHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+}
+
+.currentPlanInfo {
+  flex: 1;
 }
 
 .currentPlanTitle {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #222;
-}
-
-.activeBadge {
-  background-color: #d4edda; /* Verde claro */
-  color: #155724; /* Verde escuro */
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8em;
-  font-weight: bold;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8px;
 }
 
 .currentPlanDescription {
-  font-size: 0.95em;
+  font-size: 0.9em;
   color: #555;
   line-height: 1.5;
+  max-width: 80%;
 }
 
-/* Estilos para os Planos Total e Motores (reutilizados do CatalogoPage, ajustados para o tema claro) */
+.activeBadge {
+  background-color: #1a8917; /* Verde sólido como na imagem */
+  color: #ffffff;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+/* ============================
+   5. CARDS DE PLANOS (TOTAL, MOTORES)
+   ============================ */
+
 .planCard {
-  background-color: #fff;
+  background-color: #f0ecec;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dcdcdc;
   padding: 25px 30px;
-  text-align: center;
-  border: 1px solid #eee;
+  position: relative; 
 }
 
 .planTitle {
-  font-size: 1.6em;
-  font-weight: bold;
+  font-size: 1.8em;
+  font-weight: 700;
   margin-bottom: 10px;
-  color: #222;
+  color: #1d1d1f;
+  max-width: calc(100% - 320px);
 }
 
 .planDescription {
@@ -150,176 +156,107 @@
   color: #555;
   margin-bottom: 20px;
   line-height: 1.5;
+  max-width: calc(100% - 320px);
 }
 
 .planPrice {
-  font-size: 2em;
-  font-weight: bold;
-  color: #222;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #1d1d1f;
   margin-bottom: 25px;
-}
-
-.subscribeButton {
-  background-color: #444; /* Botão mais escuro para contraste */
-  color: #fff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 5px;
-  font-size: 1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-bottom: 25px;
-  width: 80%; /* Ajusta largura do botão */
-  max-width: 250px;
-}
-
-.subscribeButton:hover {
-  background-color: #555;
-}
-
-.logosGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas para logos */
-  gap: 10px;
-  width: 100%;
-  margin: 0 auto 25px auto;
-  max-width: 300px; /* Limita a largura do grid de logos */
-}
-
-.logoImage {
-  width: 100%;
-  height: auto;
-  max-height: 35px;
-  object-fit: contain;
-  filter: grayscale(100%) brightness(0%); /* Deixa os logos pretos para fundo claro */
-  opacity: 0.7;
 }
 
 .featuresList {
   list-style: none;
   padding: 0;
+  margin-top: 25px;
   width: 100%;
-  text-align: left; /* Alinha a lista à esquerda */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
 }
+
+/* Força a lista para uma única coluna quando a classe é aplicada */
+.singleColumnList {
+    grid-template-columns: 1fr;
+}
+
 
 .featuresList li {
   display: flex;
   align-items: center;
   font-size: 0.9em;
   color: #555;
-  margin-bottom: 8px;
 }
 
 .starIcon {
-  color: #ffcc00; /* Estrela amarela */
-  margin-right: 10px;
+  color: #1d1d1f;
+  margin-right: 8px;
   font-size: 1.1em;
 }
 
-/* Responsividade */
+.logoContainerTopRight {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 280px; 
+}
+
+.logosGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+/* ALTERADO: .logoRow agora tem as mesmas propriedades da grid, mas com flex */
+.logoRow {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.logoBox {
+  background-color: #1d1d1f;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  flex: 1; /* Para que os logos na linha se ajustem */
+}
+
+.logoImage {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+/* ============================
+   6. RESPONSIVIDADE
+   ============================ */
+
+@media (max-width: 992px) {
+    .logoContainerTopRight {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .planTitle, .planDescription {
+        max-width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
-  .header {
-    padding: 15px 20px;
-  }
-  .arrowBack {
-    font-size: 1.8em;
-    left: 15px;
-  }
   .mainContent {
     padding: 20px 15px;
   }
-  .breadcrumb {
-    font-size: 0.8em;
-    margin-bottom: 15px;
+  .featuresList {
+    grid-template-columns: 1fr;
   }
-  .pageTitle {
-    font-size: 1.6em;
-    margin-bottom: 20px;
-  }
-  .tabsContainer {
-    padding: 8px;
-    margin-bottom: 20px;
-  }
-  .tabButton {
-    padding: 8px 12px;
-    font-size: 0.85em;
-  }
-  .currentPlanCard, .planCard {
-    padding: 20px 25px;
-  }
-  .currentPlanTitle {
-    font-size: 1.1em;
-  }
-  .currentPlanDescription {
-    font-size: 0.9em;
-  }
-  .planTitle {
-    font-size: 1.4em;
-  }
-  .planPrice {
-    font-size: 1.8em;
-  }
-  .subscribeButton {
-    font-size: 0.9em;
-    padding: 10px 20px;
-  }
-  .logosGrid {
-    grid-template-columns: repeat(3, 1fr); /* Ajuste para 3 colunas em telas menores */
-    max-width: 200px;
-  }
-  .logoImage {
-    max-height: 30px;
-  }
-  .featuresList li {
-    font-size: 0.85em;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-    padding: 10px 15px;
-  }
-  .arrowBack {
-    font-size: 1.5em;
-    left: 10px;
-  }
-  .mainContent {
-    padding: 15px 10px;
-  }
-  .pageTitle {
-    font-size: 1.4em;
-    margin-bottom: 15px;
-  }
-  .tabsContainer {
-    padding: 5px;
-    margin-bottom: 15px;
-  }
-  .tabButton {
-    padding: 6px 10px;
-    font-size: 0.8em;
-  }
-  .currentPlanCard, .planCard {
-    padding: 15px 20px;
-  }
-  .planTitle {
-    font-size: 1.2em;
-  }
-  .planPrice {
-    font-size: 1.6em;
-  }
-  .subscribeButton {
-    font-size: 0.85em;
-    padding: 8px 15px;
-  }
-  .logosGrid {
-    grid-template-columns: repeat(2, 1fr); /* Ajuste para 2 colunas em telas muito pequenas */
-    max-width: 150px;
-  }
-  .logoImage {
-    max-height: 25px;
-  }
-  .featuresList li {
-    font-size: 0.8em;
+  .currentPlanCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
 }
