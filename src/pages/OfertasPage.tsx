@@ -7,7 +7,7 @@ const OfertasPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate('/profile'); 
+    navigate('/profiles'); 
   };
 
   const handleTabClick = (path: string) => {

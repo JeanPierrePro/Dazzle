@@ -38,7 +38,7 @@ const SubscricaoPage: React.FC = () => {
     const navigate = useNavigate();
 
     // ... (funções handleGoBack e handleTabClick permanecem as mesmas) ...
-    const handleGoBack = () => navigate('/profile');
+    const handleGoBack = () => navigate('/profiles');
     const handleTabClick = (path: string) => navigate(path);
 
     return (

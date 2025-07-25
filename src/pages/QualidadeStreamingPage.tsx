@@ -8,7 +8,7 @@ const QualidadeStreamingPage: React.FC = () => {
   const [selectedQuality, setSelectedQuality] = useState('HD');
 
   const handleGoBack = () => {
-    navigate('/profile');
+    navigate('/profiles');
   };
 
   const handleTabClick = (path: string) => {

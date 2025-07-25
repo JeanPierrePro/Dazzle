@@ -7,7 +7,7 @@ const SobreNosPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate('/profile'); // Navega para o perfil, como nas outras páginas
+    navigate('/profiles'); // Navega para o perfil, como nas outras páginas
   };
 
   const handleTabClick = (path: string) => {

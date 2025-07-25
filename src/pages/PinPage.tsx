@@ -9,7 +9,7 @@ const PinPage: React.FC = () => {
   const [pin, setPin] = useState('');
 
   const handleGoBack = () => {
-    navigate('/profile');
+    navigate('/profiles');
   };
 
   const handleTabClick = (path: string) => {
