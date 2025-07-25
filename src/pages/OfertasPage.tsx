@@ -7,7 +7,7 @@ const OfertasPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate('/profiles'); // Redireciona diretamente para a ProfilePage
+    navigate('/profile'); 
   };
 
   const handleTabClick = (path: string) => {
@@ -15,22 +15,20 @@ const OfertasPage: React.FC = () => {
   };
 
   const handleAdherir = (offerName: string) => {
-    alert(`Você clicou em aderir para: ${offerName}! (Lógica de adesão real seria implementada aqui)`);
-    // Aqui você pode adicionar lógica para, por exemplo, redirecionar para uma página de detalhes da oferta ou mostrar um modal.
+    alert(`Você clicou em aderir para: ${offerName}!`);
   };
 
   return (
     <div className={styles.ofertasPage}>
-      <header className={styles.header}>
-        <div className={styles.arrowBack} onClick={handleGoBack}>&larr;</div>
-      </header>
       <main className={styles.mainContent}>
-        <div className={styles.breadcrumb}>
-          A minha conta {'>'} mais sobre a DAZZLE
+        <div className={styles.navigationHeader}>
+            <button className={styles.arrowBack} onClick={handleGoBack}>&larr;</button>
+            <div className={styles.breadcrumb}>
+                A minha conta {'>'} mais sobre a DAZZLE
+            </div>
         </div>
         <h1 className={styles.pageTitle}>As tuas ofertas</h1>
 
-        {/* Navigation Tabs */}
         <nav className={styles.tabsContainer}>
           <button className={styles.tabButton} onClick={() => handleTabClick('/subscricao')}>SUBSCRICÃO DAZZLE</button>
           <button className={styles.tabButton} onClick={() => handleTabClick('/dispositivos-suportados')}>DISPOSITIVOS SUPORTADOS</button>
@@ -41,10 +39,10 @@ const OfertasPage: React.FC = () => {
         </nav>
 
         <div className={styles.contentSection}>
-          {/* Oferta Betano */}
+          {/* Oferta Betano - ESTRUTURA CORRIGIDA */}
           <div className={styles.offerCard}>
-            <div className={styles.offerLogo}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Betano_Logo_SVG.svg" alt="Betano Logo" className={styles.logoImage} onError={(e) => { e.currentTarget.src = 'https://placehold.co/80x80/FF6600/fff?text=Betano'; }} />
+            <div className={styles.offerLogo} style={{ backgroundColor: '#D73F0C' }}>
+              <img src="https://i.imgur.com/r62n1i8.png" alt="Betano Logo" className={styles.logoImage} />
             </div>
             <div className={styles.offerDetails}>
               <button className={styles.adherirButton} onClick={() => handleAdherir('200 FREE Spins na slot-stake')}>ADERIR</button>
@@ -55,10 +53,10 @@ const OfertasPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Oferta Domino's */}
+          {/* Oferta Domino's - ESTRUTURA CORRIGIDA */}
           <div className={styles.offerCard}>
-            <div className={styles.offerLogo}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Dominos_pizza_logo.svg/1200px-Dominos_pizza_logo.svg.png" alt="Dominos Logo" className={styles.logoImage} onError={(e) => { e.currentTarget.src = 'https://placehold.co/80x80/004B8D/fff?text=Dominos'; }} />
+            <div className={styles.offerLogo} style={{ backgroundColor: '#006491' }}>
+              <img src="https://i.imgur.com/8Q9S4EA.png" alt="Dominos Logo" className={styles.logoImage} />
             </div>
             <div className={styles.offerDetails}>
               <button className={styles.adherirButton} onClick={() => handleAdherir('1 Pizza Grátis por mês')}>ADERIR</button>
