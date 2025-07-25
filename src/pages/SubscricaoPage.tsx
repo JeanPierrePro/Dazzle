@@ -52,11 +52,14 @@ const SubscricaoPage: React.FC = () => {
                     </div>
                 </div>
                 <h1 className={styles.pageTitle}>Subscrição DAZZLE</h1>
-                <nav className={styles.tabsContainer}>
-                    <button className={`${styles.tabButton} ${styles.active}`} onClick={() => handleTabClick('/subscricao')}>SUBSCRICÃO DAZZLE</button>
-                    <button className={styles.tabButton} onClick={() => handleTabClick('/dispositivos-suportados')}>DISPOSITIVOS SUPORTADOS</button>
-                    {/* ... outras abas */}
-                </nav>
+        <nav className={styles.tabsContainer}>
+          <button className={`${styles.tabButton} ${styles.active}`} onClick={() => handleTabClick('/subscricao')}>SUBSCRICÃO DAZZLE</button>
+          <button className={styles.tabButton} onClick={() => handleTabClick('/dispositivos-suportados')}>DISPOSITIVOS SUPORTADOS</button>
+          <button className={styles.tabButton} onClick={() => handleTabClick('/ofertas')}>AS TUAS OFERTAS</button>
+          <button className={styles.tabButton} onClick={() => handleTabClick('/sobre-nos')}>SOBRE NÓS</button>
+          <button className={styles.tabButton} onClick={() => handleTabClick('/qualidade-streaming')}>QUALIDADE DO STREAMING</button>
+          <button className={styles.tabButton} onClick={() => handleTabClick('/protecao-pin')}>PROT</button>
+        </nav>
 
                 <div className={styles.contentSection}>
                     {/* Plano Atual */}
